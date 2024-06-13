@@ -1,12 +1,11 @@
-import VolumeKnob from "@components/VolumeKnob";
+import Home from "pages/Home";
+import { Routes, Route } from "react-router-dom";
 
 function App() {
-  console.log(window.innerWidth, window.innerHeight);
-
   return (
-    <div className="h-screen bg-[url('/src/assets/images/background.jpg')] bg-cover bg-center">
-      <VolumeKnob />
-    </div>
+    <Routes>
+      <Route path="/" element={<Home />}></Route>
+    </Routes>
   );
 }
 

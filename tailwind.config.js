@@ -11,14 +11,23 @@ export default {
       },
     },
     extend: {
+      backgroundImage: {
+        "button-up":
+          "linear-gradient(180deg, rgb(68,68,68) 0%, rgb(43,43,43) 30%, rgb(39,39,39) 70%, rgb(14,14,14) 100%)",
+      },
+      boxShadow: {
+        element:
+          "0px 4px 0px 2px rgba(0, 0, 0, 90), inset 0px 0px 0px 1px rgba(255, 255, 255, 0.15)",
+      },
       colors: {
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
         ring: "hsl(var(--ring))",
         background: "hsl(var(--background))",
+        elementBackground: "var(--background-secondary)",
         foreground: "hsl(var(--foreground))",
         primary: {
-          DEFAULT: "hsl(var(--primary))",
+          DEFAULT: "var(--primary)",
           foreground: "hsl(var(--primary-foreground))",
         },
         secondary: {
@@ -47,9 +56,9 @@ export default {
         },
       },
       borderRadius: {
-        lg: "var(--radius)",
-        md: "calc(var(--radius) - 2px)",
-        sm: "calc(var(--radius) - 4px)",
+        lg: "8px",
+        md: "5px",
+        sm: "3px",
       },
       keyframes: {
         "accordion-down": {
