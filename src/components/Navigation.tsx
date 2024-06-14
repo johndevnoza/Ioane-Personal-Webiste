@@ -15,7 +15,7 @@ const Navigation = () => {
         <span
           className={
             location.pathname == `/${link.link}`
-              ? "rounded-sm border-2 border-borderHighlight bg-red-500 px-2 text-center"
+              ? "rounded-sm border-2 border-borderHighlight bg-orange-600 px-2 text-center"
               : "rounded-sm border-2 border-borderHighlight bg-borderDark px-2 text-center text-elementBgColor"
           }
           key={link.title}

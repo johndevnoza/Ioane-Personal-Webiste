@@ -14,10 +14,6 @@ export default {
       backgroundImage: {
         homeScreenImg: "url('/src/assets/images/test bg.jpg')",
       },
-      boxShadow: {
-        element:
-          "0px 4px 0px 2px rgba(0, 0, 0, 90), inset 0px 0px 0px 1px rgba(255, 255, 255, 0.15)",
-      },
       colors: {
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
