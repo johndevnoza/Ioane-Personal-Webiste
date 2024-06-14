@@ -27,7 +27,11 @@
   }
 
   .dark {
-    --background: #181818;
+    --background: #1c1c1e;
+    --elementBgColor: #39393b;
+    --elementBgDark: #1c1c1e;
+    --borderHighlight: #232527;
+    --borderDark: #0f0f0f;
     --foreground: 0 0% 95%;
     --card: 24 9.8% 10%;
     --card-foreground: 0 0% 95%;
@@ -44,7 +48,6 @@
     --accent-foreground: 0 0% 98%;
     --destructive: 0 62.8% 30.6%;
     --destructive-foreground: 0 85.7% 97.3%;
-    --border: 240 3.7% 15.9%;
     --input: 240 3.7% 15.9%;
     --ring: 346.8 77.2% 49.8%;
   }

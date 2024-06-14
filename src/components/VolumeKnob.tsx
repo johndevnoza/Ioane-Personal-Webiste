@@ -2,13 +2,12 @@ import { useState, useEffect, useRef } from "react";
 
 const KnobLine = ({ angle }: { angle: number }) => {
   const lineStyle = {
-    transform: `rotate(${angle}deg) translate(0, -600%)`,
-    transformOrigin: "center",
+    transform: `rotate(${angle}deg) translate(0, -340%)`,
   };
   return (
     <div
       style={lineStyle}
-      className="absolute left-[138px] top-[132px] h-5 w-2 rounded-sm border-l-[2px] border-white/30 bg-slate-800"
+      className="border-borderHighlight bg-elementBgColor absolute left-[46px] top-[40px] z-20 h-5 w-2 rounded-sm border-2 border-l-[2px] outline outline-white/10"
     />
   );
 };
@@ -41,12 +40,19 @@ const VolumeKnob = () => {
   ));
 
   return (
-    <div
-      ref={knobRef}
-      className="relative size-72 rounded-full border-2 border-gray-400 bg-slate-600 text-center text-black outline"
-      style={{ transform: `rotate(${rotation}deg)` }}
-    >
-      {lines}
+    <div className="from-elementBgColor border-borderDark outline-borderHighlight grid place-items-center rounded-full border-4 bg-white/25 bg-gradient-to-tr p-8 shadow-lg outline drop-shadow-2xl">
+      <div className="from-elementBgColor rounded-full border-2 border-white/20 bg-white/15">
+        <div
+          ref={knobRef}
+          className="relative grid size-[100px] place-items-center"
+          style={{ transform: `rotate(${rotation}deg)` }}
+        >
+          <span className="border-borderDark font-mono before:scale-110">
+            Ioane
+          </span>
+          {lines}
+        </div>
+      </div>
     </div>
   );
 };

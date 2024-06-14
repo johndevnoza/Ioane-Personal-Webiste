@@ -12,8 +12,7 @@ export default {
     },
     extend: {
       backgroundImage: {
-        "button-up":
-          "linear-gradient(180deg, rgb(68,68,68) 0%, rgb(43,43,43) 30%, rgb(39,39,39) 70%, rgb(14,14,14) 100%)",
+        homeScreenImg: "url('/src/assets/images/test bg.jpg')",
       },
       boxShadow: {
         element:
@@ -24,7 +23,10 @@ export default {
         input: "hsl(var(--input))",
         ring: "hsl(var(--ring))",
         background: "hsl(var(--background))",
-        elementBackground: "var(--background-secondary)",
+        elementBgColor: "var(--elementBgColor)",
+        elementBgDark: "var(--elementBgDark)",
+        borderHighlight: "var(--borderHighlight)",
+        borderDark: "var(--borderDark)",
         foreground: "hsl(var(--foreground))",
         primary: {
           DEFAULT: "var(--primary)",
