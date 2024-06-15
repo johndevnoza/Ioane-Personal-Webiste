@@ -1,4 +1,9 @@
 import { useAudio } from "audioContext";
+import {
+  SquareArrowDownRight,
+  SquareArrowOutDownRight,
+  SquareArrowOutUpLeft,
+} from "lucide-react";
 import { useState, useEffect, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 
@@ -81,15 +86,30 @@ const VolumeKnob = () => {
       ref={knobRef}
       className="relative grid cursor-pointer place-items-center rounded-full border-4 border-borderDark bg-white/25 bg-gradient-to-tr from-elementBgColor p-8 shadow-lg outline outline-borderHighlight drop-shadow-2xl"
     >
-      <div className="rounded-full border-2 border-white/20 bg-white/15 from-elementBgColor">
+      <div className="relative rounded-full border-2 border-white/20 bg-white/15 from-elementBgColor">
         <div
-          className="relative grid size-[100px] place-items-center"
+          className="relative z-50 grid size-[100px] place-items-center"
           style={{ transform: `rotate(${rotation}deg)` }}
         >
-          <span className="select-none border-borderDark font-mono before:scale-110">
-            Ioane
-          </span>
           {lines}
+        </div>
+        <div className="absolute left-0 top-0 z-50 flex size-full flex-col rounded-full border-2 border-borderDark bg-black/45">
+          <div
+            onClick={() => {
+              console.log("1");
+            }}
+            className="grid h-1/2 place-content-center rounded-t-full border-b-2 border-borderDark bg-orange-600 outline-2 outline-black/20 active:scale-[96%] active:outline"
+          >
+            <SquareArrowOutUpLeft />
+          </div>
+          <div
+            onClick={() => {
+              console.log("2");
+            }}
+            className="grid h-1/2 place-content-center rounded-b-full border-t-2 border-white/30 bg-white/30 outline-2 outline-black/20 active:scale-[96%] active:outline"
+          >
+            <SquareArrowOutDownRight />
+          </div>
         </div>
       </div>
       <audio
