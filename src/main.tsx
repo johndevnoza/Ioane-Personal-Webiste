@@ -9,11 +9,11 @@ import { AudioProvider } from "audioContext.tsx";
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>
     <BrowserRouter>
-      <ThemeProvider defaultTheme="dark" storageKey="vite-ui-theme">
-        <AudioProvider>
-          <App />
-        </AudioProvider>
-      </ThemeProvider>
+        <ThemeProvider defaultTheme="dark" storageKey="vite-ui-theme">
+          <AudioProvider>
+            <App />
+          </AudioProvider>
+        </ThemeProvider>
     </BrowserRouter>
   </React.StrictMode>,
 );

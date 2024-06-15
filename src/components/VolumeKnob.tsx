@@ -1,9 +1,5 @@
 import { useAudio } from "audioContext";
-import {
-  SquareArrowDownRight,
-  SquareArrowOutDownRight,
-  SquareArrowOutUpLeft,
-} from "lucide-react";
+import { SquareArrowOutDownRight, SquareArrowOutUpLeft } from "lucide-react";
 import { useState, useEffect, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 
@@ -31,30 +27,30 @@ const VolumeKnob = () => {
 
   const [rotation, setRotation] = useState(0);
   const [navId, setNavId] = useState(1);
-
+  const [scrollInside, setScrollInside] = useState(false);
   const navigate = useNavigate();
 
-  const numLines = 16;
-  const knobRef = useRef<HTMLDivElement>(null);
   const audioRef = useRef<HTMLAudioElement | null>(null);
+  const knobRef = useRef<HTMLDivElement>(null);
 
   const handleScroll = (event: WheelEvent) => {
     event.preventDefault();
     setRotation((prevRotation) => prevRotation + event.deltaY * 0.1);
-    if (event.deltaY > 0) {
-      setNavId((prevId) => (prevId === 4 ? 1 : prevId + 1));
-    } else {
-      setNavId((prevId) => (prevId === 1 ? 4 : prevId - 1));
-    }
+    if (!scrollInside) {
+      if (event.deltaY > 0) {
+        setNavId((prevId) => (prevId === 4 ? 1 : prevId + 1));
+      } else {
+        setNavId((prevId) => (prevId === 1 ? 4 : prevId - 1));
+      }
+      if (isAudioEnabled && audioRef.current) {
+        audioRef.current.pause();
+        audioRef.current.currentTime = 0;
 
-    if (isAudioEnabled && audioRef.current) {
-      audioRef.current.pause();
-      audioRef.current.currentTime = 0;
-
-      audioRef.current.play().catch((error) => {
-        console.error("Error playing sound:", error);
-      });
-    }
+        audioRef.current.play().catch((error) => {
+          console.error("Error playing sound:", error);
+        });
+      }
+    } else null;
   };
 
   useEffect(() => {
@@ -68,7 +64,7 @@ const VolumeKnob = () => {
         knobElement.removeEventListener("wheel", handleScroll);
       }
     };
-  }, [isAudioEnabled]);
+  }, [isAudioEnabled, scrollInside]);
 
   useEffect(() => {
     const link = navLinks.find((link) => link.id === navId)?.link;
@@ -77,9 +73,17 @@ const VolumeKnob = () => {
     }
   }, [navId, navigate]);
 
+  const numLines = 16;
   const lines = Array.from({ length: numLines }, (_, index) => (
     <KnobLine key={index} angle={(index * 360) / numLines} />
   ));
+  const handleSectionsEnter = () => {
+    setScrollInside(true);
+  };
+  const handleSectionsOut = () => {
+    setScrollInside(false);
+  };
+  console.log(scrollInside, "hm");
 
   return (
     <div
@@ -95,17 +99,13 @@ const VolumeKnob = () => {
         </div>
         <div className="absolute left-0 top-0 z-50 flex size-full flex-col rounded-full border-2 border-borderDark bg-black/45">
           <div
-            onClick={() => {
-              console.log("1");
-            }}
+            onClick={handleSectionsEnter}
             className="grid h-1/2 place-content-center rounded-t-full border-b-2 border-borderDark bg-orange-600 outline-2 outline-black/20 active:scale-[96%] active:outline"
           >
             <SquareArrowOutUpLeft />
           </div>
           <div
-            onClick={() => {
-              console.log("2");
-            }}
+            onClick={handleSectionsOut}
             className="grid h-1/2 place-content-center rounded-b-full border-t-2 border-white/30 bg-white/30 outline-2 outline-black/20 active:scale-[96%] active:outline"
           >
             <SquareArrowOutDownRight />
@@ -120,5 +120,4 @@ const VolumeKnob = () => {
     </div>
   );
 };
-
 export default VolumeKnob;
