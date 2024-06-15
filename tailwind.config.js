@@ -67,10 +67,23 @@ export default {
           from: { height: "var(--radix-accordion-content-height)" },
           to: { height: "0" },
         },
+        shine: {
+          "0%": {
+            transform: "translateX(-200px) rotate(-12deg) translateY(-50px)",
+          },
+          "8%": {
+            transform: "translateX(1300%) rotate(-12deg) translateY(-50px)",
+          },
+          "100%": {
+            transform: "translateX(1300%) rotate(-12deg) translateY(-50px)",
+          },
+        },
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
+        reveal: "spin 3s linear infinite",
+        shine: "shine 18s ease infinite",
       },
     },
   },
