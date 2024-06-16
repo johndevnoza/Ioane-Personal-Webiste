@@ -1,36 +1,32 @@
-import { useEffect, useRef } from "react";
-import { useLocation } from "react-router-dom";
+import navLinks from "lib/constants";
+import { scrollManagment } from "scrollManagment";
+import { useFocusElement } from "hooks/useFocusElement";
 
-const Contact = () => {
-  const elementRef = useRef(null);
-  const location = useLocation();
-  useEffect(() => {
-    elementRef.current.focus();
-  }, [location]);
+const Skills = () => {
+  const contactsLink = navLinks.find((link) => link.link === "contact");
+  const elementId = scrollManagment((state) => state.elementId);
+
+  const contactData = contactsLink?.data || [];
+  const { setElementRef } = useFocusElement(elementId, contactData.length);
+
+  if (!contactsLink || !contactsLink.data) {
+    return null;
+  }
+
   return (
-    <div className="z-50 space-y-7">
-      <input
-        ref={elementRef}
-        type="text"
-        className="z-50 cursor-pointer bg-green-400 text-green-900"
-      />
-      <input
-        ref={elementRef}
-        type="text"
-        className="cursor-pointer bg-green-400 text-green-900"
-      />
-      <input
-        ref={elementRef}
-        type="text"
-        className="cursor-pointer bg-green-400 text-green-900"
-      />
-      <input
-        ref={elementRef}
-        type="text"
-        className={elementRef.current ? "bg-green-700" : "bg-red-400"}
-      />
+    <div className="z-50 rounded-sm">
+      {contactData?.map((skill, index) => (
+        <div
+          ref={setElementRef(index)}
+          key={skill.id}
+          tabIndex={-1}
+          className={`rounded-sm p-2 focus:outline-none ${index + 1 === elementId ? "bg-orange-500" : ""}`}
+        >
+          {skill.name}
+        </div>
+      ))}
     </div>
   );
 };
 
-export default Contact;
+export default Skills;

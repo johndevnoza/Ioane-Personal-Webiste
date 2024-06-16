@@ -70,7 +70,7 @@ const VolumeKnob = () => {
   return (
     <div
       ref={knobRef}
-      className="relative  grid cursor-pointer place-items-center rounded-full border-4 border-borderDark bg-white/25 bg-gradient-to-tr from-elementBgColor p-8 shadow-lg outline outline-borderHighlight drop-shadow-2xl"
+      className="relative grid cursor-pointer place-items-center rounded-full border-4 border-borderDark bg-white/25 bg-gradient-to-tr from-elementBgColor p-8 shadow-lg outline outline-borderHighlight drop-shadow-2xl"
     >
       <div className="relative rounded-full border-2 border-white/20 bg-white/15 from-elementBgColor">
         <div
@@ -99,6 +99,10 @@ const VolumeKnob = () => {
         src="/public/scroll-sound-test.mp3"
         preload="auto"
       />
+      <audio>
+        <source src="/scroll-sound-test.mp3" type="audio/mpeg" />
+        Your browser does not support the audio element.
+      </audio>
     </div>
   );
 };

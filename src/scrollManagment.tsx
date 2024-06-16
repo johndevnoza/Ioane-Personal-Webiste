@@ -23,7 +23,7 @@ export const scrollManagment = create(
         event.preventDefault();
         const { rotation, navId, scrollInside, elementId } = get();
         set({ rotation: rotation + event.deltaY * 0.1 });
-        const skillsCount = skillsData?.skillsData?.length;
+        const skillsCount = skillsData?.Data?.length;
         if (!scrollInside) {
           if (event.deltaY > 0) {
             set({ navId: navId === 4 ? 1 : navId + 1 });
