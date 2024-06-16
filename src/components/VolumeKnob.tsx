@@ -59,9 +59,9 @@ const VolumeKnob = () => {
 
   const handleButtonClick = async () => {
     handleSectionsEnter();
-    if (activeElement) {
+    if (activeElement.navigate) {
       window.open(activeElement.navigate, "_blank", "noreferrer");
-    }
+    } else null;
   };
 
   const numLines = 16;
