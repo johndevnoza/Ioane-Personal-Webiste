@@ -3,7 +3,7 @@ import { useEffect } from "react";
 const ScrollSound = () => {
   useEffect(() => {
     const audio = new Audio("/public/scroll-sound.wav");
-      console.log(audio);
+    console.log(audio);
 
     const playSound = () => {
       audio.play();

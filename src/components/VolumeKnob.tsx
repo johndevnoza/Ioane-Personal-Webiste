@@ -1,15 +1,10 @@
 import { audioManagment } from "audioContext";
+import navLinks from "lib/constants";
+import filteredData from "lib/filteredData";
 import { SquareArrowOutDownRight, SquareArrowOutUpLeft } from "lucide-react";
 import { useEffect, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import { scrollManagment } from "scrollManagment";
-
-const navLinks = [
-  { title: "Skills", link: "skills", id: 1 },
-  { title: "Links", link: "social-media", id: 2 },
-  { title: "About", link: "about", id: 3 },
-  { title: "Contact", link: "contact", id: 4 },
-];
 
 const KnobLine = ({ angle }: { angle: number }) => {
   const lineStyle = {
@@ -25,19 +20,19 @@ const KnobLine = ({ angle }: { angle: number }) => {
 
 const VolumeKnob = () => {
   const handleScroll = scrollManagment((state) => state.handleScroll);
-  const scrollInside: boolean = scrollManagment((state) => state.scrollInside);
   const rotation = scrollManagment((state) => state.rotation);
   const navId = scrollManagment((state) => state.navId);
   const handleSectionsEnter = scrollManagment(
     (state) => state.handleSectionsEnter,
   );
+  const { activeElement } = filteredData();
+
   const handleSectionsOut = scrollManagment((state) => state.handleSectionsOut);
   const isAudioEnabled = audioManagment((state) => state.isAudioEnabled);
 
   const navigate = useNavigate();
   const audioRef = useRef<HTMLAudioElement | null>(null);
   const knobRef = useRef<HTMLDivElement>(null);
-
   useEffect(() => {
     const knobElement = knobRef.current;
     if (knobElement) {
@@ -62,6 +57,13 @@ const VolumeKnob = () => {
     }
   }, [navId, navigate]);
 
+  const handleButtonClick = async () => {
+    handleSectionsEnter();
+    if (activeElement) {
+      window.open(activeElement.navigate, "_blank", "noreferrer");
+    }
+  };
+
   const numLines = 16;
   const lines = Array.from({ length: numLines }, (_, index) => (
     <KnobLine key={index} angle={(index * 360) / numLines} />
@@ -81,7 +83,7 @@ const VolumeKnob = () => {
         </div>
         <div className="absolute left-0 top-0 z-50 flex size-full flex-col rounded-full border-2 border-borderDark bg-black/45">
           <div
-            onClick={handleSectionsEnter}
+            onClick={handleButtonClick}
             className="grid h-1/2 place-content-center rounded-t-full border-b-2 border-borderDark bg-orange-600 outline-2 outline-black/20 active:scale-[96%] active:outline"
           >
             <SquareArrowOutUpLeft />

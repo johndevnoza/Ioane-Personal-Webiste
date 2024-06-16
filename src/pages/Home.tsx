@@ -38,7 +38,7 @@ const Home = () => {
                 <Outlet />
               </div>
             </section>
-            <div className="flex w-full flex-col justify-around gap-2 rounded-lg border-2 border-borderHighlight border-l-black border-t-black bg-elementBgDark p-2 md:h-full md:w-[45%] md:flex-row">
+            <div className="flex w-full flex-col justify-center gap-2 rounded-lg border-2 border-borderHighlight border-l-black border-t-black bg-elementBgDark p-2 md:h-full md:w-[45%] md:flex-row">
               <Navigation />
               <div className="h-full w-1 border-l-2 border-borderHighlight bg-borderDark" />
               <ButtonsSection />
