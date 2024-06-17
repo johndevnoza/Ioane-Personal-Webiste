@@ -22,11 +22,17 @@ const VolumeKnob = () => {
   const handleScroll = scrollManagment((state) => state.handleScroll);
   const rotation = scrollManagment((state) => state.rotation);
   const navId = scrollManagment((state) => state.navId);
+  const activeNavLink = scrollManagment((state) => state.activeNavLink);
+  const elementId = scrollManagment((state) => state.elementId);
   const handleSectionsEnter = scrollManagment(
     (state) => state.handleSectionsEnter,
   );
   const { activeElement } = filteredData();
 
+  const isElement = activeNavLink?.data.find(
+    (element) => element.id === elementId,
+  );
+  console.log(isElement, "activeNavLink");
   const handleSectionsOut = scrollManagment((state) => state.handleSectionsOut);
   const isAudioEnabled = audioManagment((state) => state.isAudioEnabled);
 
@@ -59,7 +65,7 @@ const VolumeKnob = () => {
 
   const handleButtonClick = async () => {
     handleSectionsEnter();
-    if (activeElement.navigate) {
+    if (activeNavLink?.data.length && activeElement?.navigate) {
       window.open(activeElement.navigate, "_blank", "noreferrer");
     } else null;
   };

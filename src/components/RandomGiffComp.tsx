@@ -44,7 +44,7 @@ const RandomGifComponent = () => {
     <div className="relative h-full w-full overflow-hidden border-2 border-black bg-black/45">
       {gif ? (
         <div
-          className="h-full w-full bg-cover bg-center opacity-80"
+          className="h-full w-full bg-cover bg-center opacity-80 "
           style={{ backgroundImage: `url(${gif.images.downsized.url})` }}
         >
           <img

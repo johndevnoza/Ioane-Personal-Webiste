@@ -8,24 +8,20 @@ const Skills = () => {
   const scrollInside = scrollManagment((state) => state.scrollInside);
 
   const skillsData = skillsLink?.data || [];
-  const { setElementRef } = useFocusElement(
-    elementId,
-    scrollInside,
-    skillsData.length,
-  );
+  const { setElementRef } = useFocusElement(elementId, skillsData.length);
 
   if (!skillsLink || !skillsLink.data) {
     return null;
   }
 
   return (
-    <div className="z-50 rounded-sm">
+    <div className="h-min">
       {skillsData?.map((skill, index) => (
         <div
           ref={setElementRef(index)}
           key={skill.id}
           tabIndex={-1}
-          className={`rounded-sm p-2 focus:bg-orange-500 focus:outline-none`}
+          className={`rounded-sm p-2 focus:outline focus:outline-orange-500 ${scrollInside && "focus:bg-orange-500 focus:outline-0"}`}
         >
           {skill.name}
         </div>

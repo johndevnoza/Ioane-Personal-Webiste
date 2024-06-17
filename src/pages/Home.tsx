@@ -36,10 +36,10 @@ const Home = () => {
           <main className="relative flex h-full flex-col items-center justify-between gap-4 overflow-hidden rounded-l-[3px] rounded-r-[24px] border-2 border-borderDark border-b-borderHighlight border-r-borderHighlight p-6 md:flex-row">
             <div className="fixed z-0 h-[400px] w-screen -translate-x-[700px] translate-y-[100px] rotate-45 select-none bg-gradient-to-t from-white opacity-40 mix-blend-overlay blur-[1px]" />
             <section
-              className={`relative h-full w-full overflow-hidden rounded-lg border-2 border-b-borderHighlight border-l-black/25 border-r-borderHighlight border-t-black/25 bg-black ${scrollInside && "animate-reveal"}`}
+              className={`relative h-full w-full overflow-hidden scroll-auto rounded-lg border-2 border-b-borderHighlight border-l-black/25 border-r-borderHighlight border-t-black/25 bg-black ${scrollInside && "animate-reveal"}`}
             >
               <div className="absolute h-screen w-full bg-gradient-to-b from-white/10 mix-blend-screen" />
-              <div className="text-wrap rounded-md p-4">
+              <div className="h-full w-full overflow-y-scroll scroll-smooth text-wrap rounded-md p-4">
                 <Outlet />
               </div>
             </section>
