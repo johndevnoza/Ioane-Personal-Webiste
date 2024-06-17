@@ -8,7 +8,9 @@ const filteredData = () => {
 
   const sectionData = navLinks.find((navLink) => navLink.id === navId)?.data;
 
-  const activeNavLink = navLinks.find((navLink) => navLink.id === navId);
+  const activeNavLink =
+    navLinks.find((navLink) => navLink.id === navId) || null;
+    
   const activeElement = scrollInside
     ? activeNavLink?.data?.find((element) => element.id === elementId)
     : null;

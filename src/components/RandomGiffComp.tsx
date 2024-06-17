@@ -1,33 +1,47 @@
-import { audioManagment } from "audioContext";
-import { skillsData } from "lib/TestDataParts";
+import { keepPreviousData, useQuery } from "@tanstack/react-query";
 import filteredData from "lib/filteredData";
-import { useEffect, useState } from "react";
-import { scrollManagment } from "scrollManagment";
 import apiClient from "services/axiosConfig";
+import useDebounce from "hooks/useDebaunce";
 
 const RandomGifComponent = () => {
-  const { activeNavLink, activeElement, queryParam } = filteredData();
-  const [gif, setGif] = useState(null);
-  const scrollInside = scrollManagment((state) => state.scrollInside);
+  const { queryParam } = filteredData();
+  const debouncedSearchTerm = useDebounce(queryParam, 700);
 
-  useEffect(() => {
-    const fetchRandomGif = async () => {
-      apiClient
-        .get(`/search?q=${queryParam}&limit=1&offset=0`)
-        .then((response) => {
-          const gifData = response.data.data[0];
-          setGif(gifData);
-        })
-        .catch((error) => console.error("Error fetching data:", error));
-    };
-    const timer = setTimeout(fetchRandomGif, 1000);
-    return () => clearTimeout(timer);
-  }, [activeNavLink, activeElement, scrollInside]);
+  const { data: gif, isPending } = useQuery({
+    queryKey: ["gifs_query", debouncedSearchTerm],
+    queryFn: async () => {
+      try {
+        const response = await apiClient.get(
+          `/search?q=${debouncedSearchTerm}&limit=1&offset=0`,
+        );
+        if (response.data && response.data.data.length > 0) {
+          return response.data.data[0];
+        } else {
+          return null;
+        }
+      } catch (error) {
+        console.error("Error fetching data:", error);
+        return null;
+      }
+    },
+    placeholderData: keepPreviousData,
+    staleTime: Infinity,
+  });
 
-  if (!gif) return <div>Loading...</div>;
+  if (isPending)
+    return (
+      <div className="flex h-full w-full items-center justify-center border-2 border-black bg-black/45">
+        <img
+          src={"/LoadingGiff.gif"}
+          alt="Loading..."
+          loading="lazy"
+          className="size-full"
+        />
+      </div>
+    );
 
   return (
-    <div className="h-full w-full border-2 border-black bg-black/45">
+    <div className="relative h-full w-full overflow-hidden border-2 border-black bg-black/45">
       {gif ? (
         <div
           className="h-full w-full bg-cover bg-center opacity-80"
@@ -41,7 +55,12 @@ const RandomGifComponent = () => {
           />
         </div>
       ) : (
-        <p>Loading...</p>
+        <img
+          src={"/reachedMaximumLimitGiff.gif"}
+          alt="Loading..."
+          loading="lazy"
+          className="absolute top-[35%] size-max md:scale-[200%]"
+        />
       )}
     </div>
   );
