@@ -78,11 +78,15 @@ export default {
             transform: "translateX(1300%) rotate(-12deg) translateY(-50px)",
           },
         },
+        reveal: {
+          "0%, 100%": { outline: "transparent" },
+          "10%": { outline: "2px solid rgb(249 115 22)" },
+        },
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
-        reveal: "spin 3s linear infinite",
+        reveal: "reveal 1s ease-in",
         shine: "shine 18s ease infinite",
       },
     },
