@@ -28,11 +28,33 @@ const VolumeKnob = () => {
   );
   const { activeElement } = filteredData();
   const handleSectionsOut = scrollManagment((state) => state.handleSectionsOut);
+  const scrollInside = scrollManagment((state) => state.scrollInside);
   const isAudioEnabled = audioManagment((state) => state.isAudioEnabled);
 
   const navigate = useNavigate();
   const audioRef = useRef<HTMLAudioElement | null>(null);
+  const audioEnterRef = useRef<HTMLAudioElement | null>(null);
+  const audioOutRef = useRef<HTMLAudioElement | null>(null);
   const knobRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (audioRef.current) {
+      audioRef.current.src = scrollInside
+        ? "/scrollSoundInside.wav"
+        : "/scrollSound2.mp3";
+      audioRef.current.load();
+    }
+  }, [scrollInside]);
+
+  useEffect(() => {
+    if (audioEnterRef.current) {
+      audioEnterRef.current.load();
+    }
+    if (audioOutRef.current) {
+      audioOutRef.current.load();
+    }
+  }, []);
+
   useEffect(() => {
     const knobElement = knobRef.current;
     if (knobElement) {
@@ -40,7 +62,9 @@ const VolumeKnob = () => {
       if (isAudioEnabled && audioRef.current) {
         audioRef.current.pause();
         audioRef.current.currentTime = 0;
-        audioRef.current.play();
+        audioRef.current
+          .play()
+          .catch((error) => console.error("Audio play error:", error));
       }
     }
     return () => {
@@ -57,11 +81,29 @@ const VolumeKnob = () => {
     }
   }, [navId, navigate]);
 
-  const handleButtonClick = async () => {
+  const handleNavigateButton = async () => {
+    if (isAudioEnabled && audioEnterRef.current && !scrollInside) {
+      audioEnterRef.current.pause();
+      audioEnterRef.current.currentTime = 0;
+      audioEnterRef.current
+        .play()
+        .catch((error) => console.error("Audio play error:", error));
+    }
     handleSectionsEnter();
     if (activeNavLink?.data.length && activeElement?.navigate) {
       window.open(activeElement.navigate, "_blank", "noreferrer");
     } else null;
+  };
+
+  const handleBackButton = async () => {
+    if (isAudioEnabled && audioOutRef.current && scrollInside) {
+      audioOutRef.current.pause();
+      audioOutRef.current.currentTime = 0;
+      audioOutRef.current
+        .play()
+        .catch((error) => console.error("Audio play error:", error));
+    }
+    handleSectionsOut();
   };
 
   const numLines = 16;
@@ -83,29 +125,24 @@ const VolumeKnob = () => {
         </div>
         <div className="absolute left-0 top-0 z-50 flex size-full flex-col rounded-full border-2 border-black/70 bg-black/45">
           <div
-            onClick={handleButtonClick}
-            className="grid h-1/2 place-content-center rounded-t-full border-b-2 border-black/55 bg-selectedColor outline-2 outline-black/20 active:scale-[96%] active:outline"
+            onClick={handleNavigateButton}
+            className="bg-selectedColor grid h-1/2 place-content-center rounded-t-full border-b-2 border-black/55 outline-2 outline-black/20 active:scale-[96%] active:outline"
           >
             <SquareArrowOutUpLeft />
           </div>
           <div
-            onClick={handleSectionsOut}
+            onClick={handleBackButton}
             className="grid h-1/2 place-content-center rounded-b-full border-t-2 border-white/30 bg-white/30 outline-2 outline-black/20 active:scale-[96%] active:outline"
           >
             <SquareArrowOutDownRight />
           </div>
         </div>
       </div>
-      <audio
-        ref={audioRef}
-        src="/public/scroll-sound-test.mp3"
-        preload="auto"
-      />
-      <audio>
-        <source src="/scroll-sound-test.mp3" type="audio/mpeg" />
-        Your browser does not support the audio element.
-      </audio>
+      <audio ref={audioRef} preload="auto" />
+      <audio ref={audioEnterRef} preload="auto" src="/in.mp3" />
+      <audio ref={audioOutRef} preload="auto" src="/out.mp3" />
     </div>
   );
 };
+
 export default VolumeKnob;

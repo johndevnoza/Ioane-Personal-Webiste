@@ -1,6 +1,7 @@
 import ButtonsSection from "@components/ButtonsSection";
 import Navigation from "@components/Navigation";
 import { OrangeThemComp, BlueThemComp } from "@components/ThemUiComp";
+import { useTheme } from "@components/theme-provider";
 import { audioManagment } from "audioContext";
 import { Nfc, Power } from "lucide-react";
 import { Outlet } from "react-router-dom";
@@ -11,7 +12,7 @@ const Home = () => {
   const enableAudio = audioManagment((state) => state.enableAudio);
   const disableAudio = audioManagment((state) => state.disableAudio);
   const scrollInside = scrollManagment((state) => state.scrollInside);
-
+  const { theme } = useTheme();
   return (
     <div className="flex h-screen w-full items-center overflow-hidden bg-[#878695] p-2">
       <div className="relative z-40 m-auto flex h-full w-full select-none overflow-hidden rounded-[24px] border-2 border-borderDark bg-tabletCover p-1 shadow-2xl drop-shadow-2xl max-[1110px]:min-w-full md:h-[80%] md:w-[80%]">
@@ -38,10 +39,10 @@ const Home = () => {
           <main className="relative flex h-full flex-col items-center justify-between gap-4 overflow-hidden rounded-l-[3px] rounded-r-[24px] border-2 border-borderDark border-b-borderHighlight border-r-borderHighlight p-6 md:flex-row">
             <div className="fixed z-0 h-[400px] w-screen -translate-x-[700px] translate-y-[100px] rotate-45 select-none bg-gradient-to-t from-white opacity-40 mix-blend-overlay blur-[1px]" />
             <section
-              className={`relative h-full w-full overflow-hidden scroll-auto rounded-lg border-2 border-b-borderHighlight border-l-borderDark border-r-borderHighlight border-t-borderDark bg-black ${scrollInside && "animate-reveal -outline-offset-4"}`}
+              className={`relative h-full w-full overflow-hidden rounded-lg border-2 border-b-borderHighlight border-l-borderDark border-r-borderHighlight border-t-borderDark bg-black ${scrollInside && "animate-reveal -outline-offset-4"} ${theme === "blue" && "border-b-[#0fd4f7]"}`}
             >
               <div className="absolute h-screen w-full bg-gradient-to-b from-white/10 mix-blend-screen" />
-              <div className="h-full w-full overflow-y-scroll scroll-smooth text-wrap rounded-md p-4">
+              <div className="no-scrollbar h-full w-full overflow-y-scroll scroll-smooth text-wrap rounded-md p-4">
                 <Outlet />
               </div>
             </section>
