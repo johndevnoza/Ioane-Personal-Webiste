@@ -27,29 +27,70 @@
   }
 
   .dark {
-    --background: #1c1c1e;
+    --background: #000000;
+    --tabletCover: #1c1c1e;
+    --tabletScreenBorder: black;
     --elementBgColor: #39393b;
     --elementBgDark: #1c1c1e;
     --borderHighlight: #232527;
+    --navhighlight: #232527;
+    --knobhighlight: #3b3b3b;
     --borderDark: #0f0f0f;
+    --navBackground: #1c1c1e;
+    --selectedColor: #f97316;
+    --selectedNav: #06b6d4;
+    --textIcon: #ffffff;
     --foreground: 0 0% 95%;
-    --card: 24 9.8% 10%;
-    --card-foreground: 0 0% 95%;
-    --popover: 0 0% 9%;
-    --popover-foreground: 0 0% 95%;
-    --primary: #32eafb;
-    --background-secondary: #151515;
-    --primary-foreground: #151515;
-    --secondary: 240 3.7% 15.9%;
-    --secondary-foreground: 0 0% 98%;
-    --muted: 0 0% 15%;
-    --muted-foreground: 240 5% 64.9%;
-    --accent: 12 6.5% 15.1%;
-    --accent-foreground: 0 0% 98%;
-    --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 0 85.7% 97.3%;
-    --input: 240 3.7% 15.9%;
-    --ring: 346.8 77.2% 49.8%;
+  }
+
+  .orange {
+    --background: #000000;
+    --tabletCover: #1c1c1e;
+    --tabletScreenBorder: black;
+    --elementBgColor: #39393b;
+    --elementBgDark: #1c1c1e;
+    --borderHighlight: #232527;
+    --navhighlight: #232527;
+    --knobhighlight: #3b3b3b;
+    --borderDark: #0f0f0f;
+    --navBackground: #1c1c1e;
+    --selectedColor: #f97316;
+    --selectedNav: #06b6d4;
+    --textIcon: #ffffff;
+    --foreground: 0 0% 95%;
+  }
+  .blue {
+    --background: #000000;
+    --tabletCover: #1c1c1e;
+    --tabletScreenBorder: black;
+    --elementBgColor: #39393b;
+    --elementBgDark: #1c1c1e;
+    --borderHighlight: #232527;
+    --navhighlight: #232527;
+    --knobhighlight: #3b3b3b;
+    --borderDark: #0f0f0f;
+    --navBackground: #1c1c1e;
+    --selectedColor: #00c59a;
+    --selectedNav: #06b6d4;
+    --textIcon: #ffffff;
+    --foreground: 0 0% 95%;
+  }
+
+  .red {
+    --background: #ffffff;
+    --tabletCover: #f5554b;
+    --tabletScreenBorder: #b42f25;
+    --elementBgColor: #39393b;
+    --elementBgDark: #1c1c1e;
+    --borderHighlight: #ff5f59;
+    --navhighlight: #232527;
+    --knobhighlight: #3b3b3b;
+    --borderDark: #75121a;
+    --navBackground: #1c1c1e;
+    --selectedColor: #16b1f9;
+    --selectedNav: #0682d4;
+    --textIcon: #080808;
+    --foreground: 0 0% 95%;
   }
 }
 

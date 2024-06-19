@@ -13,7 +13,7 @@ const KnobLine = ({ angle }: { angle: number }) => {
   return (
     <div
       style={lineStyle}
-      className="absolute left-[46px] top-[40px] z-20 h-5 w-2 rounded-sm border-2 border-l-[2px] border-borderHighlight bg-elementBgColor outline outline-white/10"
+      className="border-navhighlight absolute left-[46px] top-[40px] z-20 h-5 w-2 rounded-sm border-2 border-l-[2px] bg-elementBgColor outline outline-white/10"
     />
   );
 };
@@ -23,16 +23,10 @@ const VolumeKnob = () => {
   const rotation = scrollManagment((state) => state.rotation);
   const navId = scrollManagment((state) => state.navId);
   const activeNavLink = scrollManagment((state) => state.activeNavLink);
-  const elementId = scrollManagment((state) => state.elementId);
   const handleSectionsEnter = scrollManagment(
     (state) => state.handleSectionsEnter,
   );
   const { activeElement } = filteredData();
-
-  const isElement = activeNavLink?.data.find(
-    (element) => element.id === elementId,
-  );
-  console.log(isElement, "activeNavLink");
   const handleSectionsOut = scrollManagment((state) => state.handleSectionsOut);
   const isAudioEnabled = audioManagment((state) => state.isAudioEnabled);
 
@@ -78,7 +72,7 @@ const VolumeKnob = () => {
   return (
     <div
       ref={knobRef}
-      className="relative grid cursor-pointer place-items-center rounded-full border-4 border-borderDark bg-white/25 bg-gradient-to-tr from-elementBgColor p-8 shadow-lg outline outline-borderHighlight drop-shadow-2xl"
+      className="outline-knobhighlight relative grid cursor-pointer place-items-center rounded-full border-4 border-black/80 bg-white/25 bg-gradient-to-tr from-elementBgColor p-8 shadow-lg outline drop-shadow-2xl"
     >
       <div className="relative rounded-full border-2 border-white/20 bg-white/15 from-elementBgColor">
         <div
@@ -87,10 +81,10 @@ const VolumeKnob = () => {
         >
           {lines}
         </div>
-        <div className="absolute left-0 top-0 z-50 flex size-full flex-col rounded-full border-2 border-borderDark bg-black/45">
+        <div className="absolute left-0 top-0 z-50 flex size-full flex-col rounded-full border-2 border-black/70 bg-black/45">
           <div
             onClick={handleButtonClick}
-            className="grid h-1/2 place-content-center rounded-t-full border-b-2 border-borderDark bg-orange-600 outline-2 outline-black/20 active:scale-[96%] active:outline"
+            className="grid h-1/2 place-content-center rounded-t-full border-b-2 border-black/55 bg-selectedColor outline-2 outline-black/20 active:scale-[96%] active:outline"
           >
             <SquareArrowOutUpLeft />
           </div>

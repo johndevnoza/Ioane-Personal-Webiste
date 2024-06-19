@@ -21,7 +21,7 @@ const Skills = () => {
           ref={setElementRef(index)}
           key={skill.id}
           tabIndex={-1}
-          className={`rounded-sm p-2 focus:outline focus:outline-orange-500 ${scrollInside && "focus:bg-orange-500 focus:outline-0"}`}
+          className={`focus:outline-selectedColor rounded-sm p-2 focus:outline ${scrollInside && "focus:bg-selectedColor focus:outline-0"}`}
         >
           {skill.name}
         </div>

@@ -20,7 +20,7 @@ const Skills = () => {
           ref={setElementRef(index)}
           key={skill.id}
           tabIndex={-1}
-          className={`rounded-sm p-2 focus:outline-none ${index + 1 === elementId ? "bg-orange-500" : ""}`}
+          className={`rounded-sm p-2 focus:outline-none ${index + 1 === elementId ? "bg-selectedColor" : ""}`}
         >
           {skill.name}
         </div>

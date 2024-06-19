@@ -11,12 +11,12 @@ const Navigation = () => {
       <div className="mt-2 flex flex-col items-center gap-3">
         {navLinks.map((link) => (
           <span
-            className={`w-full rounded-sm border-2 px-2 text-center ${
+            className={`w-full rounded-sm border-2 px-2 text-center lg:w-full ${
               location.pathname === `/${link.link}`
                 ? scrollInside
-                  ? "border-blue-800 bg-cyan-500 outline outline-elementBgColor"
-                  : "border-black bg-orange-600 outline outline-borderHighlight"
-                : "border-black bg-borderDark text-elementBgColor outline outline-borderHighlight"
+                  ? "border-blue-800 bg-selectedNav outline outline-elementBgColor"
+                  : "outline-navhighlight border-black bg-selectedColor outline"
+                : "outline-navhighlight border-black bg-black/35 text-elementBgColor outline"
             } ${!scrollInside && "animate-reveal"}`}
             key={link.id}
           >
@@ -24,7 +24,7 @@ const Navigation = () => {
           </span>
         ))}
       </div>
-      <div className="h-[5px] min-w-full border-t-2 border-borderHighlight bg-borderDark" />
+      <div className="border-navhighlight h-[5px] min-w-full border-t-2 bg-black/35" />
     </div>
   );
 };
