@@ -15,17 +15,28 @@ const Skills = () => {
   }
 
   return (
-    <div className="h-min">
-      {skillsData?.map((skill, index) => (
-        <div
-          ref={setElementRef(index)}
-          key={skill.id}
-          tabIndex={-1}
-          className={`focus:outline-selectedColor rounded-sm p-2 focus:outline ${scrollInside && "focus:bg-selectedColor focus:outline-0"}`}
-        >
-          {skill.name}
-        </div>
-      ))}
+    <div className="flex flex-col gap-1 rounded-sm">
+      {skillsData?.map((link, index) => {
+        const IconComponent = link.icon;
+        return (
+          <div
+            ref={setElementRef(index)}
+            key={link.id}
+            tabIndex={-1}
+            className={`flex h-full w-full items-center gap-2 rounded-sm p-1 focus:outline focus:outline-selectedColor ${scrollInside && "bg-cyan-800/15 focus:bg-selectedColor focus:outline-0"}`}
+          >
+            <div className="w-[25%]">
+              <h3 className="rounded-sm bg-black p-1 font-mono font-bold text-selectedColor">
+                {link.name}
+              </h3>
+            </div>
+            <div className="min-h-[30px] w-[4px] bg-black/45" />
+            <div className="ml-auto w-min justify-self-end rounded-sm bg-black p-1">
+              <IconComponent className="h-8 w-8 text-selectedColor" />
+            </div>
+          </div>
+        );
+      })}
     </div>
   );
 };
