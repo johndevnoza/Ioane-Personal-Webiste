@@ -1,3 +1,6 @@
+import { FaGithub, FaFacebook, FaTwitter } from "react-icons/fa";
+import { IconType } from "react-icons";
+
 interface Skill {
   name: string;
   icon: string;
@@ -6,7 +9,7 @@ interface Skill {
 
 export interface Link {
   name: string;
-  icon: string;
+  icon: IconType;
   id: number;
   description: string;
   navigate?: string;
@@ -57,26 +60,27 @@ const skillsData: Skill[] = [
 const linksData: Link[] = [
   {
     name: "Github",
-    icon: "test",
+    icon: FaGithub,
     id: 1,
     navigate: "https://github.com/johndevnoza",
     description: "Occasional Contributor",
   },
   {
     name: "Facebook",
-    icon: "test3",
+    icon: FaFacebook,
     id: 2,
     navigate: "https://www.facebook.com/ioandevnoza/",
     description: "Infrequent Updates",
   },
   {
     name: "Twitter",
-    icon: "test2",
+    icon: FaTwitter,
     id: 3,
     navigate: "https://twitter.com/john85433490",
     description: "Rarely Tweets",
   },
 ];
+
 const aboutData: AboutItem[] = [
   { name: "html", icon: "test", id: 1 },
   { name: "ccss", icon: "test3", id: 2 },

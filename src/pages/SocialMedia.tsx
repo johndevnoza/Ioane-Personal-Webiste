@@ -1,12 +1,13 @@
-import navLinks from "lib/constants";
+import navLinks, { Link } from "lib/constants";
 import { scrollManagment } from "scrollManagment";
 import { useFocusElement } from "hooks/useFocusElement";
 
 const SocialMedia = () => {
   const socMedia = navLinks.find((link) => link.link === "social-media");
   const elementId = scrollManagment((state) => state.elementId);
+  const scrollInside = scrollManagment((state) => state.scrollInside);
 
-  const socMediaData = socMedia?.data || [];
+  const socMediaData = (socMedia?.data as Link[]) || [];
   const { setElementRef } = useFocusElement(elementId, socMediaData.length);
 
   if (!socMedia || !socMedia.data) {
@@ -14,17 +15,30 @@ const SocialMedia = () => {
   }
 
   return (
-    <div className="z-50 rounded-sm">
-      {socMediaData?.map((skill, index) => (
-        <div
-          ref={setElementRef(index)}
-          key={skill.id}
-          tabIndex={-1}
-          className={`rounded-sm p-2 focus:bg-orange-500 focus:outline-none`}
-        >
-          {skill.name}
-        </div>
-      ))}
+    <div className="flex flex-col gap-1 rounded-sm">
+      {socMediaData?.map((link, index) => {
+        const IconComponent = link.icon;
+        return (
+          <div
+            ref={setElementRef(index)}
+            key={link.id}
+            tabIndex={-1}
+            className={`flex h-full w-full items-center gap-2 rounded-sm p-2 focus:outline focus:outline-selectedColor ${scrollInside && "bg-cyan-800/15 focus:bg-selectedColor focus:outline-0"}`}
+          >
+            <div className="w-[20%]">
+              <h3 className="w-min rounded-sm bg-black p-1 font-mono font-bold text-selectedColor">
+                {link.name}
+              </h3>
+            </div>
+            <div className="min-h-[30px] w-[4px] bg-black/45" />
+            <h3 className="rounded-sm bg-black/45 p-1">{link.description}</h3>
+            <div className="min-h-[30px] w-[4px] bg-black/45" />
+            <div className="ml-auto w-min justify-self-end rounded-sm bg-black p-2">
+              <IconComponent className="fill-selectedColor" />
+            </div>
+          </div>
+        );
+      })}
     </div>
   );
 };

@@ -27,7 +27,7 @@ const Home = () => {
           >
             <Nfc
               className={
-                isAudioEnabled ? "text-selectedColor animate-pulse" : ""
+                isAudioEnabled ? "animate-pulse text-selectedColor" : ""
               }
             />
           </div>
@@ -48,7 +48,7 @@ const Home = () => {
             </section>
             <section className="flex w-full flex-col justify-center gap-2 rounded-lg border-2 border-borderHighlight border-l-borderDark border-t-borderDark bg-navBackground p-2 md:h-full md:w-[45%] md:flex-row">
               <Navigation />
-              <div className="border-navhighlight h-full w-1 border-l-2 bg-black/35" />
+              <div className="h-full w-1 border-l-2 border-navhighlight bg-black/35" />
               <ButtonsSection />
             </section>
           </main>
