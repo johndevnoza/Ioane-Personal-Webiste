@@ -41,13 +41,6 @@ export interface Link {
   navigate?: string;
 }
 
-export interface AboutItem {
-  name: string;
-  icon: IconType | string;
-  description: string;
-  id: number;
-}
-
 interface ContactItem {
   name: string;
   icon: string;
@@ -197,22 +190,108 @@ const linksData: Link[] = [
     description: "Rarely Tweets",
   },
 ];
+type AboutTypes = {
+  context: string;
+  id: number;
+};
+
+const aboutWebDev: AboutTypes[] = [
+  {
+    context: "🚀⚛️ Frontend Developer with a Passion for Creative Solutions 🎨",
+    id: 1,
+  },
+  {
+    context: "🚀⚛️ assion for Creative Solutions 🎨",
+    id: 2,
+  },
+  {
+    context: "🚀⚛️ Frontend Developer with a PassSolutions 🎨",
+    id: 3,
+  },
+];
+const beforeWebDev: AboutTypes[] = [
+  {
+    context: "artist bliad",
+    id: 1,
+  },
+  {
+    context: "🚀⚛️ assion for Creative Solutions 🎨",
+    id: 2,
+  },
+  {
+    context:
+      "🚀⚛️ Frontend Developer with a PassSolutions Frontend Developer with a PassSolutions Frontend Developer with a PassSolutions Frontend Developer with a PassSolutions Frontend Developer with a PassSolutionsFrontend Developer with a PassSolutions Frontend Developer with a PassSolutions Frontend Developer with a PassSolutionsFrontend Developer with a PassSolutionsFrontend Developer with a PassSolutionsFrontend Developer with 🎨",
+    id: 3,
+  },
+  {
+    context:
+      "🚀⚛️ Frontend Developer with a PassSolutions Frontend Developer with a PassSolutions Frontend Developer with a PassSolutions Frontend Developer with a PassSolutions Frontend Developer with a PassSolutionsFrontend Developer with a PassSolutions Frontend Developer with a PassSolutions Frontend Developer with a PassSolutionsFrontend Developer with a PassSolutionsFrontend Developer with a PassSolutionsFrontend Developer with 🎨",
+    id: 4,
+  },
+  {
+    context: "🚀⚛️ Frontend Developer with a PassSolutions 🎨",
+    id: 5,
+  },
+  {
+    context: "🚀⚛️ Frontend Developer with a PassSolutions 🎨",
+    id: 6,
+  },
+];
+const personalLife: AboutTypes[] = [
+  {
+    context: "shegarkvevt yvelas",
+    id: 1,
+  },
+  {
+    context: "🚀⚛️ assion for Creative Solutions 🎨",
+    id: 2,
+  },
+  {
+    context: "🚀⚛️ Frontend Developer with a PassSolutions 🎨",
+    id: 3,
+  },
+];
+
+interface Description {
+  descTitle: string;
+  paragraph: AboutTypes[];
+}
+
+export interface AboutItem {
+  name: string;
+  icon: IconType | string;
+  description: Description;
+  id: number;
+}
 
 const aboutData: AboutItem[] = [
   {
     name: "Web development",
     icon: FaSquareWebAwesomeStroke,
     id: 1,
-    description:
-      "asdasdasd asda sdasdasdasd asdasdasdasdasdas dasdasdasdasdasd asdasdasdasd asdasdasdasdasdasdasdasd asdasdasdasdasdasdasdasdasd asdasdasdasdasdasdasdasdasdasdasdas asdasdasdasdasdasd asdasdasdasdasdas dasdasdasd asdasdasda sdasd asdasdasd asda sdasdasdasd asdasdasdasdasdas dasdasdasdasdasd asdasdasdasd asdasdasdasdasdasdasdasd asdasdasdasdasdasdasdasdasd asdasdasdasdasdasdasdasdasdasdasdas asdasdasdasdasdasd asdasdasdasdasdas dasdasdasd asdasdasda sdasd asdasdasd asda sdasdasdasd asdasdasdasdasdas dasdasdasdasdasd asdasdasdasd asdasdasdasdasdasdasdasd asdasdasdasdasdasdasdasdasd asdasdasdasdasdasdasdasdasdasdasdas asdasdasdasdasdasd asdasdasdasdasdas dasdasdasd asdasdasda sdasd asdasdasd asda sdasdasdasd asdasdasdasdasdas dasdasdasdasdasd asdasdasdasd asdasdasdasdasdasdasdasd asdasdasdasdasdasdasdasdasd asdasdasdasdasdasdasdasdasdasdasdas asdasdasdasdasdasd asdasdasdasdasdas dasdasdasd asdasdasda sdasd asdasdasd asda sdasdasdasd asdasdasdasdasdas dasdasdasdasdasd asdasdasdasd asdasdasdasdasdasdasdasd asdasdasdasdasdasdasdasdasd asdasdasdasdasdasdasdasdasdasdasdas asdasdasdasdasdasd asdasdasdasdasdas dasdasdasd asdasdasda sdasd asdasdasd asda sdasdasdasd asdasdasdasdasdas dasdasdasdasdasd asdasdasdasd asdasdasdasdasdasdasdasd asdasdasdasdasdasdasdasdasd asdasdasdasdasdasdasdasdasdasdasdas asdasdasdasdasdasd asdasdasdasdasdas dasdasdasd asdasdasda sdasd",
+    description: {
+      descTitle: "React Js Developer",
+      paragraph: aboutWebDev,
+    },
   },
   {
     name: "Before Web development",
     icon: BiSolidSkipPreviousCircle,
     id: 2,
-    description: "asd",
+    description: {
+      descTitle: "Artist, Animator, 3D modeler",
+      paragraph: beforeWebDev,
+    },
   },
-  { name: "Personal Life", icon: IoPersonCircle, id: 3, description: "asd" },
+  {
+    name: "Personal Life",
+    icon: IoPersonCircle,
+    id: 3,
+    description: {
+      descTitle: "Ioane Devnozashvili, Tbilisi Georgia",
+      paragraph: personalLife,
+    },
+  },
 ];
 const contactData: ContactItem[] = [
   { name: "html", icon: "test", id: 1 },

@@ -15,6 +15,9 @@ export const useFocusElement = (elementId: number, length: number) => {
   const setElementRef = (index: number) => (el: HTMLDivElement | null) => {
     elementRef.current[index] = el!;
   };
+  const setParagraphRef = (index: number) => (el: HTMLDivElement | null) => {
+    elementRef.current[index] = el!;
+  };
 
-  return { elementRef, setElementRef };
+  return { elementRef, setElementRef, setParagraphRef };
 };

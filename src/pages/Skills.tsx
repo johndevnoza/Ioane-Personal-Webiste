@@ -31,7 +31,9 @@ const Skills = () => {
               </h3>
             </div>
             <div className="min-h-[30px] w-[4px] bg-black/45" />
-            <div className="ml-auto w-min justify-self-end rounded-sm bg-black p-1 transition-all group-focus:-translate-x-11">
+            <div
+              className={`ml-auto w-min justify-self-end rounded-sm bg-black p-1 transition-all ${scrollInside && "group-focus:-translate-x-11"} `}
+            >
               <IconComponent className="h-8 w-8 text-selectedColor" />
             </div>
           </div>

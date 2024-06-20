@@ -1,7 +1,7 @@
 import navLinks, { Link } from "lib/constants";
 import { scrollManagment } from "scrollManagment";
 import { useFocusElement } from "hooks/useFocusElement";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, ArrowUp } from "lucide-react";
 
 const SocialMedia = () => {
   const socMedia = navLinks.find((link) => link.link === "social-media");
@@ -24,7 +24,7 @@ const SocialMedia = () => {
             ref={setElementRef(index)}
             key={link.id}
             tabIndex={-1}
-            className={`group flex h-full w-full items-center gap-2 rounded-sm p-2 focus:outline focus:outline-selectedColor ${scrollInside && "bg-cyan-800/15 focus:bg-selectedColor focus:outline-0"}`}
+            className={`group flex h-full w-full items-center gap-2 rounded-sm p-2 saturate-50 focus:outline focus:outline-selectedColor focus:saturate-100 ${scrollInside && "bg-cyan-800/15 focus:bg-selectedColor focus:outline-0"}`}
           >
             <div className="w-[20%]">
               <h3 className="w-min rounded-sm bg-black p-1 font-mono font-bold text-selectedColor">
@@ -39,7 +39,9 @@ const SocialMedia = () => {
                 className={`hidden gap-1 ${scrollInside && "group-focus:flex"}`}
               >
                 <p>Go to</p>
-                <ArrowRight />
+                <div className="rotate-90">
+                  <ArrowUp className="rotate-90 animate-bounce" />
+                </div>
               </div>
               <IconComponent className="h-8 w-8 text-selectedColor" />
             </div>

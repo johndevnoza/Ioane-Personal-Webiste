@@ -2,7 +2,6 @@ import { useTheme } from "@components/theme-provider";
 
 export function ModeToggle() {
   const { setTheme, theme } = useTheme();
-  console.log(theme);
 
   return (
     <section className="hidden justify-between gap-2 p-1 md:flex">
