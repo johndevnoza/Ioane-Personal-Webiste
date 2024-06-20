@@ -23,6 +23,10 @@ import { CgPerformance } from "react-icons/cg";
 import { DiResponsive } from "react-icons/di";
 import { MdDesignServices } from "react-icons/md";
 import { AiFillFileUnknown } from "react-icons/ai";
+import { IoPersonCircle } from "react-icons/io5";
+import { BiSolidSkipPreviousCircle } from "react-icons/bi";
+import { FaSquareWebAwesomeStroke } from "react-icons/fa6";
+
 interface Skill {
   name: string;
   icon: IconType;
@@ -37,9 +41,10 @@ export interface Link {
   navigate?: string;
 }
 
-interface AboutItem {
+export interface AboutItem {
   name: string;
-  icon: string;
+  icon: IconType | string;
+  description: string;
   id: number;
 }
 
@@ -55,6 +60,7 @@ interface NavLink {
   id: number;
   data: Skill[] | Link[] | AboutItem[] | ContactItem[];
 }
+
 const skillsData: Skill[] = [
   {
     name: "html",
@@ -193,30 +199,20 @@ const linksData: Link[] = [
 ];
 
 const aboutData: AboutItem[] = [
-  { name: "html", icon: "test", id: 1 },
-  { name: "ccss", icon: "test3", id: 2 },
-  { name: "test", icon: "test2", id: 3 },
-  { name: "react", icon: "test1", id: 4 },
-  { name: "5", icon: "test4", id: 5 },
-  { name: "6", icon: "test4", id: 6 },
-  { name: "7", icon: "test4", id: 7 },
-  { name: "8", icon: "test4", id: 8 },
-  { name: "9", icon: "test4", id: 9 },
-  { name: "10", icon: "test4", id: 10 },
-  { name: "10", icon: "test4", id: 11 },
-  { name: "aboutttt", icon: "test4", id: 12 },
-  { name: "10", icon: "test4", id: 13 },
-  { name: "10", icon: "test4", id: 14 },
-  { name: "10", icon: "test4", id: 15 },
-  { name: "10", icon: "test4", id: 16 },
-  { name: "10", icon: "test4", id: 17 },
-  { name: "10", icon: "test4", id: 18 },
-  { name: "10", icon: "test4", id: 19 },
-  { name: "10", icon: "test4", id: 20 },
-  { name: "10", icon: "test4", id: 21 },
-  { name: "10", icon: "test4", id: 22 },
-  { name: "10", icon: "test4", id: 23 },
-  { name: "10", icon: "test4", id: 24 },
+  {
+    name: "Web development",
+    icon: FaSquareWebAwesomeStroke,
+    id: 1,
+    description:
+      "asdasdasd asda sdasdasdasd asdasdasdasdasdas dasdasdasdasdasd asdasdasdasd asdasdasdasdasdasdasdasd asdasdasdasdasdasdasdasdasd asdasdasdasdasdasdasdasdasdasdasdas asdasdasdasdasdasd asdasdasdasdasdas dasdasdasd asdasdasda sdasd asdasdasd asda sdasdasdasd asdasdasdasdasdas dasdasdasdasdasd asdasdasdasd asdasdasdasdasdasdasdasd asdasdasdasdasdasdasdasdasd asdasdasdasdasdasdasdasdasdasdasdas asdasdasdasdasdasd asdasdasdasdasdas dasdasdasd asdasdasda sdasd asdasdasd asda sdasdasdasd asdasdasdasdasdas dasdasdasdasdasd asdasdasdasd asdasdasdasdasdasdasdasd asdasdasdasdasdasdasdasdasd asdasdasdasdasdasdasdasdasdasdasdas asdasdasdasdasdasd asdasdasdasdasdas dasdasdasd asdasdasda sdasd asdasdasd asda sdasdasdasd asdasdasdasdasdas dasdasdasdasdasd asdasdasdasd asdasdasdasdasdasdasdasd asdasdasdasdasdasdasdasdasd asdasdasdasdasdasdasdasdasdasdasdas asdasdasdasdasdasd asdasdasdasdasdas dasdasdasd asdasdasda sdasd asdasdasd asda sdasdasdasd asdasdasdasdasdas dasdasdasdasdasd asdasdasdasd asdasdasdasdasdasdasdasd asdasdasdasdasdasdasdasdasd asdasdasdasdasdasdasdasdasdasdasdas asdasdasdasdasdasd asdasdasdasdasdas dasdasdasd asdasdasda sdasd asdasdasd asda sdasdasdasd asdasdasdasdasdas dasdasdasdasdasd asdasdasdasd asdasdasdasdasdasdasdasd asdasdasdasdasdasdasdasdasd asdasdasdasdasdasdasdasdasdasdasdas asdasdasdasdasdasd asdasdasdasdasdas dasdasdasd asdasdasda sdasd",
+  },
+  {
+    name: "Before Web development",
+    icon: BiSolidSkipPreviousCircle,
+    id: 2,
+    description: "asd",
+  },
+  { name: "Personal Life", icon: IoPersonCircle, id: 3, description: "asd" },
 ];
 const contactData: ContactItem[] = [
   { name: "html", icon: "test", id: 1 },

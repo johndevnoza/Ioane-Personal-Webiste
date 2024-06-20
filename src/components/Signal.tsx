@@ -5,7 +5,11 @@ const SignalDisplay = () => {
   const [currentIcon, setCurrentIcon] = useState(<SignalLow />);
 
   useEffect(() => {
-    const icons = [<SignalLow />, <SignalHigh />, <Signal />];
+    const icons = [
+      <SignalLow size={35} />,
+      <SignalHigh size={35} />,
+      <Signal size={35} />,
+    ];
 
     const changeIcon = () => {
       const randomIndex = Math.floor(Math.random() * icons.length);

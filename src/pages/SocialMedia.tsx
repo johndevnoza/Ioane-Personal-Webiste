@@ -16,7 +16,7 @@ const SocialMedia = () => {
   }
 
   return (
-    <div className="flex flex-col gap-1 rounded-sm">
+    <div className="flex flex-col gap-1 rounded-sm transition-all">
       {socMediaData?.map((link, index) => {
         const IconComponent = link.icon;
         return (
