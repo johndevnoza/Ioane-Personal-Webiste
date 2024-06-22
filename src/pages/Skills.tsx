@@ -6,6 +6,7 @@ const Skills = () => {
   const skillsLink = navLinks.find((link) => link.link === "skills");
   const elementId = scrollManagment((state) => state.elementId);
   const scrollInside = scrollManagment((state) => state.scrollInside);
+console.log(elementId);
 
   const skillsData = skillsLink?.data || [];
   const { setElementRef } = useFocusElement(elementId, skillsData.length);
@@ -39,7 +40,7 @@ const Skills = () => {
           </div>
         );
       })}
-    </div>
+  </div>
   );
 };
 

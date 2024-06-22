@@ -2,10 +2,12 @@ import ButtonsSection from "@components/ButtonsSection";
 import Navigation from "@components/Navigation";
 import { OrangeThemComp, BlueThemComp } from "@components/ThemUiComp";
 import { useTheme } from "@components/theme-provider";
+import SendEmail from "pages/SendEmail";
 import { audioManagment } from "audioContext";
 import { Nfc, Power } from "lucide-react";
 import { Outlet } from "react-router-dom";
 import { scrollManagment } from "scrollManagment";
+import ContactEmail from "./ContactEmail";
 
 const Home = () => {
   const isAudioEnabled = audioManagment((state) => state.isAudioEnabled);
@@ -42,7 +44,7 @@ const Home = () => {
               className={`relative h-full w-full overflow-hidden rounded-lg border-2 border-b-borderHighlight border-l-borderDark border-r-borderHighlight border-t-borderDark bg-black ${scrollInside && "animate-reveal -outline-offset-4"} ${theme === "blue" && "border-b-[#0fd4f7]"}`}
             >
               <div className="absolute h-screen w-full bg-gradient-to-b from-white/10 mix-blend-screen" />
-              <div className="no-scrollbar h-full w-full overflow-y-scroll scroll-smooth text-wrap rounded-md p-4">
+              <div className="no-scrollbar pointer-events-none z-0 h-full w-full overflow-y-scroll scroll-smooth text-wrap rounded-md p-4">
                 <Outlet />
               </div>
             </section>

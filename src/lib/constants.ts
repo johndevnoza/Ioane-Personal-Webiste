@@ -47,7 +47,7 @@ interface ContactItem {
   id: number;
 }
 
-interface NavLink {
+export interface NavLink {
   title: string;
   link: string;
   id: number;
@@ -294,30 +294,10 @@ const aboutData: AboutItem[] = [
   },
 ];
 const contactData: ContactItem[] = [
-  { name: "html", icon: "test", id: 1 },
-  { name: "ccss", icon: "test3", id: 2 },
-  { name: "test", icon: "test2", id: 3 },
-  { name: "react", icon: "test1", id: 4 },
-  { name: "asssssssssss", icon: "test4", id: 5 },
-  { name: "6", icon: "test4", id: 6 },
-  { name: "7", icon: "test4", id: 7 },
-  { name: "8", icon: "test4", id: 8 },
-  { name: "9", icon: "test4", id: 9 },
-  { name: "10", icon: "test4", id: 10 },
-  { name: "10", icon: "test4", id: 11 },
-  { name: "10", icon: "test4", id: 12 },
-  { name: "10", icon: "test4", id: 13 },
-  { name: "contacttt", icon: "test4", id: 14 },
-  { name: "10", icon: "test4", id: 15 },
-  { name: "10", icon: "test4", id: 16 },
-  { name: "10", icon: "test4", id: 17 },
-  { name: "10", icon: "test4", id: 18 },
-  { name: "10", icon: "test4", id: 19 },
-  { name: "10", icon: "test4", id: 20 },
-  { name: "10", icon: "test4", id: 21 },
-  { name: "10", icon: "test4", id: 22 },
-  { name: "10", icon: "test4", id: 23 },
-  { name: "10", icon: "test4", id: 24 },
+  { name: "Your Email", icon: "test", id: 1 },
+  { name: "Subject", icon: "test3", id: 2 },
+  { name: "message", icon: "test2", id: 3 },
+  { name: "Click", icon: "test1", id: 4 },
 ];
 
 const navLinks: NavLink[] = [

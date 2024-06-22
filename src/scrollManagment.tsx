@@ -1,6 +1,5 @@
-import navLinks from "lib/constants";
-import filteredData from "lib/filteredData";
 import { create } from "zustand";
+import navLinks, { AboutItem, NavLink } from "lib/constants";
 import { persist, createJSONStorage } from "zustand/middleware";
 
 type States = {
@@ -9,6 +8,8 @@ type States = {
   context: number;
   scrollInside: boolean;
   isInSection: boolean;
+  isInContact: boolean;
+  isSubmit: boolean;
   elementId: number;
   activeNavLink: (typeof navLinks)[number] | null;
   handleScroll: (event: WheelEvent) => void;
@@ -27,6 +28,8 @@ export const scrollManagment = create<States, a>(
       elementId: 1,
       context: 1,
       isInSection: false,
+      isSubmit: false,
+      isInContact: false,
       scrollInside: false,
       handleScroll: (event: WheelEvent) => {
         event.preventDefault();
@@ -51,8 +54,10 @@ export const scrollManagment = create<States, a>(
           if (isInSection && scrollInside) {
             const activeNavLink =
               navLinks.find((navLink) => navLink.id === navId) || null;
-            const activeElement = scrollInside
-              ? activeNavLink?.data?.find((element) => element.id === elementId)
+            const activeElement: AboutItem = scrollInside
+              ? activeNavLink?.data?.find(
+                  (element: AboutItem) => element.id === elementId,
+                )
               : null;
             const aboutDataLength =
               activeElement?.description?.paragraph?.length;
@@ -62,12 +67,26 @@ export const scrollManagment = create<States, a>(
               set({ context: context === 1 ? aboutDataLength : context - 1 });
             }
           } else {
+            const { isInContact } = get();
             if (event.deltaY > 0) {
-              set({
-                elementId:
-                  elementId === activeNavLink?.data.length ? 1 : elementId + 1,
-              });
+              if (isInContact) {
+                set({
+                  elementId: elementId === 4 ? 1 : elementId + 1,
+                });
+              } else {
+                set({
+                  elementId:
+                    elementId === activeNavLink?.data.length
+                      ? 1
+                      : elementId + 1,
+                });
+              }
             } else {
+              if (isInContact) {
+                set({
+                  elementId: elementId === 1 ? 4 : elementId - 1,
+                });
+              }
               set({
                 elementId:
                   elementId === 1 ? activeNavLink?.data.length : elementId - 1,
@@ -84,7 +103,7 @@ export const scrollManagment = create<States, a>(
         set({ activeNavLink: updatedActiveNavLink });
         const { activeNavLink, elementId } = get();
         const isElement = activeNavLink?.data.find(
-          (element) => element.id === elementId,
+          (element: NavLink) => element.id === elementId,
         );
         if (!isElement) {
           set({ elementId: 1 });

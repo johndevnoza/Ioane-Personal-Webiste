@@ -1,15 +1,9 @@
 import { audioManagment } from "audioContext";
-import { log } from "console";
 import navLinks from "lib/constants";
 import filteredData from "lib/filteredData";
-import {
-  Expand,
-  ExpandIcon,
-  SquareArrowOutDownRight,
-  SquareArrowOutUpLeft,
-} from "lucide-react";
+import { SquareArrowOutDownRight, SquareArrowOutUpLeft } from "lucide-react";
 import { useEffect, useRef } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useSubmit } from "react-router-dom";
 import { scrollManagment } from "scrollManagment";
 
 const KnobLine = ({ angle }: { angle: number }) => {
@@ -28,7 +22,6 @@ const VolumeKnob = () => {
   const handleScroll = scrollManagment((state) => state.handleScroll);
   const rotation = scrollManagment((state) => state.rotation);
   const navId = scrollManagment((state) => state.navId);
-  const context = scrollManagment((state) => state.context);
   const activeNavLink = scrollManagment((state) => state.activeNavLink);
   const handleSectionsEnter = scrollManagment(
     (state) => state.handleSectionsEnter,
@@ -44,9 +37,9 @@ const VolumeKnob = () => {
   const isAudioEnabled = audioManagment((state) => state.isAudioEnabled);
 
   const isParagraph = activeElement?.description?.paragraph?.length;
-  console.log(isParagraph);
 
   const navigate = useNavigate();
+  console.log(activeElement);
 
   const audioRef = useRef<HTMLAudioElement | null>(null);
   const audioEnterRef = useRef<HTMLAudioElement | null>(null);
@@ -98,6 +91,9 @@ const VolumeKnob = () => {
   }, [navId, navigate]);
 
   const handleNavigateButton = async () => {
+    if (activeElement?.name === "Click") {
+     scrollManagment.setState({isSubmit: true})
+    }
     if (isAudioEnabled && audioEnterRef.current && !scrollInside) {
       audioEnterRef.current.pause();
       audioEnterRef.current.currentTime = 0;
@@ -122,6 +118,24 @@ const VolumeKnob = () => {
     handleSectionsOut();
   };
 
+  const handleCloseSection = () => {
+    if (audioOutRef.current && isInSection) {
+      audioOutRef.current.play();
+    }
+    handleSectionClose();
+  };
+
+  const handleExpandSection = () => {
+    if (audioEnterRef.current) {
+      audioEnterRef.current.pause();
+      audioEnterRef.current.currentTime = 0;
+      audioEnterRef.current
+        .play()
+        .catch((error) => console.error("Audio play error:", error));
+    }
+    handleSectionOpen();
+  };
+
   const numLines = 16;
   const lines = Array.from({ length: numLines }, (_, index) => (
     <KnobLine key={index} angle={(index * 360) / numLines} />
@@ -143,7 +157,7 @@ const VolumeKnob = () => {
           {scrollInside && isParagraph && isInSection ? null : scrollInside &&
             isParagraph ? (
             <div
-              onClick={handleSectionOpen}
+              onClick={handleExpandSection}
               className={`grid h-1/2 place-content-center rounded-t-full border-b-2 border-black/55 bg-selectedColor outline-2 outline-black/20 active:scale-[96%] active:outline`}
             >
               <SquareArrowOutUpLeft />
@@ -158,7 +172,7 @@ const VolumeKnob = () => {
           )}
           {isInSection ? (
             <div
-              onClick={handleSectionClose}
+              onClick={handleCloseSection}
               className={`grid h-full place-content-center rounded-full border-t-2 border-white/30 bg-selectedColor outline-2 outline-black/20 active:scale-[96%] active:outline`}
             >
               <SquareArrowOutDownRight />
