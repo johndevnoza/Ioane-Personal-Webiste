@@ -92,7 +92,7 @@ const VolumeKnob = () => {
 
   const handleNavigateButton = async () => {
     if (activeElement?.name === "Click") {
-     scrollManagment.setState({isSubmit: true})
+      scrollManagment.setState({ isSubmit: true });
     }
     if (isAudioEnabled && audioEnterRef.current && !scrollInside) {
       audioEnterRef.current.pause();

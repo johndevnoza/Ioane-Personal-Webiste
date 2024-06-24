@@ -7,9 +7,9 @@ const Contact = () => {
   const scrollInside = scrollManagment((state) => state.scrollInside);
   const isSubmit = scrollManagment((state) => state.isSubmit);
   const elementCount = 4;
+  
   const { setElementRef } = useFocusElement(elementId, elementCount);
   const [result, setResult] = useState("");
-  console.log(elementId);
   const formRef = useRef(null);
   const onSubmit = async (event) => {
     event.preventDefault();
@@ -40,10 +40,11 @@ const Contact = () => {
       scrollManagment.setState({ isSubmit: false });
     };
   }, [isSubmit]);
+  console.log(scrollInside);
 
   return (
     <div
-      className={`z-50 flex flex-col gap-8 rounded-md opacity-70 transition-all ${scrollInside && "opacity-100 outline outline-4 outline-selectedColor focus-within:bg-cyan-800/15"}`}
+      className={`z-50 flex flex-col gap-8 rounded-md transition-all ${scrollInside ? "opacity-100 outline outline-4 outline-selectedColor focus-within:bg-cyan-800/15" : "opacity-70"}`}
     >
       <h1 className="rounded-sm rounded-b-none bg-selectedColor text-center font-mono text-2xl font-bold focus:bg-orange-600">
         Send an Email!

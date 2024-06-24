@@ -27,7 +27,7 @@ import { IoPersonCircle } from "react-icons/io5";
 import { BiSolidSkipPreviousCircle } from "react-icons/bi";
 import { FaSquareWebAwesomeStroke } from "react-icons/fa6";
 
-interface Skill {
+export interface Skill {
   name: string;
   icon: IconType;
   id: number;
