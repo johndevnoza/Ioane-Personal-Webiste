@@ -29,7 +29,7 @@ const SkillsCard: FC<SkillsCardProps> = ({ key, name, index, link, data }) => {
           : ""
       }`}
     >
-      <div className="w-[25%] transition-all group-focus:ml-12">
+      <div className="transition-all group-focus:ml-12 md:w-[40%] lg:w-[25%]">
         <h3 className="rounded-sm bg-black p-1 font-mono font-bold text-selectedColor group-focus:text-white">
           {name}
         </h3>

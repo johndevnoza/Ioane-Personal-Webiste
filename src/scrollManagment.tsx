@@ -46,9 +46,9 @@ export const scrollManagment = create<States, a>(
 
         if (!scrollInside && !isInSection) {
           if (event.deltaY > 0) {
-            set({ navId: navId === 4 ? 1 : navId + 1 });
+            set({ navId: navId === navLinks.length ? 1 : navId + 1 });
           } else {
-            set({ navId: navId === 1 ? 4 : navId - 1 });
+            set({ navId: navId === 1 ? navLinks.length : navId - 1 });
           }
         } else {
           if (isInSection && scrollInside) {

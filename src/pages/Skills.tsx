@@ -5,11 +5,7 @@ import { Skill } from "lib/constants";
 
 const Skills: React.FC = () => {
   const skillsLink = navLinks.find((link) => link.link === "skills");
-  const skillsData = skillsLink?.data || [];
-
-  const filteredSkillsData: Skill[] = skillsData.filter(
-    (item): item is Skill => "icon" in item && "id" in item,
-  );
+  const skillsData = (skillsLink?.data as Skill[]) || [];
 
   if (!skillsLink || !skillsLink.data) {
     return null;
@@ -17,13 +13,13 @@ const Skills: React.FC = () => {
 
   return (
     <div className="flex flex-col gap-1 rounded-sm transition-all">
-      {filteredSkillsData.map((link, index) => (
+      {skillsData.map((link, index) => (
         <SkillsCard
           link={link}
           name={link.name}
           index={index}
           key={link.id}
-          data={filteredSkillsData}
+          data={skillsData}
         />
       ))}
     </div>

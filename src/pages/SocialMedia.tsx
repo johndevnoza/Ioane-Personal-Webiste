@@ -24,7 +24,7 @@ const SocialMedia = () => {
             ref={setElementRef(index)}
             key={link.id}
             tabIndex={-1}
-            className={`group flex h-full w-full items-center gap-2 rounded-sm p-2 saturate-0 focus:outline focus:outline-selectedColor focus:saturate-100 ${scrollInside && "bg-cyan-800/15 focus:bg-selectedColor focus:outline-0"}`}
+            className={`group line-clamp-1 flex h-full w-full items-center gap-2 rounded-sm p-2 saturate-0 transition-all duration-300 focus:my-2 focus:outline focus:outline-selectedColor focus:saturate-100 ${scrollInside && "bg-cyan-800/15 focus:bg-selectedColor focus:outline-0"}`}
           >
             <div className="w-[20%]">
               <h3 className="w-min rounded-sm bg-black p-1 font-mono font-bold text-selectedColor">

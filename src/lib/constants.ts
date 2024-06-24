@@ -305,6 +305,7 @@ const navLinks: NavLink[] = [
   { title: "Links", link: "social-media", id: 2, data: linksData },
   { title: "About", link: "about", id: 3, data: aboutData },
   { title: "Contact", link: "contact", id: 4, data: contactData },
+  { title: "Game", link: "game", id: 5, data: contactData },
 ];
 
 export default navLinks;

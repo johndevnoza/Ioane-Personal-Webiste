@@ -8,7 +8,9 @@ import { scrollManagment } from "scrollManagment";
 import AudioButton from "./AudioButton";
 
 const Logo = memo(() => (
-  <span className="rounded-sm bg-black/80 py-1 text-center">logo</span>
+  <span className="mono rounded-sm bg-black/80 py-1 text-center text-lg font-bold italic">
+    io
+  </span>
 ));
 
 const PowerButton = memo(() => (

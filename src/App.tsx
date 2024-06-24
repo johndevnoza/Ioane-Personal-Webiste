@@ -1,5 +1,6 @@
 import About from "pages/About";
 import Contact from "pages/Contact";
+import Game from "pages/Game";
 import Home from "pages/Home";
 import Skills from "pages/Skills";
 import SocialMedia from "pages/SocialMedia";
@@ -13,6 +14,7 @@ function App() {
         <Route path="/skills" element={<Skills />} />
         <Route path="/social-media" element={<SocialMedia />} />
         <Route path="/contact" element={<Contact />} />
+        <Route path="/game" element={<Game />} />
       </Route>
     </Routes>
   );
