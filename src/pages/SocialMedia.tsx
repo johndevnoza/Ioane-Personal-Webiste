@@ -32,7 +32,9 @@ const SocialMedia = () => {
               </h3>
             </div>
             <div className="min-h-[30px] w-[4px] bg-black/45" />
-            <h3 className="rounded-sm bg-black/45 p-1">{link.description}</h3>
+            <h3 className="line-clamp-1 hidden text-nowrap rounded-sm bg-black/45 p-1 md:block">
+              {link.description}
+            </h3>
             <div className="min-h-[30px] w-[4px] bg-black/45" />
             <div className="ml-auto flex items-center gap-2 justify-self-end rounded-sm bg-black p-2">
               <div
@@ -43,7 +45,7 @@ const SocialMedia = () => {
                   <ArrowUp className="rotate-90 animate-bounce" />
                 </div>
               </div>
-              <IconComponent className="h-8 w-8 text-selectedColor" />
+              <IconComponent className="h-8 w-8 text-selectedColor " />
             </div>
           </div>
         );

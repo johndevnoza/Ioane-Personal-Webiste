@@ -29,15 +29,17 @@ const SkillsCard: FC<SkillsCardProps> = ({ key, name, index, link, data }) => {
           : ""
       }`}
     >
-      <div className="transition-all group-focus:ml-12 md:w-[40%] lg:w-[25%]">
-        <h3 className="rounded-sm bg-black p-1 font-mono font-bold text-selectedColor group-focus:text-white">
+      <div className="w-[45%] transition-all group-focus:ml-6 max-[400px]:w-[55%] md:w-[40%] md:group-focus:ml-12 lg:w-[35%]">
+        <h3 className="line-clamp-1 rounded-sm bg-black p-1 font-mono font-bold text-selectedColor group-focus:text-white">
           {name}
         </h3>
       </div>
       <div className="min-h-[30px] w-[4px] bg-black/45" />
       <div
         className={`ml-auto w-min justify-self-end rounded-sm bg-black p-1 transition-all ${
-          scrollInside ? "group-focus:-translate-x-11" : ""
+          scrollInside
+            ? "group-focus:-translate-x-6 md:group-focus:-translate-x-11"
+            : ""
         }`}
       >
         <IconComponent className="h-8 w-8 text-selectedColor" />

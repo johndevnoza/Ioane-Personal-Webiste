@@ -30,7 +30,7 @@ const About = () => {
   }
 
   return (
-    <div className="flex flex-col items-center justify-center gap-4 rounded-sm z-50 select-none">
+    <div className="z-50 flex w-full select-none flex-col items-center justify-center gap-4 rounded-sm">
       {aboutData?.map((element, index) => {
         const selectedSection = isInSection && activeElement?.id === element.id;
         const IconComponent = element.icon;
@@ -39,10 +39,10 @@ const About = () => {
             ref={setElementRef(index)}
             key={index}
             tabIndex={-1}
-            className={`group flex h-full w-full flex-col items-center gap-2 rounded-sm p-2 outline-2 transition-all focus:outline focus:outline-selectedColor focus:saturate-100 ${scrollInside && "bg-cyan-800/15 focus:bg-cyan-800/35 focus:outline-selectedColor"} ${selectedSection ? "bg-selectedColor" : "saturate-50"}`}
+            className={`group flex h-full w-full min-w-0 flex-col items-center justify-center gap-2 rounded-sm transition-all focus:outline focus:outline-selectedColor focus:saturate-100 sm:p-2 sm:outline-2 ${scrollInside && "bg-cyan-800/15 focus:bg-cyan-800/35 focus:outline-selectedColor"} ${selectedSection ? "bg-selectedColor" : "saturate-50"}`}
           >
-            <header className="flex w-full items-center justify-center rounded-sm bg-black focus:h-full">
-              <h3 className="h-full rounded-sm p-2 font-mono text-2xl font-bold text-selectedColor">
+            <header className="flex w-full items-center justify-center overflow-hidden rounded-sm bg-black sm:focus:h-full">
+              <h3 className="line-clamp-1 overflow-ellipsis rounded-sm px-1 font-mono text-2xl font-bold text-selectedColor md:p-2">
                 {element.name}
               </h3>
               <div className="flex items-center gap-2 justify-self-end rounded-sm bg-black p-2">
@@ -50,7 +50,7 @@ const About = () => {
                 <div
                   className={`hidden gap-1 ${scrollInside && "group-focus:flex"}`}
                 >
-                  <p>Expand</p>
+                  <p className="hidden min-[900px]:block">Expand</p>
                   <ArrowDown className="animate-bounce" />
                 </div>
               </div>
