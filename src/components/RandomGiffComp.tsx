@@ -2,8 +2,11 @@ import { keepPreviousData, useQuery } from "@tanstack/react-query";
 import filteredData from "lib/filteredData";
 import apiClient from "services/axiosConfig";
 import useDebounce from "hooks/useDebaunce";
+import { scrollManagment } from "scrollManagment";
 
 const RandomGifComponent = () => {
+  const powerOn = scrollManagment((state) => state.powerOn);
+
   const { queryParam } = filteredData();
   const debouncedSearchTerm = useDebounce(queryParam, 700);
 
@@ -41,9 +44,9 @@ const RandomGifComponent = () => {
     );
 
   return (
-    <div className="outline-navhighlight relative h-full w-full overflow-hidden border-2 border-black bg-black/45 outline">
-      <div className="absolute -left-24 bottom-10 size-[50%] rotate-45 scale-x-150 scale-y-[500%] bg-gradient-to-r from-white mix-blend-difference" />
-      {gif ? (
+    <div className="relative h-full w-full overflow-hidden border-2 border-black bg-black/45 outline outline-navhighlight">
+      <div className="absolute -left-24 bottom-10 size-[50%] rotate-45 scale-x-150 scale-y-[500%] bg-gradient-to-r from-white mix-blend-overlay" />
+      {!powerOn ? null : gif ? (
         <div
           className="h-full w-full bg-cover bg-center opacity-60 shadow-inner shadow-black saturate-50"
           style={{ backgroundImage: `url(${gif.images.downsized.url})` }}

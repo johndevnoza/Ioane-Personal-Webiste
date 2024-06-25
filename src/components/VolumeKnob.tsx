@@ -3,7 +3,7 @@ import navLinks from "lib/constants";
 import filteredData from "lib/filteredData";
 import { SquareArrowOutDownRight, SquareArrowOutUpLeft } from "lucide-react";
 import { useEffect, useRef } from "react";
-import { useNavigate, useSubmit } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { scrollManagment } from "scrollManagment";
 
 const KnobLine = ({ angle }: { angle: number }) => {
@@ -39,7 +39,6 @@ const VolumeKnob = () => {
   const isParagraph = activeElement?.description?.paragraph?.length;
 
   const navigate = useNavigate();
-  console.log(activeElement);
 
   const audioRef = useRef<HTMLAudioElement | null>(null);
   const audioEnterRef = useRef<HTMLAudioElement | null>(null);

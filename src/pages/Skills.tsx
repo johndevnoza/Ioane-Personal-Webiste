@@ -15,10 +15,11 @@ const Skills: React.FC = () => {
     <div className="flex flex-col gap-1 rounded-sm transition-all">
       {skillsData.map((link, index) => (
         <SkillsCard
+          key={link.id}
           link={link}
           name={link.name}
           index={index}
-          key={link.id}
+          id={link.id}
           data={skillsData}
         />
       ))}

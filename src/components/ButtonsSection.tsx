@@ -3,8 +3,11 @@ import VolumeKnob from "./VolumeKnob";
 import SignalDisplay from "./Signal";
 import RandomGifComponent from "./RandomGiffComp";
 import { ModeToggle } from "./mode-toggle";
+import { memo } from "react";
+
 
 const ButtonsSection = () => {
+
   return (
     <section className="bottom flex h-full w-full items-center justify-between gap-4 rounded-lg md:flex-col md:p-2">
       <div className="flex h-full flex-col gap-4 md:h-auto md:w-full">
@@ -29,4 +32,4 @@ const ButtonsSection = () => {
   );
 };
 
-export default ButtonsSection;
+export default memo(ButtonsSection);

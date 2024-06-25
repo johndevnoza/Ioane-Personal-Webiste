@@ -90,12 +90,56 @@ export default {
           "0%, 100%": { outline: "transparent" },
           "10%": { outline: "4px solid  var(--selectedColor)" },
         },
+        slidein: {
+          from: {
+            opacity: "0",
+            transform: "translateY(-30px)",
+          },
+          to: {
+            opacity: "100%",
+            transform: "translateY(0)",
+          },
+        },
+        turnOff: {
+          "100%": {
+            opacity: "100",
+          },
+          "0%": {
+            opacity: "0",
+          },
+        },
+        turnOn: {
+          "0%": {
+            opacity: "0",
+          },
+          "100%": {
+            opacity: "100",
+          },
+        },
+        welcomeAnim: {
+          "0%": {
+            opacity: "0",
+          },
+          "40%": {
+            opacity: "1",
+          },
+          "60%": {
+            opacity: "1",
+          },
+          "100%": {
+            opacity: "0",
+          },
+        },
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
         reveal: "reveal 1s ease-in",
         shine: "shine 18s ease infinite",
+        slidein: "slidein 2s ease",
+        turnOff: "turnOff 1s ease",
+        turnOn: "turnOn 2s ease",
+        welcomeAnim: "welcomeAnim 3s ease",
       },
     },
   },

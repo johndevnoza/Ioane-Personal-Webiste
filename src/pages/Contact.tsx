@@ -40,7 +40,6 @@ const Contact = () => {
       scrollManagment.setState({ isSubmit: false });
     };
   }, [isSubmit]);
-  console.log(scrollInside);
 
   return (
     <div className="flex flex-col gap-4">
@@ -52,7 +51,7 @@ const Contact = () => {
         </h1>
         <form ref={formRef} onSubmit={onSubmit} className="relative">
           <div
-            className={`left-0 flex w-full flex-col items-center transition-all duration-300 ${scrollInside ? "h-full scale-y-100 gap-2" : "h-0 scale-y-0 gap-0"}`}
+            className={`left-0 flex w-full flex-col items-center transition-all duration-200 ${scrollInside ? "h-full scale-y-100 gap-2" : "h-0 scale-y-0 gap-0"}`}
           >
             <input
               type="email"
@@ -71,7 +70,7 @@ const Contact = () => {
               className={`w-[90%] rounded-sm bg-black p-2 text-center outline-none transition-all placeholder:text-center ${scrollInside && "focus:w-full focus:py-4 focus:outline focus:outline-selectedColor"}`}
               placeholder="Subject, Example: Feedback"
             />
-            <input
+            <textarea
               type="text"
               name="message"
               ref={setElementRef(2)}
@@ -82,7 +81,7 @@ const Contact = () => {
             <button
               tabIndex={1}
               ref={setElementRef(3)}
-              className={`mb-4 w-[90%] rounded-sm bg-black p-1 px-2 outline-none focus:w-min focus:outline-selectedColor`}
+              className={`mb-4 w-[90%] mt-2 rounded-sm bg-black p-1 px-2 outline-none focus:w-min focus:outline-selectedColor`}
               type="submit"
             >
               {result}

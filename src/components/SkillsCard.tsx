@@ -2,8 +2,9 @@ import { useFocusElement } from "hooks/useFocusElement";
 import { Skill } from "lib/constants";
 import { FC } from "react";
 import { scrollManagment } from "scrollManagment";
+
 interface SkillsCardProps {
-  key: number;
+  id: number;
   name: string;
   index: number;
   link: {
@@ -12,16 +13,17 @@ interface SkillsCardProps {
   };
   data: Skill[];
 }
-const SkillsCard: FC<SkillsCardProps> = ({ key, name, index, link, data }) => {
+const SkillsCard: FC<SkillsCardProps> = ({ id, name, index, link, data }) => {
   const elementId = scrollManagment((state) => state.elementId);
   const { setElementRef } = useFocusElement(elementId, data.length);
   const scrollInside = scrollManagment((state) => state.scrollInside);
   const IconComponent = link.icon;
+  console.log(elementId);
 
   return (
     <div
       ref={setElementRef(index)}
-      key={key}
+      key={id}
       tabIndex={-1}
       className={`group flex h-full w-full items-center gap-2 rounded-sm p-1 focus:outline focus:outline-selectedColor ${
         scrollInside
@@ -29,6 +31,9 @@ const SkillsCard: FC<SkillsCardProps> = ({ key, name, index, link, data }) => {
           : ""
       }`}
     >
+      <div className="hidden rounded-sm bg-black p-1 font-bold group-focus:block">
+        {elementId}
+      </div>
       <div className="w-[45%] transition-all group-focus:ml-6 max-[400px]:w-[55%] md:w-[40%] md:group-focus:ml-12 lg:w-[35%]">
         <h3 className="line-clamp-1 rounded-sm bg-black p-1 font-mono font-bold text-selectedColor group-focus:text-white">
           {name}
