@@ -36,7 +36,7 @@ const initialState = {
   isIntro: false,
   isOutro: false,
 };
-export const scrollManagment = create<States, a>(
+export const scrollManagment = create<States>()(
   persist(
     (set, get) => ({
       ...initialState,

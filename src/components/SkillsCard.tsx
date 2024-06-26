@@ -18,7 +18,6 @@ const SkillsCard: FC<SkillsCardProps> = ({ id, name, index, link, data }) => {
   const { setElementRef } = useFocusElement(elementId, data.length);
   const scrollInside = scrollManagment((state) => state.scrollInside);
   const IconComponent = link.icon;
-  console.log(elementId);
 
   return (
     <div

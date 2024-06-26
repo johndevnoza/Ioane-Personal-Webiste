@@ -43,6 +43,14 @@ const Contact = () => {
 
   return (
     <div className="flex flex-col gap-4">
+      {scrollInside ? null : (
+        <div
+          className={`flex h-full w-full flex-col gap-2 transition-all duration-300 ${scrollInside ? "opacity-0" : "opacity-100"} rounded-md bg-black p-2 outline outline-selectedColor`}
+        >
+          <p>Phone: 995 599 433346</p>
+          <p>Email: ioandevnoza@gmail.com</p>
+        </div>
+      )}
       <div
         className={`z-50 flex flex-col gap-8 rounded-md transition-all ${scrollInside ? "opacity-100 outline outline-4 outline-selectedColor focus-within:bg-cyan-800/15" : "opacity-70"}`}
       >
@@ -81,20 +89,13 @@ const Contact = () => {
             <button
               tabIndex={1}
               ref={setElementRef(3)}
-              className={`mb-4 w-[90%] mt-2 rounded-sm bg-black p-1 px-2 outline-none focus:w-min focus:outline-selectedColor`}
+              className={`mb-4 mt-2 w-[90%] rounded-sm bg-black p-1 px-2 outline-none focus:w-min focus:outline-selectedColor`}
               type="submit"
             >
               {result}
             </button>
           </div>
         </form>
-      </div>
-
-      <div
-        className={`flex h-full w-full flex-col gap-2 transition-all duration-300 ${scrollInside ? "opacity-0" : "opacity-100"} rounded-md bg-black p-2 outline outline-selectedColor`}
-      >
-        <p>Phone: 995 599 433346</p>
-        <p>Email: ioandevnoza@gmail.com</p>
       </div>
     </div>
   );
