@@ -10,6 +10,7 @@ const About = () => {
   const navId = scrollManagment((state) => state.navId);
   const scrollInside = scrollManagment((state) => state.scrollInside);
   const isInSection = scrollManagment((state) => state.isInSection);
+  const isOutro = scrollManagment((state) => state.isOutro);
 
   const aboutData = (about?.data as AboutItem[]) || [];
   const activeNavLink =
@@ -30,7 +31,9 @@ const About = () => {
   }
 
   return (
-    <div className="z-50 flex w-full select-none flex-col items-center justify-center gap-4 rounded-sm">
+    <div
+      className={`z-50 flex w-full select-none flex-col items-center justify-center gap-4 rounded-sm ${isOutro ? "animate-elementsFallDown" : ""}`}
+    >
       {aboutData?.map((element, index) => {
         const selectedSection = isInSection && activeElement?.id === element.id;
         const IconComponent = element.icon;

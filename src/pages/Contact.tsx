@@ -6,10 +6,14 @@ const Contact = () => {
   const elementId = scrollManagment((state) => state.elementId);
   const scrollInside = scrollManagment((state) => state.scrollInside);
   const isSubmit = scrollManagment((state) => state.isSubmit);
+  const isOutro = scrollManagment((state) => state.isOutro);
+
   const elementCount = 4;
 
   const { setElementRef } = useFocusElement(elementId, elementCount);
   const [result, setResult] = useState("Submit");
+
+  const submitAudioRef = useRef<HTMLAudioElement | null>(null);
   const formRef = useRef(null);
   const onSubmit = async (event) => {
     event.preventDefault();
@@ -27,6 +31,10 @@ const Contact = () => {
     if (data.success) {
       setResult("Form Submitted Successfully");
       event.target.reset();
+      submitAudioRef.current?.play();
+      setTimeout(() => {
+        setResult("Submit");
+      }, 3000);
     } else {
       console.log("Error", data);
       setResult(data.message);
@@ -42,7 +50,9 @@ const Contact = () => {
   }, [isSubmit]);
 
   return (
-    <div className="flex flex-col gap-4">
+    <div
+      className={`flex flex-col gap-4 ${isOutro ? "animate-elementsFallDown" : ""}`}
+    >
       {scrollInside ? null : (
         <div
           className={`flex h-full w-full flex-col gap-2 transition-all duration-300 ${scrollInside ? "opacity-0" : "opacity-100"} rounded-md bg-black p-2 outline outline-selectedColor`}
@@ -89,7 +99,7 @@ const Contact = () => {
             <button
               tabIndex={1}
               ref={setElementRef(3)}
-              className={`mb-4 mt-2 w-[90%] rounded-sm bg-black p-1 px-2 outline-none focus:w-min focus:outline-selectedColor`}
+              className={`mb-4 mt-2 w-[90%] rounded-sm bg-black p-1 px-2 font-bold outline-none focus:w-min focus:outline-selectedColor ${result === "Form Submitted Successfully" ? "bg-green-500" : ""}`}
               type="submit"
             >
               {result}
@@ -97,6 +107,7 @@ const Contact = () => {
           </div>
         </form>
       </div>
+      <audio ref={submitAudioRef} preload="auto" src="/submit-succes.mp3" />
     </div>
   );
 };

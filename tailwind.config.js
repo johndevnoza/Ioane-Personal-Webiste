@@ -130,6 +130,17 @@ export default {
             opacity: "0",
           },
         },
+        elementsFallDown: {
+          " 0%": {
+            transform: "translateY(0)",
+          },
+          " 10%": {
+            transform: "translateY(0)",
+          },
+          "100%": {
+            transform: "translateY(600px)",
+          },
+        },
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
@@ -138,8 +149,9 @@ export default {
         shine: "shine 18s ease infinite",
         slidein: "slidein 2s ease",
         turnOff: "turnOff 1s ease",
-        turnOn: "turnOn 2s ease",
+        turnOn: "turnOn 1.5s ease-out",
         welcomeAnim: "welcomeAnim 3s ease",
+        elementsFallDown: "elementsFallDown 1.5s ease-out",
       },
     },
   },

@@ -1,4 +1,4 @@
-import { memo } from "react";
+import { memo, useEffect, useRef } from "react";
 import { Power } from "lucide-react";
 import { scrollManagment } from "scrollManagment";
 import { audioManagment } from "audioContext";
@@ -9,20 +9,28 @@ const PowerButton = () => {
   const powerOn = scrollManagment((state) => state.powerOn);
   const isTutorial = tutorialStore((state) => state.isTutorial);
   const tooltip = tutorialStore((state) => state.tooltip);
-  console.log(isTutorial, "tut");
+
+  const powerOnAudioRef = useRef<HTMLAudioElement | null>(null);
+  const powerOffAudioRef = useRef<HTMLAudioElement | null>(null);
+  useEffect(() => {
+    if (powerOnAudioRef.current) {
+      powerOnAudioRef.current.load();
+    }
+  }, []);
 
   const handleOn = () => {
     scrollManagment.setState({ isIntro: true });
     audioManagment.setState({ isAudioEnabled: powerOn ? false : true });
+    powerOnAudioRef.current?.play();
   };
   const handleOff = () => {
     scrollManagment.setState({ isOutro: true });
+    powerOffAudioRef.current?.play();
   };
   const handleTooltipButtonClick = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.stopPropagation();
     tutorialStore.setState({ tooltip: "sound" });
   };
-  // building OWN alert
   return (
     <div
       onClick={powerOn ? handleOff : handleOn}
@@ -38,6 +46,8 @@ const PowerButton = () => {
       <Power
         className={`${powerOn ? "animate-pulse text-selectedColor" : ""}`}
       />
+      <audio ref={powerOnAudioRef} preload="auto" src="/Turn-on.mp3" />
+      <audio ref={powerOffAudioRef} preload="auto" src="/Turn-off.mp3" />
     </div>
   );
 };

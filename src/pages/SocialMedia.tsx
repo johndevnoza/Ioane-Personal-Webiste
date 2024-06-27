@@ -7,6 +7,7 @@ const SocialMedia = () => {
   const socMedia = navLinks.find((link) => link.link === "social-media");
   const elementId = scrollManagment((state) => state.elementId);
   const scrollInside = scrollManagment((state) => state.scrollInside);
+  const isOutro = scrollManagment((state) => state.isOutro);
 
   const socMediaData = (socMedia?.data as Link[]) || [];
   const { setElementRef } = useFocusElement(elementId, socMediaData.length);
@@ -16,7 +17,9 @@ const SocialMedia = () => {
   }
 
   return (
-    <div className="flex flex-col gap-1 rounded-sm transition-all">
+    <div
+      className={`flex flex-col gap-1 rounded-sm transition-all ${isOutro ? "animate-elementsFallDown" : ""}`}
+    >
       {socMediaData?.map((link, index) => {
         const IconComponent = link.icon;
         return (
