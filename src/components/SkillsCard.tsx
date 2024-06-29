@@ -30,17 +30,14 @@ const SkillsCard: FC<SkillsCardProps> = ({ id, name, index, link, data }) => {
           : ""
       }`}
     >
-      <div className="hidden rounded-sm bg-black p-1 font-bold group-focus:block">
-        {elementId}
-      </div>
-      <div className="w-[45%] transition-all group-focus:ml-6 max-[400px]:w-[55%] md:w-[40%] md:group-focus:ml-12 lg:w-[35%]">
+      <div className="w-[45%] transition-all duration-300 ease-out group-focus:ml-6 max-[400px]:w-[55%] md:w-[40%] md:group-focus:ml-12 lg:w-[35%]">
         <h3 className="line-clamp-1 rounded-sm bg-black p-1 font-mono font-bold text-selectedColor group-focus:text-white">
           {name}
         </h3>
       </div>
       <div className="min-h-[30px] w-[4px] bg-black/45" />
       <div
-        className={`ml-auto w-min justify-self-end rounded-sm bg-black p-1 transition-all ${
+        className={`ml-auto w-min justify-self-end rounded-sm bg-black p-1 transition-all duration-300 ease-out ${
           scrollInside
             ? "group-focus:-translate-x-6 md:group-focus:-translate-x-11"
             : ""
