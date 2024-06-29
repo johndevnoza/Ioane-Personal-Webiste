@@ -68,8 +68,10 @@ const VolumeKnob = () => {
   const audioEnterRef = useRef<HTMLAudioElement | null>(null);
   const audioOutRef = useRef<HTMLAudioElement | null>(null);
   const audioErrorRef = useRef<HTMLAudioElement | null>(null);
+  // const tutPopUpSound = useRef<HTMLAudioElement | null>(null);
   const knobRef = useRef<HTMLDivElement>(null);
   // audio useEffect
+
   useEffect(() => {
     if (audioRef.current) {
       audioRef.current.src = scrollInside
@@ -86,7 +88,14 @@ const VolumeKnob = () => {
     if (audioOutRef.current) {
       audioOutRef.current.load();
     }
+    // if (tutPopUpSound.current) {
+    //   tutPopUpSound.current.load();
+    // }
   }, []);
+
+  // useEffect(() => {
+  //   tutPopUpSound.current?.play();
+  // }, [tooltip]);
 
   useEffect(() => {
     const knobElement = knobRef.current;
@@ -141,6 +150,7 @@ const VolumeKnob = () => {
     }
     handleSectionsOut();
   };
+  console.log(audioOutRef);
 
   const handleCloseSection = () => {
     if (audioOutRef.current && isInSection) {
@@ -260,6 +270,11 @@ const VolumeKnob = () => {
         <audio ref={audioEnterRef} preload="auto" src="/in.mp3" />
         <audio ref={audioOutRef} preload="auto" src="/out.mp3" />
         <audio ref={audioErrorRef} preload="auto" src="/error.mp3" />
+        {/* <audio
+          ref={tutPopUpSound}
+          preload="auto"
+          src="/tutorial-PopUpSound.mp3"
+        /> */}
       </div>
     </>
   );

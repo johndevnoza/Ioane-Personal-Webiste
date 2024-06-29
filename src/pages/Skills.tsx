@@ -1,4 +1,3 @@
-import React from "react";
 import navLinks from "lib/constants";
 import SkillsCard from "@components/SkillsCard";
 import { Skill } from "lib/constants";

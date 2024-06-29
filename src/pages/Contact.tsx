@@ -94,7 +94,7 @@ const Contact = () => {
               ref={setElementRef(2)}
               className={`w-[90%] rounded-sm bg-black p-2 text-center outline-none transition-all placeholder:text-center ${scrollInside && "focus:w-full focus:py-4 focus:outline focus:outline-selectedColor"}`}
               required
-              placeholder="Message"
+              placeholder="Message, Example: You are HIRED!"
             />
             <button
               tabIndex={1}

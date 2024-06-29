@@ -141,6 +141,20 @@ export default {
             transform: "translateY(600px)",
           },
         },
+        elementsPopUp: {
+          " 0%": {
+            transform: "scale(0%)",
+          },
+          " 40%": {
+            transform: "scale(120%)",
+          },
+          "60%": {
+            transform: "scale(100%)",
+          },
+          "100%": {
+            transform: "scale(100%)",
+          },
+        },
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
@@ -152,6 +166,7 @@ export default {
         turnOn: "turnOn 1.5s ease-out",
         welcomeAnim: "welcomeAnim 3s ease",
         elementsFallDown: "elementsFallDown 1.5s ease-out",
+        elementsPopUp: "elementsPopUp 0.2s ease-in",
       },
     },
   },

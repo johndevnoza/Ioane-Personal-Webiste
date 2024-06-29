@@ -1,3 +1,4 @@
+import { useEffect, useRef } from "react";
 import { twMerge } from "tailwind-merge";
 type Tutorial = {
   TooltipButtonClick: (e: React.MouseEvent<HTMLButtonElement>) => void;
@@ -10,10 +11,15 @@ const TutorialAlert: React.FC<Tutorial> = ({
   className,
   ...props
 }) => {
+  const tutPopUpSound = useRef<HTMLAudioElement | null>(null);
+  useEffect(() => {
+    tutPopUpSound.current?.load();
+    tutPopUpSound.current?.play();
+  }, []);
   return (
     <div
       className={twMerge(
-        "absolute z-[100] w-max border border-black bg-black bg-elementBgDark p-0 text-[20px] text-white outline outline-[2px] outline-white/35",
+        "absolute z-[100] w-max animate-elementsPopUp border border-black bg-black bg-elementBgDark p-0 text-[20px] text-white outline outline-[2px] outline-white/35",
         className,
       )}
     >
@@ -28,6 +34,11 @@ const TutorialAlert: React.FC<Tutorial> = ({
           OK
         </button>
       </div>
+      <audio
+        ref={tutPopUpSound}
+        preload="auto"
+        src="/tutorial-PopUpSound.mp3"
+      />
     </div>
   );
 };
