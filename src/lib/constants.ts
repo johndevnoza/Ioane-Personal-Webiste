@@ -331,13 +331,14 @@ const contactData: ContactItem[] = [
   { name: "message", icon: "test2", id: 3 },
   { name: "Click", icon: "test1", id: 4 },
 ];
+const gameData: ContactItem[] = [{ name: "Game", icon: "test", id: 1 }];
 
 const navLinks: NavLink[] = [
   { title: "Skills", link: "skills", id: 1, data: skillsData },
   { title: "Links", link: "social-media", id: 2, data: linksData },
   { title: "About", link: "about", id: 3, data: aboutData },
   { title: "Contact", link: "contact", id: 4, data: contactData },
-  { title: "Game", link: "game", id: 5, data: contactData },
+  { title: "Game", link: "game", id: 5, data: gameData },
 ];
 
 export default navLinks;
