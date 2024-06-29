@@ -217,7 +217,7 @@ const aboutWebDev: AboutTypes[] = [
   },
   {
     context:
-      "Opening statement. A message.If you're seeking a frontend developer with a creative twist and a knack for crafting engaging user experiences, let's connect! Together, we can build web solutions that resonate with users 🤝 and drive tangible results 📈.",
+      "Opening statement. If you're seeking a frontend developer with a creative twist and a knack for crafting engaging user experiences, let's connect! Together, we can build web solutions that resonate with users 🤝 and drive tangible results 📈.",
     id: 5,
   },
 ];
