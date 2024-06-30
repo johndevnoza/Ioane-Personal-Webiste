@@ -9,7 +9,6 @@ const TutorialAlert: React.FC<Tutorial> = ({
   TooltipButtonClick,
   desc,
   className,
-  ...props
 }) => {
   const tutPopUpSound = useRef<HTMLAudioElement | null>(null);
   useEffect(() => {

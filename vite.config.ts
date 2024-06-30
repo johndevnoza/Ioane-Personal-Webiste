@@ -10,4 +10,13 @@ export default defineConfig({
       "@components": "/src/components",
     },
   },
+  base: "./",
+  build: {
+    rollupOptions: {
+      onwarn(warning, warn) {
+        if (warning.code === "PLUGIN_WARNING") return;
+        warn(warning);
+      },
+    },
+  },
 });
