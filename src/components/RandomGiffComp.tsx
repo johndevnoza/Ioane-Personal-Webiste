@@ -46,21 +46,24 @@ const RandomGifComponent = () => {
   return (
     <div className="relative h-full w-full overflow-hidden border-2 border-black bg-black/45 outline outline-navhighlight">
       <div className="absolute -left-24 bottom-10 size-[50%] rotate-45 scale-x-150 scale-y-[500%] bg-gradient-to-r from-white mix-blend-overlay" />
-      {!powerOn ? null : gif ? (
-        <div
-          className="h-full w-full bg-cover bg-center opacity-60 shadow-inner shadow-black saturate-50"
-          style={{ backgroundImage: `url(${gif.images.downsized.url})` }}
-        >
-          <img
-            className="hidden"
-            src={gif.images.downsized.url}
-            alt={gif.title}
-            loading="lazy"
-          />
-        </div>
-      ) : (
+      {!powerOn
+        ? null
+        : gif && (
+            <div
+              className="h-full w-full bg-cover bg-center opacity-60 shadow-inner shadow-black saturate-50"
+              style={{ backgroundImage: `url(${gif.images.downsized.url})` }}
+            >
+              <img
+                className="hidden"
+                src={gif.images.downsized.url}
+                alt={gif.title}
+                loading="lazy"
+              />
+            </div>
+          )}
+      {!gif && powerOn && (
         <img
-          src={"/reachedMaximumLimitGiff.gif"}
+          src={"/images/reachedMaximumLimitGiff.gif"}
           alt="Loading..."
           loading="lazy"
           className="absolute top-[35%] size-max md:scale-[200%]"
