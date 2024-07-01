@@ -1,5 +1,5 @@
-import { useTheme } from "@components/theme-provider";
-
+import { Theme, useTheme } from "@components/theme-provider";
+import { ChangeEvent } from "react";
 export function ModeToggle() {
   const { setTheme, theme } = useTheme();
 
@@ -24,7 +24,9 @@ export function ModeToggle() {
         />
       </div>
       <select
-        onChange={(e) => setTheme(e.target.value)}
+        onChange={(e: ChangeEvent<HTMLSelectElement>) =>
+          setTheme(e.target.value as Theme)
+        }
         className={`absolute bottom-0 left-0 flex size-6 w-full appearance-none gap-4 rounded-sm border-2 md:hidden`}
         value={theme}
         style={{

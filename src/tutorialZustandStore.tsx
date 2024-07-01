@@ -6,7 +6,7 @@ type States = {
 };
 export const tutorialStore = create<States>()(
   persist(
-    (set, get) => ({
+    (_set) => ({
       isTutorial: true,
       tooltip: "power",
     }),

@@ -60,7 +60,9 @@ const VolumeKnob = () => {
   const isInSection = scrollManagment((state) => state.isInSection);
   const isAudioEnabled = audioManagment((state) => state.isAudioEnabled);
 
-  const isParagraph = activeElement?.description?.paragraph?.length;
+  const isParagraph = activeElement?.description?.paragraph
+    ? activeElement?.description?.paragraph?.length
+    : null;
 
   const navigate = useNavigate();
   // audio
@@ -88,14 +90,7 @@ const VolumeKnob = () => {
     if (audioOutRef.current) {
       audioOutRef.current.load();
     }
-    // if (tutPopUpSound.current) {
-    //   tutPopUpSound.current.load();
-    // }
   }, []);
-
-  // useEffect(() => {
-  //   tutPopUpSound.current?.play();
-  // }, [tooltip]);
 
   useEffect(() => {
     const knobElement = knobRef.current;
