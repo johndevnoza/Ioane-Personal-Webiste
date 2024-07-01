@@ -15,7 +15,7 @@ const Contact = () => {
 
   const submitAudioRef = useRef<HTMLAudioElement | null>(null);
   const formRef = useRef(null);
-  const onSubmit = async (event) => {
+  const onSubmit = async (event: any) => {
     event.preventDefault();
     setResult("Sending....");
     const formData = new FormData(event.target);
@@ -41,8 +41,8 @@ const Contact = () => {
     }
   };
   useEffect(() => {
-    if (isSubmit) {
-      formRef.current?.querySelector('button[type="submit"]').click();
+    if (isSubmit && formRef.current) {
+      (formRef.current as any).querySelector('button[type="submit"]').click();
     }
     return () => {
       scrollManagment.setState({ isSubmit: false });
@@ -67,7 +67,7 @@ const Contact = () => {
         <h1 className="rounded-sm rounded-b-none bg-selectedColor text-center font-mono text-2xl font-bold focus:bg-orange-600">
           Send an Email!
         </h1>
-        <form ref={formRef} onSubmit={onSubmit} className="relative">
+        <form ref={formRef} onSubmit={onSubmit} className="relative" id="Form">
           <div
             className={`left-0 flex w-full flex-col items-center transition-all duration-200 ${scrollInside ? "h-full scale-y-100 gap-2" : "h-0 scale-y-0 gap-0"}`}
           >
@@ -89,7 +89,6 @@ const Contact = () => {
               placeholder="Subject, Example: Feedback"
             />
             <textarea
-              type="text"
               name="message"
               ref={setElementRef(2)}
               className={`w-[90%] rounded-sm bg-black p-2 text-center outline-none transition-all placeholder:text-center ${scrollInside && "focus:w-full focus:py-4 focus:outline focus:outline-selectedColor"}`}

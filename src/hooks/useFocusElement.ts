@@ -2,7 +2,7 @@ import { useEffect, useRef } from "react";
 import { scrollManagment } from "scrollManagment";
 
 export const useFocusElement = (elementId: number, length: number) => {
-  const elementRef = useRef<HTMLDivElement[]>([]);
+  const elementRef = useRef<HTMLElement[]>([]);
   const scrollInside = scrollManagment((state) => state.scrollInside);
   const handleSectionsEnter = scrollManagment(
     (state) => state.handleSectionsEnter,
@@ -17,7 +17,7 @@ export const useFocusElement = (elementId: number, length: number) => {
     }
   }, [elementId, scrollInside, handleSectionsEnter, length]);
 
-  const setElementRef = (index: number) => (el: HTMLDivElement | null) => {
+  const setElementRef = (index: number) => (el: HTMLElement | null) => {
     if (el) {
       elementRef.current[index] = el;
     }

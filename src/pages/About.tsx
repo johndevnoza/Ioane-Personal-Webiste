@@ -1,7 +1,7 @@
 import { ArrowDown } from "lucide-react";
 import { useFocusElement } from "hooks/useFocusElement";
 import { scrollManagment } from "scrollManagment";
-import navLinks, { AboutItem, NavLink } from "lib/constants";
+import navLinks, { AboutItem, Description, NavLink } from "lib/constants";
 
 const About = () => {
   const about = navLinks.find((link) => link.link === "about");
@@ -22,7 +22,9 @@ const About = () => {
           (element: object) => "id" in element && element.id === elementId,
         )
       : null;
-  const aboutDataLength = activeElement?.description?.paragraph?.length;
+  const aboutDataLength = (
+    (activeElement as AboutItem)?.description as Description
+  )?.paragraph?.length;
   const { setElementRef } = useFocusElement(elementId, aboutData.length);
   const { setParagraphRef } = useFocusElement(context, aboutDataLength);
 

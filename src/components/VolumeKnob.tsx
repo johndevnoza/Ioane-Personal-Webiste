@@ -1,5 +1,5 @@
 import { audioManagment } from "audioContext";
-import navLinks from "lib/constants";
+import navLinks, { AboutItem, Description, Link } from "lib/constants";
 import filteredData from "lib/filteredData";
 import { SquareArrowOutDownRight, SquareArrowOutUpLeft } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
@@ -60,9 +60,8 @@ const VolumeKnob = () => {
   const isInSection = scrollManagment((state) => state.isInSection);
   const isAudioEnabled = audioManagment((state) => state.isAudioEnabled);
 
-  const isParagraph = activeElement?.description?.paragraph
-    ? activeElement?.description?.paragraph?.length
-    : null;
+  const isParagraph = ((activeElement as AboutItem)?.description as Description)
+    ?.paragraph?.length;
 
   const navigate = useNavigate();
   // audio
@@ -130,8 +129,8 @@ const VolumeKnob = () => {
         .catch((error) => console.error("Audio play error:", error));
     }
     handleSectionsEnter();
-    if (activeNavLink?.data.length && activeElement?.navigate) {
-      window.open(activeElement.navigate, "_blank", "noreferrer");
+    if (activeNavLink?.data.length && (activeElement as Link)?.navigate) {
+      window.open((activeElement as Link)?.navigate, "_blank", "noreferrer");
     } else null;
   };
 
@@ -145,7 +144,6 @@ const VolumeKnob = () => {
     }
     handleSectionsOut();
   };
-  console.log(audioOutRef);
 
   const handleCloseSection = () => {
     if (audioOutRef.current && isInSection) {

@@ -1,5 +1,5 @@
 import { create } from "zustand";
-import navLinks, { AboutItem, NavLink } from "lib/constants";
+import navLinks, { AboutItem, ContactItem, Link, Skill } from "lib/constants";
 import { persist, createJSONStorage } from "zustand/middleware";
 
 type States = {
@@ -22,7 +22,21 @@ type States = {
   handleSectionClose: () => void;
   reset: () => void;
 };
-const initialState = {
+type InitialStates = {
+  rotation: number;
+  navId: number;
+  context: number;
+  scrollInside: boolean;
+  isInSection: boolean;
+  isInContact: boolean;
+  isSubmit: boolean;
+  powerOn: boolean;
+  isIntro: boolean;
+  isOutro: boolean;
+  elementId: number;
+  activeNavLink: (typeof navLinks)[number] | null;
+};
+const initialState: InitialStates = {
   rotation: 0,
   navId: 1,
   activeNavLink: null,
@@ -69,13 +83,14 @@ export const scrollManagment = create<States>()(
             if (isInSection && scrollInside) {
               const activeNavLink =
                 navLinks.find((navLink) => navLink.id === navId) || null;
-              const activeElement: AboutItem = scrollInside
+              const activeElement: unknown = scrollInside
                 ? activeNavLink?.data?.find(
-                    (element: AboutItem) => element.id === elementId,
+                    (element: Skill | Link | AboutItem | ContactItem) =>
+                      element.id === elementId,
                   )
                 : null;
-              const aboutDataLength =
-                activeElement?.description?.paragraph?.length;
+              const aboutDataLength = (activeElement as AboutItem)?.description
+                ?.paragraph?.length;
               if (event.deltaY > 0) {
                 set({ context: context === aboutDataLength ? 1 : context + 1 });
               } else {
@@ -120,8 +135,9 @@ export const scrollManagment = create<States>()(
         );
         set({ activeNavLink: updatedActiveNavLink });
         const { activeNavLink, elementId } = get();
-        const isElement = activeNavLink?.data.find(
-          (element: NavLink) => element.id === elementId,
+        const isElement = activeNavLink?.data?.find(
+          (element: Skill | Link | AboutItem | ContactItem) =>
+            element.id === elementId,
         );
         if (!isElement) {
           set({ elementId: 1 });

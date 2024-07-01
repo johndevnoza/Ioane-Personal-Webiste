@@ -41,7 +41,7 @@ export interface Link {
   navigate?: string;
 }
 
-interface ContactItem {
+export interface ContactItem {
   name: string;
   icon: string;
   id: number;
@@ -284,7 +284,7 @@ const personalLife: AboutTypes[] = [
   },
 ];
 
-interface Description {
+export interface Description {
   descTitle: string;
   paragraph: AboutTypes[];
 }
