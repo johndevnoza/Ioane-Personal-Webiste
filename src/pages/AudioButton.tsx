@@ -15,6 +15,7 @@ const AudioButton = () => {
     e.stopPropagation();
     tutorialStore.setState({ tooltip: "wheelButton" });
   };
+
   return (
     <div
       className="relative z-50 cursor-pointer rounded-sm bg-black/80 px-2 py-1"

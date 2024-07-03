@@ -28,7 +28,7 @@ const RandomGifComponent = () => {
       }
     },
     placeholderData: keepPreviousData,
-    staleTime: Infinity,
+    staleTime: 1000 * 60 * 15,
   });
 
   if (isPending)

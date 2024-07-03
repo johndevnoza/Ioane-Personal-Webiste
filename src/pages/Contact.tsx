@@ -1,6 +1,6 @@
 import { scrollManagment } from "scrollManagment";
 import { useFocusElement } from "hooks/useFocusElement";
-import { useEffect, useRef, useState } from "react";
+import {  useEffect, useRef, useState } from "react";
 
 const Contact = () => {
   const elementId = scrollManagment((state) => state.elementId);
@@ -14,7 +14,9 @@ const Contact = () => {
   const [result, setResult] = useState("Submit");
 
   const submitAudioRef = useRef<HTMLAudioElement | null>(null);
-  const formRef = useRef(null);
+  const formRef = useRef<HTMLFormElement | null>(null);
+  const submitButtonRef = useRef<HTMLButtonElement | null>(null);
+
   const onSubmit = async (event: any) => {
     event.preventDefault();
     setResult("Sending....");
@@ -40,9 +42,10 @@ const Contact = () => {
       setResult(data.message);
     }
   };
+
   useEffect(() => {
-    if (isSubmit && formRef.current) {
-      (formRef.current as any).querySelector('button[type="submit"]').click();
+    if (isSubmit && submitButtonRef.current) {
+      submitButtonRef.current.click();
     }
     return () => {
       scrollManagment.setState({ isSubmit: false });
@@ -67,7 +70,7 @@ const Contact = () => {
         <h1 className="rounded-sm rounded-b-none bg-selectedColor text-center font-mono text-2xl font-bold focus:bg-orange-600">
           Send an Email!
         </h1>
-        <form ref={formRef} onSubmit={onSubmit} className="relative" id="Form">
+        <form ref={formRef} onSubmit={onSubmit} className="relative">
           <div
             className={`left-0 flex w-full flex-col items-center transition-all duration-200 ${scrollInside ? "h-full scale-y-100 gap-2" : "h-0 scale-y-0 gap-0"}`}
           >
@@ -97,7 +100,10 @@ const Contact = () => {
             />
             <button
               tabIndex={1}
-              ref={setElementRef(3)}
+              ref={(element) => {
+                setElementRef(3)(element);
+                submitButtonRef.current = element;
+              }}
               className={`mb-4 mt-2 w-[90%] rounded-sm bg-black p-1 px-2 font-bold outline-none focus:w-min focus:outline-selectedColor ${result === "Form Submitted Successfully" ? "bg-green-500" : ""}`}
               type="submit"
             >
