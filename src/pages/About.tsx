@@ -65,7 +65,7 @@ const About = () => {
               {element.description.descTitle}
             </h3>
             {selectedSection ? (
-              <div className="flex w-full flex-col gap-2 rounded-sm bg-black p-2">
+              <div className="flex w-full flex-col gap-2 rounded-sm bg-black p-4">
                 {element.description.paragraph?.map((text, index) => {
                   const words = text.context.split(" ");
                   const firstTwoWords = words.slice(0, 2).join(" ");
@@ -74,22 +74,27 @@ const About = () => {
                   return (
                     <div
                       key={text.id}
-                      className="flex h-full w-full flex-col gap-2"
+                      className="flex h-full w-full flex-col gap-2 overflow-hidden"
                     >
                       <div
-                        className="w-full scale-95 rounded-sm opacity-80 outline-selectedColor saturate-50 transition-all focus:scale-100 focus:p-1 focus:opacity-100 focus:outline focus:saturate-100"
+                        className="group flex w-full scale-95 items-center justify-between gap-1 rounded-sm opacity-80 outline-selectedColor saturate-50 focus:scale-[99%] focus:p-3 focus:opacity-100 focus:outline focus:outline-2 focus:saturate-100"
                         ref={setParagraphRef(index)}
                         tabIndex={-1}
                       >
                         {index > 0 ? (
-                          <>
+                          <div className="flex w-full flex-col">
                             <span className="font-bold">{firstTwoWords}</span>
-                            <br />
-                            <span>{remainingText}</span>
-                          </>
+                            <span className="line-clamp-1 opacity-70 group-focus:line-clamp-none group-focus:opacity-100">
+                              {remainingText}
+                            </span>
+                          </div>
                         ) : (
                           <span>{text.context}</span>
                         )}
+                          <img
+                            src={text.image}
+                            className="hidden size-24 rounded-md object-cover object-center group-focus:block"
+                          />
                       </div>
                       <div className="h-[2px] w-full bg-black" />
                     </div>

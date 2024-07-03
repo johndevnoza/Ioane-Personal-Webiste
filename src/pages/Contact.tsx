@@ -1,6 +1,6 @@
 import { scrollManagment } from "scrollManagment";
 import { useFocusElement } from "hooks/useFocusElement";
-import {  useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 const Contact = () => {
   const elementId = scrollManagment((state) => state.elementId);

@@ -1,4 +1,4 @@
-import { FaGithub, FaFacebook, FaTwitter } from "react-icons/fa";
+import { FaGithub, FaFacebook, FaTwitter, FaLinkedin } from "react-icons/fa";
 import {
   FaHtml5,
   FaCss3Alt,
@@ -176,6 +176,13 @@ const linksData: Link[] = [
     description: "Occasional Contributor",
   },
   {
+    name: "LinkedIn",
+    icon: FaLinkedin,
+    id: 2,
+    navigate: "https://www.linkedin.com/in/ioane-devnozashvili-074779281/",
+    description: "Checked Every Day",
+  },
+  {
     name: "Facebook",
     icon: FaFacebook,
     id: 2,
@@ -193,93 +200,111 @@ const linksData: Link[] = [
 type AboutTypes = {
   context: string;
   id: number;
+  image?: string;
 };
 
 const aboutWebDev: AboutTypes[] = [
   {
     context: "🚀⚛️ Frontend Developer with a Passion for Creative Solutions 🎨",
+    image: "/images/CreativeDeveloper.JPG",
     id: 1,
   },
   {
     context:
       "Short overview. In my journey towards becoming a proficient and dedicated frontend professional, my focus is squarely on web development, specifically JavaScript and React ⚛️. I've channeled my dedication and creative mindset into crafting captivating and interactive web experiences.",
+    image: "/images/React.jpg",
     id: 2,
   },
   {
     context:
       "Programing Graduation. I successfully completed the React frontend course at DIGITAL INSTITUTE. During this course, I gained comprehensive knowledge of JavaScript and various related technologies essential for a junior React developer. The program was thorough and well-structured, equipping me with the skills needed to excel in the field. Additionally, I had the privilege of learning from an exceptional instructor, which greatly enhanced my understanding and confidence.",
+    image: "/images/DigitalInstitute.jfif",
     id: 3,
   },
   {
     context:
       "Why me? Having mastered various creative domains, I bring a unique perspective to frontend development. My commitment to quality, punctuality, and a creative approach remains unwavering. I'm excited about this transition and eager to collaborate on exciting web projects.",
+    image: "/images/Whyme.jpg",
     id: 4,
   },
   {
     context:
       "Opening statement. If you're seeking a frontend developer with a creative twist and a knack for crafting engaging user experiences, let's connect! Together, we can build web solutions that resonate with users 🤝 and drive tangible results 📈.",
+    image: "/images/Hireme.jpg",
     id: 5,
   },
 ];
 const beforeWebDev: AboutTypes[] = [
   {
     context: "From a young age, I have always loved art.",
+    image: "/images/childhood.jpg",
     id: 1,
   },
   {
     context:
       "Art Graduation. At age 15, I enrolled in Barakoni College on my brother's recommendation. There, I learned graphic design, Photoshop, Illustrator, motion graphics with After Effects, and 3D modeling with 3ds Max.",
+    image: "/images/my3dwork.jpg",
     id: 2,
   },
   {
     context:
       "After graduating from college, I started working at Sarke Studio, a Georgian international film production company that has been operating for over two decades. Sarke Studio encompasses many subsidiary companies, each with diverse creative projects, giving me the opportunity to work and learn from them.",
+    image: "/images/sarkeStudio.jfif",
     id: 3,
   },
   {
     context:
       "Work background. I began as a 3D modeler at WE SCAN GEORGIA within Sarke Studio. Later, I shifted my profession to 2D animation at another Sarke subsidiary, HOLLOSEUM. After my time at HOLLOSEUM, I moved to a new company called NEW LAYER as a 2D animator. Following several projects there, I transitioned to freelancing.",
+    image: "/images/WorkBackground.jpg",
     id: 4,
   },
   {
     context:
       "About WeScanGeorgia. At WE SCAN GEORGIA, I simultaneously took on three roles: photoshooting and 3D scanning, 3D modeling, and texturing. The company was dedicated to scanning the entire old city of Tbilisi to create the most realistic 3D model possible. This project aimed to enable virtual reality tours of historic Tbilisi. My responsibility was to go to specific locations in old Tbilisi, which could be a particular house or any significant site, and capture photographs from all possible angles. These photos were then uploaded into the 3D scanning software, RealityCapture, to create a 3D scan of the area. As a 3D modeler, I would then refine and enhance the scan to make it as realistic as possible. Additionally, I would create textures in Substance Painter to ensure high-quality, lifelike details.",
+    image: "/images/WeScanGeorgia.png",
     id: 5,
   },
   {
     context:
       "About Holloseum. At HOLLOSEUM, a subsidiary of Sarke Studio was a Projection mapping company, we brought to life the magnificent paintings of old masters such as Pirosmani, Van Gogh, and others. This involved animating 2D paintings and narrating their stories on a grand stage. HOLLOSEUM was a museum equipped with numerous projectors, allowing visitors to view our animations directly.\n\nI served as the lead animator, but my responsibilities extended beyond animation. To bring the paintings to life, I first had to perform retouching in Photoshop to separate the elements of the paintings into individual layers. I also needed to fill in any empty spaces, painting in the same style as the original artwork so that viewers couldn't detect any changes. This required not only animation skills but also artistic ability. Finally, I composited everything together in After Effects to create the final animations.",
+    image: "/images/Holloseum.jpg",
     id: 6,
   },
   {
     context:
       'About NewLayer. After completing various projects for subsidiary companies, which provided us with extensive experience in large and creative endeavors as well as teamwork, my colleagues and I decided to create our own company named "New Layer." Thanks to our collective experience and impressive portfolio, we quickly secured our next client for an upcoming project.\n\nThe company Borjomi commissioned us to create a projection mapping for their anniversary celebration in Borjomi. We traveled to Borjomi and crafted a stunning animation projected onto a large, historic building in the city. The project was a testament to our skills and creativity, showcasing our ability to deliver exceptional work.',
+    image: "/images/NewLayerCompany.jpg",
     id: 7,
   },
   {
     context:
       "Finnaly Freelancing. After these projects, due to my extensive experience across various professional fields, I decided to start freelancing, influenced by a colleague. Despite already having skills as an artist, animator, and motion graphics designer, working with clients and understanding the market led me to explore a new profession as an NFT artist. I created NFT collections primarily in the pixel art style for clients on Upwork and Fiverr. This new venture was both creative and lucrative for me.",
+    image: "/images/MyNftARt.png",
     id: 8,
   },
 ];
 const personalLife: AboutTypes[] = [
   {
     context: "From Tbilisi Georgia.",
+    image: "/images/TbilisiGeorgia.jpg",
     id: 1,
   },
   {
     context:
       "Family : I am fortunate to be rich in family, with 5 brothers and 4 sisters. I am also a father, blessed with a lovely wife.",
+    image: "/images/family.jpg",
     id: 2,
   },
   {
     context:
       "Hobbies : In my free time, I love to watch fighting sports such as MMA, UFC, and boxing. I also enjoy working out, drawing, writing movie and TV series scripts, and traveling.",
+    image: "/images/hobbies.jpg",
     id: 3,
   },
   {
     context:
       "Goals : As a father and a citizen of Georgia, I feel a deep responsibility to provide the best for my family and contribute positively to my country. My primary focus now is to enhance my programming skills, enabling me to develop projects that can benefit and inspire people. Additionally, I aim to achieve financial stability and fulfill all my responsibilities towards my family while pursuing my dreams.",
+    image: "/images/goals.jpg",
     id: 4,
   },
 ];
