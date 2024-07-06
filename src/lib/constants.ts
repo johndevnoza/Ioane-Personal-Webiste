@@ -51,7 +51,7 @@ export interface NavLink {
   title: string;
   link: string;
   id: number;
-  data: Skill[] | Link[] | AboutItem[] | ContactItem[];
+  data: (Skill | Link | AboutItem | ContactItem)[];
 }
 
 const skillsData: Skill[] = [

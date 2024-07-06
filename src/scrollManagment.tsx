@@ -72,7 +72,6 @@ export const scrollManagment = create<States>()(
             isInSection,
             context,
           } = get();
-
           if (!scrollInside && !isInSection) {
             if (event.deltaY > 0) {
               set({ navId: navId === navLinks.length ? 1 : navId + 1 });
