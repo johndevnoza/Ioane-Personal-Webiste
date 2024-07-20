@@ -1,5 +1,11 @@
 import { create } from "zustand";
-import navLinks, { AboutItem, ContactItem, Link, Skill } from "lib/constants";
+import navLinks, {
+  AboutItem,
+  ContactItem,
+  GameData,
+  Link,
+  Skill,
+} from "lib/constants";
 import { persist, createJSONStorage } from "zustand/middleware";
 
 type States = {
@@ -14,6 +20,7 @@ type States = {
   isIntro: boolean;
   isOutro: boolean;
   elementId: number;
+  isGameOn: boolean;
   activeNavLink: (typeof navLinks)[number] | null;
   handleScroll: (event: WheelEvent) => void;
   handleSectionsEnter: () => void;
@@ -34,6 +41,7 @@ type InitialStates = {
   isIntro: boolean;
   isOutro: boolean;
   elementId: number;
+  isGameOn: boolean;
   activeNavLink: (typeof navLinks)[number] | null;
 };
 const initialState: InitialStates = {
@@ -49,6 +57,7 @@ const initialState: InitialStates = {
   powerOn: false,
   isIntro: false,
   isOutro: false,
+  isGameOn: false,
 };
 export const scrollManagment = create<States>()(
   persist(
@@ -56,7 +65,16 @@ export const scrollManagment = create<States>()(
       ...initialState,
       handleScroll: (event: WheelEvent) => {
         event.preventDefault();
-        const { rotation, navId, powerOn } = get();
+        const {
+          rotation,
+          navId,
+          powerOn,
+          isGameOn,
+          elementId,
+          activeNavLink,
+          context,
+        } = get();
+
         if (powerOn) {
           set({ rotation: rotation + event.deltaY * 0.1 });
 
@@ -65,13 +83,9 @@ export const scrollManagment = create<States>()(
           );
           set({ activeNavLink: updatedActiveNavLink });
 
-          const {
-            scrollInside,
-            elementId,
-            activeNavLink,
-            isInSection,
-            context,
-          } = get();
+          const { scrollInside, isInSection } = get();
+
+          // Scroll on sections
           if (!scrollInside && !isInSection) {
             if (event.deltaY > 0) {
               set({ navId: navId === navLinks.length ? 1 : navId + 1 });
@@ -79,29 +93,37 @@ export const scrollManagment = create<States>()(
               set({ navId: navId === 1 ? navLinks.length : navId - 1 });
             }
           } else {
+            // Scroll and navigate in About Section
             if (isInSection && scrollInside) {
               const activeNavLink =
                 navLinks.find((navLink) => navLink.id === navId) || null;
-              const activeElement: unknown = scrollInside
+              const activeElement = scrollInside
                 ? activeNavLink?.data?.find(
-                    (element: Skill | Link | AboutItem | ContactItem) =>
-                      element.id === elementId,
+                    (
+                      element:
+                        | Skill
+                        | Link
+                        | AboutItem
+                        | ContactItem
+                        | GameData,
+                    ) => element.id === elementId,
                   )
                 : null;
+
               const aboutDataLength = (activeElement as AboutItem)?.description
                 ?.paragraph?.length;
+
               if (event.deltaY > 0) {
                 set({ context: context === aboutDataLength ? 1 : context + 1 });
               } else {
                 set({ context: context === 1 ? aboutDataLength : context - 1 });
               }
             } else {
+              // Scroll inside Contact or any different section
               const { isInContact } = get();
               if (event.deltaY > 0) {
                 if (isInContact) {
-                  set({
-                    elementId: elementId === 4 ? 1 : elementId + 1,
-                  });
+                  set({ elementId: elementId === 4 ? 1 : elementId + 1 });
                 } else {
                   set({
                     elementId:
@@ -112,9 +134,7 @@ export const scrollManagment = create<States>()(
                 }
               } else {
                 if (isInContact) {
-                  set({
-                    elementId: elementId === 1 ? 4 : elementId - 1,
-                  });
+                  set({ elementId: elementId === 1 ? 4 : elementId - 1 });
                 }
                 set({
                   elementId:
@@ -124,26 +144,54 @@ export const scrollManagment = create<States>()(
                 });
               }
             }
+            if (isGameOn) {
+              // const isDead = gameStore((state) => state.isDead);
+              // Handle game logic
+              if (event.deltaY < 0) {
+                set({
+                  elementId:
+                    elementId === activeNavLink?.data.length
+                      ? elementId
+                      : elementId + 1,
+                });
+              } else {
+                set({
+                  elementId: elementId === 1 ? elementId : elementId - 1,
+                });
+              }
+            }
           }
-        } else null;
+        }
       },
+
       handleSectionsEnter: () => {
-        const { navId } = get();
+        const { navId, isGameOn } = get();
         const updatedActiveNavLink = navLinks.find(
           (navLink) => navLink.id === navId,
         );
         set({ activeNavLink: updatedActiveNavLink });
         const { activeNavLink, elementId } = get();
         const isElement = activeNavLink?.data?.find(
-          (element: Skill | Link | AboutItem | ContactItem) =>
+          (element: Skill | Link | AboutItem | ContactItem | GameData) =>
             element.id === elementId,
         );
         if (!isElement) {
           set({ elementId: 1 });
         }
+
         set({ scrollInside: true });
+
+        if (activeNavLink?.link === "game") {
+          set({ isGameOn: true });
+        }
       },
-      handleSectionsOut: () => set({ scrollInside: false }),
+      handleSectionsOut: () => {
+        const { isGameOn } = get();
+        if (isGameOn) {
+          set({ isGameOn: false });
+        }
+        set({ scrollInside: false });
+      },
       handleSectionOpen: () => {
         set({ context: 1 });
         set({ isInSection: true });

@@ -155,6 +155,14 @@ export default {
             transform: "scale(100%)",
           },
         },
+        cubeRevealAnim: {
+          from: {
+            transform: "scale(8%)",
+          },
+          to: {
+            transform: "scale(110%)",
+          },
+        },
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
@@ -167,6 +175,7 @@ export default {
         welcomeAnim: "welcomeAnim 3s ease",
         elementsFallDown: "elementsFallDown 1.5s ease-out",
         elementsPopUp: "elementsPopUp 0.2s ease-in",
+        cubeRevealAnim: "cubeRevealAnim 1s ease",
       },
     },
   },

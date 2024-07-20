@@ -1,5 +1,10 @@
 import { audioManagment } from "audioContext";
-import navLinks, { AboutItem, Description, Link } from "lib/constants";
+import navLinks, {
+  AboutItem,
+  ContactItem,
+  Description,
+  Link,
+} from "lib/constants";
 import filteredData from "lib/filteredData";
 import { SquareArrowOutDownRight, SquareArrowOutUpLeft } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
@@ -49,6 +54,7 @@ const VolumeKnob = () => {
   const handleSectionsEnter = scrollManagment(
     (state) => state.handleSectionsEnter,
   );
+
   const { activeElement } = filteredData();
   // wheel buttons
   const handleSectionsOut = scrollManagment((state) => state.handleSectionsOut);
@@ -72,7 +78,6 @@ const VolumeKnob = () => {
   // const tutPopUpSound = useRef<HTMLAudioElement | null>(null);
   const knobRef = useRef<HTMLDivElement>(null);
   // audio useEffect
-
   useEffect(() => {
     if (audioRef.current) {
       audioRef.current.src = scrollInside
@@ -90,7 +95,7 @@ const VolumeKnob = () => {
       audioOutRef.current.load();
     }
   }, []);
-
+// Moving with Wheel
   useEffect(() => {
     const knobElement = knobRef.current;
     if (knobElement) {
@@ -118,7 +123,7 @@ const VolumeKnob = () => {
   }, [navId, navigate]);
   // ONCLICK logics
   const handleNavigateButton = async () => {
-    if (activeElement?.name === "Click") {
+    if ((activeElement as ContactItem)?.name === "Click") {
       scrollManagment.setState({ isSubmit: true });
     }
     if (isAudioEnabled && audioEnterRef.current && !scrollInside) {
@@ -263,11 +268,6 @@ const VolumeKnob = () => {
         <audio ref={audioEnterRef} preload="auto" src="/in.mp3" />
         <audio ref={audioOutRef} preload="auto" src="/out.mp3" />
         <audio ref={audioErrorRef} preload="auto" src="/error.mp3" />
-        {/* <audio
-          ref={tutPopUpSound}
-          preload="auto"
-          src="/tutorial-PopUpSound.mp3"
-        /> */}
       </div>
     </>
   );

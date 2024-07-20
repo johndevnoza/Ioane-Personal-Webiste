@@ -3,7 +3,6 @@ import filteredData from "lib/filteredData";
 import apiClient from "services/axiosConfig";
 import useDebounce from "hooks/useDebaunce";
 import { scrollManagment } from "scrollManagment";
-import PoweredByGyphy from "./PoweredByGyphy";
 
 const RandomGifComponent = () => {
   const powerOn = scrollManagment((state) => state.powerOn);
@@ -46,7 +45,7 @@ const RandomGifComponent = () => {
 
   return (
     <div className="relative h-full w-full overflow-hidden border-2 border-black bg-black/45 outline outline-navhighlight">
-    <PoweredByGyphy/>
+    {/* <PoweredByGyphy/> */}
       <div className="absolute -left-24 bottom-10 size-[50%] rotate-45 scale-x-150 scale-y-[500%] bg-gradient-to-r from-white mix-blend-overlay" />
       {!powerOn
         ? null

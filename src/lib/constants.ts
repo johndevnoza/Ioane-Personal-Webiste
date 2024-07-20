@@ -51,7 +51,7 @@ export interface NavLink {
   title: string;
   link: string;
   id: number;
-  data: (Skill | Link | AboutItem | ContactItem)[];
+  data: (Skill | Link | AboutItem | ContactItem | GameData)[];
 }
 
 const skillsData: Skill[] = [
@@ -185,14 +185,14 @@ const linksData: Link[] = [
   {
     name: "Facebook",
     icon: FaFacebook,
-    id: 2,
+    id: 3,
     navigate: "https://www.facebook.com/ioandevnoza/",
     description: "Infrequent Updates",
   },
   {
     name: "Twitter",
     icon: FaTwitter,
-    id: 3,
+    id: 4,
     navigate: "https://twitter.com/john85433490",
     description: "Rarely Tweets",
   },
@@ -356,8 +356,17 @@ const contactData: ContactItem[] = [
   { name: "message", icon: "test2", id: 3 },
   { name: "Click", icon: "test1", id: 4 },
 ];
-const gameData: ContactItem[] = [{ name: "Game", icon: "test", id: 1 }];
+export type GameData = {
+  id: number;
+  value: number;
+  danger: boolean;
+};
 
+const gameData: GameData[] = Array.from({ length: 150 }, (_, index) => ({
+  id: index,
+  value: index,
+  danger: index !== 1 && Math.random() < 0.5,
+}));
 const navLinks: NavLink[] = [
   { title: "Skills", link: "skills", id: 1, data: skillsData },
   { title: "Links", link: "social-media", id: 2, data: linksData },

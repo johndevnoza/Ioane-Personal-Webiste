@@ -2,12 +2,14 @@ import navLinks, { Link } from "lib/constants";
 import { scrollManagment } from "scrollManagment";
 import { useFocusElement } from "hooks/useFocusElement";
 import { ArrowUp } from "lucide-react";
+import filteredData from "lib/filteredData";
 
 const SocialMedia = () => {
   const socMedia = navLinks.find((link) => link.link === "social-media");
   const elementId = scrollManagment((state) => state.elementId);
   const scrollInside = scrollManagment((state) => state.scrollInside);
   const isOutro = scrollManagment((state) => state.isOutro);
+  const { activeElement } = filteredData();
 
   const socMediaData = (socMedia?.data as Link[]) || [];
   const { setElementRef } = useFocusElement(elementId, socMediaData.length);
@@ -15,6 +17,7 @@ const SocialMedia = () => {
   if (!socMedia || !socMedia.data) {
     return null;
   }
+  console.log(activeElement);
 
   return (
     <div
