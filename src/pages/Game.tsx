@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import { scrollManagment } from "scrollManagment";
 import GameRenderer from "./GameRenderer";
 import { gameStore } from "gameZustandStore";
-import { Skull, SkullIcon, Star, StarIcon } from "lucide-react";
+import { StarIcon } from "lucide-react";
 import { FaSkull } from "react-icons/fa";
 
 const Game: React.FC = () => {

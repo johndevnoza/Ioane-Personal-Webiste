@@ -165,7 +165,7 @@ export const scrollManagment = create<States>()(
       },
 
       handleSectionsEnter: () => {
-        const { navId, isGameOn } = get();
+        const { navId } = get();
         const updatedActiveNavLink = navLinks.find(
           (navLink) => navLink.id === navId,
         );

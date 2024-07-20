@@ -15,7 +15,10 @@ const filteredData = () => {
     ? activeNavLink?.data?.find((element) => element.id === elementId)
     : null;
 
-  const queryParam = activeElement ? activeElement.name : activeNavLink?.title;
+  const queryParam =
+    activeElement && "name" in activeElement
+      ? activeElement.name
+      : activeNavLink?.title;
   return {
     activeNavLink,
     activeElement,
