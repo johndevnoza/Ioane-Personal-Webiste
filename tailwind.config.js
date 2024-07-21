@@ -17,9 +17,6 @@ export default {
       cursor: {
         default: 'url("CursorDefault.png"), auto',
         hover: 'url("HandCursor.png"), pointer',
-        text: 'url("text-input.png"), text',
-        loading: 'url("loading.png"), wait',
-        disabled: 'url("not-allowed.png"), not-allowed',
       },
       colors: {
         border: "hsl(var(--border))",
