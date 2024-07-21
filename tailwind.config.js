@@ -15,8 +15,8 @@ export default {
         homeScreenImg: "url('/src/assets/images/test bg.jpg')",
       },
       cursor: {
-        default: 'url("CursorDefault.png"), auto',
-        hover: 'url("HandCursor.png"), pointer',
+        default: 'url("CursorDefault.webp"), auto',
+        hover: 'url("HandCursor.webp"), pointer',
       },
       colors: {
         border: "hsl(var(--border))",
