@@ -18,7 +18,7 @@ const AudioButton = () => {
 
   return (
     <div
-      className="relative z-50 cursor-pointer rounded-sm bg-black/80 px-2 py-1"
+      className="relative z-50 cursor-hover rounded-sm bg-black/80 px-2 py-1"
       onClick={() =>
         audioManagment.setState({ isAudioEnabled: !isAudioEnabled })
       }

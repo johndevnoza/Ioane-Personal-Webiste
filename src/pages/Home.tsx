@@ -19,7 +19,7 @@ const Home = () => {
         <OrangeThemComp />
         <BlueThemComp />
         <div className="absolute z-50 h-[150%] w-36 animate-shine bg-gradient-to-b from-white mix-blend-overlay" />
-        <div className="flex h-full flex-col justify-between px-1 py-8 md:px-4">
+        <div className="flex h-full flex-col justify-between px-1 py-8 md:px-4 ">
           <Logo />
           <AudioButton />
           <PowerButton />

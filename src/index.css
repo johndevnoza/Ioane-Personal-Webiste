@@ -111,3 +111,6 @@
     scrollbar-width: none;
   }
 }
+html {
+  cursor: url("CursorDefault.cur"), auto;
+}

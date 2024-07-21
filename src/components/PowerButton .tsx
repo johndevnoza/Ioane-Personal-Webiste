@@ -34,7 +34,7 @@ const PowerButton = () => {
   return (
     <div
       onClick={powerOn ? handleOff : handleOn}
-      className={`relative z-50 cursor-pointer rounded-sm bg-black/80 px-2 py-1 active:brightness-150`}
+      className={`cursor-hover relative z-50 rounded-sm bg-black/80 px-2 py-1 active:brightness-150`}
     >
       {isTutorial && !powerOn && tooltip === "power" ? (
         <TutorialAlert

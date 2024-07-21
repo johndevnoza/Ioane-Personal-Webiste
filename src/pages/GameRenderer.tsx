@@ -58,9 +58,9 @@ const GameRenderer = ({
     if (win > prevWinRef.current) {
       setIsAnimating(true);
       setTimeout(() => {
-        scrollManagment.setState({ elementId: 1 });
-        setIsAnimating(false);
         refreshPage();
+        setIsAnimating(false);
+        scrollManagment.setState({ elementId: 1 });
       }, 1000);
     }
     prevWinRef.current = win;
