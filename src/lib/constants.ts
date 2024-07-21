@@ -362,7 +362,7 @@ export type GameData = {
   danger: boolean;
 };
 
-const gameData: GameData[] = Array.from({ length: 15 }, (_, index) => ({
+const gameData: GameData[] = Array.from({ length: 150 }, (_, index) => ({
   id: index,
   value: index,
   danger: index !== 1 && Math.random() < 0.5,
