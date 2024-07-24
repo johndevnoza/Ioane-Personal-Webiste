@@ -13,7 +13,7 @@ const AudioButton = () => {
 
   const handleTooltipButtonClick = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.stopPropagation();
-    tutorialStore.setState({ tooltip: "wheelButton" });
+    tutorialStore.setState({ tooltip: tooltip + 1 });
   };
 
   return (
@@ -23,9 +23,10 @@ const AudioButton = () => {
         audioManagment.setState({ isAudioEnabled: !isAudioEnabled })
       }
     >
-      {isTutorial && powerOn && tooltip === "sound" ? (
+      {isTutorial && powerOn && tooltip === 2 ? (
         <TutorialAlert
-          className={"bottom-[30px] left-[40px] rounded-md rounded-bl-none"}
+          arrow="-left-[19px] top-1/2 -rotate-45"
+          className={"bottom-[70%] left-[115%] translate-y-1/2"}
           TooltipButtonClick={handleTooltipButtonClick}
           desc={"Audio On/Off"}
         />
@@ -34,7 +35,7 @@ const AudioButton = () => {
         className={
           isAudioEnabled
             ? "animate-pulse text-selectedColor"
-            : isTutorial && powerOn && tooltip === "sound"
+            : isTutorial && powerOn && tooltip === 2
               ? "outline"
               : ""
         }

@@ -6,10 +6,17 @@ import GameRenderer from "./GameRenderer";
 import { gameStore } from "gameZustandStore";
 import { StarIcon } from "lucide-react";
 import { FaSkull } from "react-icons/fa";
+import { gameTutorialStore } from "gameTutZustand";
+import TutorialAlert from "@components/TutorialAlert";
+import GameTutSkeleton from "@components/GameTutSkeleton";
 
 const Game: React.FC = () => {
   const isOutro = scrollManagment((state) => state.isOutro);
   const elementId = scrollManagment((state) => state.elementId);
+  const scrollInside = scrollManagment((state) => state.scrollInside);
+
+  const isGameTut = gameTutorialStore((state) => state.isGameTut);
+  const tooltip = gameTutorialStore((state) => state.tooltip);
 
   const death = gameStore((state) => state.death);
   const win = gameStore((state) => state.win);
@@ -69,38 +76,92 @@ const Game: React.FC = () => {
     }
   }, [elementId]);
 
+  const handleTooltipButtonClick = (e: React.MouseEvent<HTMLButtonElement>) => {
+    e.stopPropagation();
+    gameTutorialStore.setState({ tooltip: tooltip + 1 });
+  };
   return (
-    <div className="w-full">
-      {isGameOn ? (
-        <div className="grid w-full place-content-center gap-4">
+    <div className="grid w-full place-content-center gap-4">
+      {scrollInside ? (
+        <div>
           <div className="mt-1 flex w-full items-center justify-between rounded-sm bg-selectedColor p-1">
             <div className="flex gap-2 rounded-sm bg-black p-2 px-2 text-selectedColor">
-              <div>Level {nextLevel} </div>
-              <div className="min-h-full w-[2px] bg-selectedColor" />
-              <div>Level Complition {levelComplition}%</div>
-            </div>
-            <div className="flex gap-2 rounded-sm bg-black px-2">
-              <div className="flex items-center gap-1 rounded-sm p-2">
-                <FaSkull className="fill-selectedColor" /> {death}
+              <div className="relative">
+                Level {nextLevel}
+                {isGameTut && tooltip === 1 && (
+                  <TutorialAlert
+                    arrow="bottom-[94%] right-1/2 rotate-45"
+                    className={
+                      "pointer-events-auto absolute right-1/2 top-10 translate-x-1/2"
+                    }
+                    TooltipButtonClick={handleTooltipButtonClick}
+                    desc={"Level"}
+                  />
+                )}
               </div>
               <div className="min-h-full w-[2px] bg-selectedColor" />
-              <div className="flex items-center gap-1 rounded-sm p-2">
+              <div className="relative">
+                Level Complition {levelComplition}%
+                {tooltip === 2 && (
+                  <TutorialAlert
+                    arrow="bottom-[94%] right-1/2 rotate-45"
+                    className={
+                      "pointer-events-auto absolute right-1/2 top-10 translate-x-1/2"
+                    }
+                    TooltipButtonClick={handleTooltipButtonClick}
+                    desc={"Level Complition"}
+                  />
+                )}
+              </div>
+            </div>
+            <div className="flex gap-2 rounded-sm bg-black px-2">
+              <div className="relative flex items-center gap-1 rounded-sm p-2">
+                <FaSkull className="fill-selectedColor" /> {death}
+                {tooltip === 3 && (
+                  <TutorialAlert
+                    arrow="bottom-[94%] right-1/2 rotate-45"
+                    className={
+                      "pointer-events-auto absolute right-1/2 top-12 translate-x-1/2"
+                    }
+                    TooltipButtonClick={handleTooltipButtonClick}
+                    desc={"Death"}
+                  />
+                )}
+              </div>
+              <div className="min-h-full w-[2px] bg-selectedColor" />
+              <div className="relative flex items-center gap-1 rounded-sm p-2">
                 <StarIcon className="text-selectedColor" /> {win}
+                {tooltip === 4 && (
+                  <TutorialAlert
+                    arrow="bottom-[94%] right-1/2 rotate-45 "
+                    className={
+                      "pointer-events-auto absolute right-1/2 top-12 translate-x-1/2"
+                    }
+                    TooltipButtonClick={handleTooltipButtonClick}
+                    desc={"Win"}
+                  />
+                )}
               </div>
             </div>
           </div>
-          <GameRenderer
-            setIsElement={setIsElement}
-            setDangerItems={setDangerItems}
-            setElementRef={setElementRef}
-            dangerItems={dangerItems}
-            elementId={elementId}
-            isElement={isElement}
-            gameData={gameData}
-            lose={lose}
-          />
+          {isGameTut && tooltip >= 5 ? (
+            <GameTutSkeleton tooltip={tooltip} />
+          ) : null}
         </div>
-      ) : (
+      ) : null}
+      {isGameOn && !isGameTut && (
+        <GameRenderer
+          setIsElement={setIsElement}
+          setDangerItems={setDangerItems}
+          setElementRef={setElementRef}
+          dangerItems={dangerItems}
+          elementId={elementId}
+          isElement={isElement}
+          gameData={gameData}
+          lose={lose}
+        />
+      )}
+      {!scrollInside && (
         <div
           className={`grid w-full place-content-center ${isOutro ? "animate-elementsFallDown" : ""}`}
         >

@@ -34,12 +34,12 @@ const GameRenderer = ({
         setIsElement(true);
         setDangerItems([]);
       }
-    }, 2500);
+    }, 1500);
     setTimeout(() => {
       if (isElement) {
         setIsElement(false);
       }
-    }, 2500);
+    }, 1500);
   }, [isElement]);
 
   useEffect(() => {
@@ -107,6 +107,7 @@ const GameRenderer = ({
           : "";
         return (
           <div
+            autoFocus
             ref={setElementRef(box.id)}
             tabIndex={!isDead ? -1 : 1}
             className={twMerge(

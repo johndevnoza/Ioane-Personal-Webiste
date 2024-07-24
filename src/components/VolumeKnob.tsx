@@ -5,6 +5,8 @@ import navLinks, {
   Description,
   Link,
 } from "lib/constants";
+import { gameTutorialStore } from "gameTutZustand";
+
 import filteredData from "lib/filteredData";
 import { SquareArrowOutDownRight, SquareArrowOutUpLeft } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
@@ -31,19 +33,21 @@ const VolumeKnob = () => {
   const powerOn = scrollManagment((state) => state.powerOn);
   const isTutorial = tutorialStore((state) => state.isTutorial);
   const tooltip = tutorialStore((state) => state.tooltip);
+  const gameTooltip = gameTutorialStore((state) => state.tooltip);
 
-  const handleTooltipButtonClick = (e: React.MouseEvent<HTMLButtonElement>) => {
+  const handleTutorial = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.stopPropagation();
-    tutorialStore.setState({ tooltip: "wheelButton2" });
+    tutorialStore.setState({ tooltip: tooltip + 1 });
+    if (tooltip === 5) {
+      tutorialStore.setState({ isTutorial: false });
+      tutorialStore.setState({ tooltip: 1 });
+    }
   };
-  const handleTooltipPart2 = (e: React.MouseEvent<HTMLButtonElement>) => {
+
+  const handleGameTutorial = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.stopPropagation();
-    tutorialStore.setState({ tooltip: "wheelButton3" });
-  };
-  const handleTooltipPart3 = (e: React.MouseEvent<HTMLButtonElement>) => {
-    e.stopPropagation();
-    tutorialStore.setState({ tooltip: "power" });
-    tutorialStore.setState({ isTutorial: false });
+    gameTutorialStore.setState({ isGameTut: false });
+    gameTutorialStore.setState({ tooltip: 1 });
   };
   // wheel scroll
   const handleScroll = scrollManagment((state) => state.handleScroll);
@@ -95,7 +99,7 @@ const VolumeKnob = () => {
       audioOutRef.current.load();
     }
   }, []);
-// Moving with Wheel
+  // Moving with Wheel
   useEffect(() => {
     const knobElement = knobRef.current;
     if (knobElement) {
@@ -188,41 +192,48 @@ const VolumeKnob = () => {
       <ErrorAlert removeAlert={handleRemoveAlert} isError={error} />
       <div
         ref={knobRef}
-        className={`relative grid cursor-pointer place-items-center rounded-full border-4 border-black/80 bg-white/25 bg-gradient-to-tr from-elementBgColor p-8 shadow-lg outline ${tooltip === "wheelButton" ? "outline-selectedColor" : "outline-knobhighlight"} drop-shadow-2xl`}
+        className={`relative grid cursor-hover place-items-center rounded-full border-4 border-black/80 bg-white/25 bg-gradient-to-tr from-elementBgColor p-8 shadow-lg outline ${tooltip === 3 ? "outline-selectedColor" : "outline-knobhighlight"} drop-shadow-2xl`}
       >
-        {isTutorial && powerOn && tooltip === "wheelButton" ? (
+        {gameTooltip === 9 && (
           <TutorialAlert
+            arrow="top-[94%] right-1/2 rotate-[225deg]"
             className={
-              "bottom-[30px] right-[120px] z-[110] rounded-md rounded-br-none"
+              "pointer-events-auto absolute bottom-full right-1/2 translate-x-1/2"
             }
-            TooltipButtonClick={handleTooltipButtonClick}
+            TooltipButtonClick={handleGameTutorial}
+            desc={"Move With Mouse Scroll Wheel"}
+          />
+        )}
+        {isTutorial && powerOn && tooltip === 3 ? (
+          <TutorialAlert
+            arrow="-right-[2px] top-[40%] rotate-[135deg]"
+            className={"right-full z-[110]"}
+            TooltipButtonClick={handleTutorial}
             desc={"This is how you navigate through the entire website."}
           />
         ) : null}
-        {isTutorial && powerOn && tooltip === "wheelButton2" ? (
+        {isTutorial && powerOn && tooltip === 4 ? (
           <TutorialAlert
-            className={
-              "bottom-[30px] right-[170px] z-[110] w-auto rounded-md rounded-br-none"
-            }
-            TooltipButtonClick={handleTooltipPart2}
+            arrow="-right-[2px] top-[40%] rotate-[135deg]"
+            className={"right-full z-[110]"}
+            TooltipButtonClick={handleTutorial}
             desc={
               "On mouse wheel movement, navigate between pages and elements"
             }
           />
         ) : null}
-        {isTutorial && powerOn && tooltip === "wheelButton3" ? (
+        {isTutorial && powerOn && tooltip === 5 ? (
           <TutorialAlert
-            className={
-              "bottom-[70px] right-[120px] z-[110] w-auto rounded-md rounded-br-none"
-            }
-            TooltipButtonClick={handleTooltipPart3}
+            arrow="-right-[2px] top-[40%] rotate-[135deg]"
+            className={"right-full z-[110]"}
+            TooltipButtonClick={handleTutorial}
             desc={
               "On button clicks, enter/expand or navigate back from the sections"
             }
           />
         ) : null}
         <div
-          className={`relative rounded-full border-2 border-white/20 bg-white/15 from-elementBgColor ${tooltip === "wheelButton3" ? "outline -outline-offset-2" : ""}`}
+          className={`relative rounded-full border-2 border-white/20 bg-white/15 from-elementBgColor ${tooltip === 5 ? "outline -outline-offset-2" : ""}`}
         >
           <div
             className="relative z-50 grid size-[100px] place-items-center"
@@ -230,7 +241,7 @@ const VolumeKnob = () => {
           >
             {lines}
           </div>
-          <div className="absolute left-0 top-0 z-50 flex size-full flex-col rounded-full border-2 border-black/70 bg-black/45">
+          <div className="absolute left-0 top-0 z-50 flex size-full cursor-hover flex-col rounded-full border-2 border-black/70 bg-black/45">
             {scrollInside && isParagraph && isInSection ? null : scrollInside &&
               isParagraph ? (
               <div

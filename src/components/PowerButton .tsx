@@ -27,24 +27,25 @@ const PowerButton = () => {
     scrollManagment.setState({ isOutro: true });
     powerOffAudioRef.current?.play();
   };
-  const handleTooltipButtonClick = (e: React.MouseEvent<HTMLButtonElement>) => {
+  const handleTutorial = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.stopPropagation();
-    tutorialStore.setState({ tooltip: "sound" });
+    tutorialStore.setState({ tooltip: tooltip + 1 });
   };
   return (
     <div
       onClick={powerOn ? handleOff : handleOn}
-      className={`cursor-hover relative z-50 rounded-sm bg-black/80 px-2 py-1 active:brightness-150`}
+      className={`relative z-50 cursor-hover rounded-sm bg-black/80 px-2 py-1 active:brightness-150`}
     >
-      {isTutorial && !powerOn && tooltip === "power" ? (
+      {isTutorial && !powerOn && tooltip === 1 ? (
         <TutorialAlert
-          className={"bottom-[30px] left-[40px] rounded-md rounded-bl-none"}
-          TooltipButtonClick={handleTooltipButtonClick}
+          arrow="-left-[19px] top-1/2 -rotate-45 "
+          className={"-bottom-4 left-12 rounded-sm"}
+          TooltipButtonClick={handleTutorial}
           desc={"First turn on the device"}
         />
       ) : null}
       <Power
-        className={`${powerOn ? "animate-pulse text-selectedColor" : ""}`}
+        className={`relative ${powerOn ? "animate-pulse text-selectedColor" : ""}`}
       />
       <audio ref={powerOnAudioRef} preload="auto" src="/Turn-on.mp3" />
       <audio ref={powerOffAudioRef} preload="auto" src="/Turn-off.mp3" />

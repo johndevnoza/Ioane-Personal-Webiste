@@ -19,7 +19,7 @@ const Home = () => {
         <OrangeThemComp />
         <BlueThemComp />
         <div className="absolute z-50 h-[150%] w-36 animate-shine bg-gradient-to-b from-white mix-blend-overlay" />
-        <div className="flex h-full flex-col justify-between px-1 py-8 md:px-4 ">
+        <div className="flex h-full flex-col justify-between px-1 py-8 md:px-4">
           <Logo />
           <AudioButton />
           <PowerButton />
@@ -35,7 +35,7 @@ const Home = () => {
               <div className="absolute h-screen w-full bg-gradient-to-b from-white/10 mix-blend-screen" />
               <WelcomeScreenAnim />
               {powerOn ? (
-                <div className="no-scrollbar pointer-events-none z-0 h-full w-full overflow-y-scroll scroll-smooth text-wrap rounded-md p-1 md:p-4">
+                <div className="no-scrollbar pointer-events-none z-0 h-full w-full scroll-smooth text-wrap rounded-md p-1 md:p-4">
                   <Outlet />
                 </div>
               ) : null}

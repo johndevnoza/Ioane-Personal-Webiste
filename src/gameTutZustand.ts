@@ -1,17 +1,17 @@
 import { create } from "zustand";
 import { persist, createJSONStorage } from "zustand/middleware";
 type States = {
-  isTutorial: boolean;
+  isGameTut: boolean;
   tooltip: number;
 };
-export const tutorialStore = create<States>()(
+export const gameTutorialStore = create<States>()(
   persist(
     (_set) => ({
-      isTutorial: true,
+      isGameTut: true,
       tooltip: 1,
     }),
     {
-      name: "Tutorial-Store",
+      name: "Game-Tutorial-Store",
       storage: createJSONStorage(() => sessionStorage),
     },
   ),
