@@ -64,7 +64,7 @@ export const scrollManagment = create<States>()(
     (set, get) => ({
       ...initialState,
       handleScroll: (event: WheelEvent) => {
-        event.preventDefault();
+        // event.preventDefault();
         const {
           rotation,
           navId,

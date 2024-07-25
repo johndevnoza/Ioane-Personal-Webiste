@@ -56,12 +56,12 @@ export interface NavLink {
 
 const skillsData: Skill[] = [
   {
-    name: "html",
+    name: "Html",
     icon: FaHtml5,
     id: 1,
   },
   {
-    name: "ccss",
+    name: "Css",
     icon: FaCss3Alt,
     id: 2,
   },
@@ -71,7 +71,7 @@ const skillsData: Skill[] = [
     id: 3,
   },
   {
-    name: "react",
+    name: "React",
     icon: FaReact,
     id: 4,
   },

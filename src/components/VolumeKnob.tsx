@@ -6,15 +6,15 @@ import navLinks, {
   Link,
 } from "lib/constants";
 import { gameTutorialStore } from "gameTutZustand";
-
 import filteredData from "lib/filteredData";
-import { SquareArrowOutDownRight, SquareArrowOutUpLeft } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { scrollManagment } from "scrollManagment";
 import { tutorialStore } from "tutorialZustandStore";
-import TutorialAlert from "./TutorialAlert";
 import ErrorAlert from "./ErrorAlert";
+// import useKeyPress from "hooks/useKeyPress";
+import WheelButtons from "./WheelButtons";
+import WheelTutorialJsx from "./WheelTutorialJsx";
 
 const KnobLine = ({ angle }: { angle: number }) => {
   const lineStyle = {
@@ -81,6 +81,7 @@ const VolumeKnob = () => {
   const audioErrorRef = useRef<HTMLAudioElement | null>(null);
   // const tutPopUpSound = useRef<HTMLAudioElement | null>(null);
   const knobRef = useRef<HTMLDivElement>(null);
+
   // audio useEffect
   useEffect(() => {
     if (audioRef.current) {
@@ -181,11 +182,73 @@ const VolumeKnob = () => {
     setError(false);
   };
 
+  // navigating with KEYBOARD
+  useEffect(() => {
+    const handleEnter = () => {
+      if (powerOn) {
+        if (scrollInside && isParagraph && !isInSection) {
+          handleExpandSection();
+        } else if (!scrollInside || (scrollInside && !isParagraph)) {
+          handleNavigateButton();
+        }
+      } else {
+        handlePowerAlert();
+      }
+    };
+
+    const handleEscape = () => {
+      if (powerOn) {
+        if (isInSection) {
+          handleCloseSection();
+        } else if (scrollInside) {
+          handleBackButton();
+        }
+      } else {
+        handlePowerAlert();
+      }
+    };
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.key === "Enter") {
+        handleEnter();
+      } else if (event.key === "Escape") {
+        handleEscape();
+      }
+    };
+    // const handleTestArrow = (event: KeyboardEvent) => {
+    //   if (event.key === "ArrowUp") {
+    //     handleScroll((event.key as KeyboardEvent) === "ArrowUp");
+    //     console.log("zeda ");
+    //   } else if (event.key === "ArrowDown") {
+    //     handleScroll(event.key === "ArrowDown");
+    //     console.log("qveda");
+    //   }
+    // };
+
+    // window.addEventListener("keydown", handleTestArrow);
+    window.addEventListener("keydown", handleKeyDown);
+
+    return () => {
+      // window.removeEventListener("keydown", handleTestArrow);
+      window.removeEventListener("keydown", handleKeyDown);
+    };
+  }, [
+    powerOn,
+    scrollInside,
+    isParagraph,
+    isInSection,
+    handleExpandSection,
+    handleNavigateButton,
+    handleCloseSection,
+    handleBackButton,
+    handlePowerAlert,
+  ]);
+
   // generating litle lines for  Wheel design
   const numLines = 16;
   const lines = Array.from({ length: numLines }, (_, index) => (
     <KnobLine key={index} angle={(index * 360) / numLines} />
   ));
+  console.log(navId);
 
   return (
     <>
@@ -194,44 +257,14 @@ const VolumeKnob = () => {
         ref={knobRef}
         className={`relative grid cursor-hover place-items-center rounded-full border-4 border-black/80 bg-white/25 bg-gradient-to-tr from-elementBgColor p-8 shadow-lg outline ${tooltip === 3 ? "outline-selectedColor" : "outline-knobhighlight"} drop-shadow-2xl`}
       >
-        {gameTooltip === 9 && (
-          <TutorialAlert
-            arrow="top-[94%] right-1/2 rotate-[225deg]"
-            className={
-              "pointer-events-auto absolute bottom-full right-1/2 translate-x-1/2"
-            }
-            TooltipButtonClick={handleGameTutorial}
-            desc={"Move With Mouse Scroll Wheel"}
-          />
-        )}
-        {isTutorial && powerOn && tooltip === 3 ? (
-          <TutorialAlert
-            arrow="-right-[2px] top-[40%] rotate-[135deg]"
-            className={"right-full z-[110]"}
-            TooltipButtonClick={handleTutorial}
-            desc={"This is how you navigate through the entire website."}
-          />
-        ) : null}
-        {isTutorial && powerOn && tooltip === 4 ? (
-          <TutorialAlert
-            arrow="-right-[2px] top-[40%] rotate-[135deg]"
-            className={"right-full z-[110]"}
-            TooltipButtonClick={handleTutorial}
-            desc={
-              "On mouse wheel movement, navigate between pages and elements"
-            }
-          />
-        ) : null}
-        {isTutorial && powerOn && tooltip === 5 ? (
-          <TutorialAlert
-            arrow="-right-[2px] top-[40%] rotate-[135deg]"
-            className={"right-full z-[110]"}
-            TooltipButtonClick={handleTutorial}
-            desc={
-              "On button clicks, enter/expand or navigate back from the sections"
-            }
-          />
-        ) : null}
+        <WheelTutorialJsx
+          gameTooltip={gameTooltip}
+          handleTutorial={handleTutorial}
+          isTutorial={isTutorial}
+          powerOn={powerOn}
+          tooltip={tooltip}
+          handleGameTutorial={handleGameTutorial}
+        />
         <div
           className={`relative rounded-full border-2 border-white/20 bg-white/15 from-elementBgColor ${tooltip === 5 ? "outline -outline-offset-2" : ""}`}
         >
@@ -241,39 +274,17 @@ const VolumeKnob = () => {
           >
             {lines}
           </div>
-          <div className="absolute left-0 top-0 z-50 flex size-full cursor-hover flex-col rounded-full border-2 border-black/70 bg-black/45">
-            {scrollInside && isParagraph && isInSection ? null : scrollInside &&
-              isParagraph ? (
-              <div
-                onClick={powerOn ? handleExpandSection : handlePowerAlert}
-                className={`grid h-1/2 place-content-center rounded-t-full border-b-2 border-black/55 bg-selectedColor outline-2 outline-black/20 active:scale-[96%] active:outline`}
-              >
-                <SquareArrowOutUpLeft />
-              </div>
-            ) : (
-              <div
-                onClick={powerOn ? handleNavigateButton : handlePowerAlert}
-                className={`grid ${scrollInside ? "h-1/2" : "h-full rounded-full"} place-content-center rounded-t-full border-b-2 border-black/55 bg-selectedColor outline-2 outline-black/20 active:scale-[96%] active:outline`}
-              >
-                <SquareArrowOutUpLeft />
-              </div>
-            )}
-            {isInSection ? (
-              <div
-                onClick={powerOn ? handleCloseSection : handlePowerAlert}
-                className={`grid h-full place-content-center rounded-full border-t-2 border-white/30 bg-selectedColor outline-2 outline-black/20 active:scale-[96%] active:outline`}
-              >
-                <SquareArrowOutDownRight />
-              </div>
-            ) : !scrollInside ? null : (
-              <div
-                onClick={powerOn ? handleBackButton : handlePowerAlert}
-                className="grid h-1/2 place-content-center rounded-b-full border-t-2 border-white/30 bg-white/30 outline-2 outline-black/20 active:scale-[96%] active:outline"
-              >
-                <SquareArrowOutDownRight />
-              </div>
-            )}
-          </div>
+          <WheelButtons
+            scrollInside={scrollInside}
+            isParagraph={isParagraph}
+            isInSection={isInSection}
+            powerOn={powerOn}
+            handleBackButton={handleBackButton}
+            handleCloseSection={handleCloseSection}
+            handleExpandSection={handleExpandSection}
+            handleNavigateButton={handleNavigateButton}
+            handlePowerAlert={handlePowerAlert}
+          />
         </div>
         <audio ref={audioRef} preload="auto" />
         <audio ref={audioEnterRef} preload="auto" src="/in.mp3" />
