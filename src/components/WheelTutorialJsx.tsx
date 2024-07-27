@@ -1,5 +1,6 @@
 import React from "react";
 import TutorialAlert from "./TutorialAlert";
+import { Keyboard, MouseIcon } from "lucide-react";
 interface WheelTutorialJsxProps {
   gameTooltip: number;
   handleTutorial: (e: React.MouseEvent<HTMLButtonElement>) => void;
@@ -25,8 +26,13 @@ const WheelTutorialJsx: React.FC<WheelTutorialJsxProps> = ({
             "pointer-events-auto absolute bottom-full right-1/2 translate-x-1/2"
           }
           TooltipButtonClick={handleGameTutorial}
-          desc={"Move With Mouse Scroll Wheel"}
-        />
+          desc={"Move With Mouse Scroll Wheel or Keyboard"}
+        >
+          <div className="flex gap-2 p-1">
+            <MouseIcon className="size-10 bg-black p-1" />
+            <Keyboard className="size-10 bg-black p-1" />
+          </div>
+        </TutorialAlert>
       )}
       {isTutorial && powerOn && tooltip === 3 ? (
         <TutorialAlert

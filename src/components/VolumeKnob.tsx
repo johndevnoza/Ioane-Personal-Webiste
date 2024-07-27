@@ -15,6 +15,10 @@ import ErrorAlert from "./ErrorAlert";
 // import useKeyPress from "hooks/useKeyPress";
 import WheelButtons from "./WheelButtons";
 import WheelTutorialJsx from "./WheelTutorialJsx";
+import TutorialAlert from "./TutorialAlert";
+import { ArrowBigDown, ArrowBigUp } from "lucide-react";
+import { IoEnter, IoReturnDownBack } from "react-icons/io5";
+import { CgEnter } from "react-icons/cg";
 
 const KnobLine = ({ angle }: { angle: number }) => {
   const lineStyle = {
@@ -38,7 +42,7 @@ const VolumeKnob = () => {
   const handleTutorial = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.stopPropagation();
     tutorialStore.setState({ tooltip: tooltip + 1 });
-    if (tooltip === 5) {
+    if (tooltip === 8) {
       tutorialStore.setState({ isTutorial: false });
       tutorialStore.setState({ tooltip: 1 });
     }
@@ -214,25 +218,13 @@ const VolumeKnob = () => {
         handleEscape();
       }
     };
-    // const handleTestArrow = (event: KeyboardEvent) => {
-    //   if (event.key === "ArrowUp") {
-    //     handleScroll((event.key as KeyboardEvent) === "ArrowUp");
-    //     console.log("zeda ");
-    //   } else if (event.key === "ArrowDown") {
-    //     handleScroll(event.key === "ArrowDown");
-    //     console.log("qveda");
-    //   }
-    // };
 
-    // window.addEventListener("keydown", handleTestArrow);
     window.addEventListener("keydown", handleKeyDown);
 
     return () => {
-      // window.removeEventListener("keydown", handleTestArrow);
       window.removeEventListener("keydown", handleKeyDown);
     };
   }, [
-    powerOn,
     scrollInside,
     isParagraph,
     isInSection,
@@ -242,7 +234,14 @@ const VolumeKnob = () => {
     handleBackButton,
     handlePowerAlert,
   ]);
+  const handleKeyDown = scrollManagment((state) => state.handleKeyDown);
 
+  useEffect(() => {
+    window.addEventListener("keydown", handleKeyDown);
+    return () => {
+      window.removeEventListener("keydown", handleKeyDown);
+    };
+  }, [handleKeyDown]);
   // generating litle lines for  Wheel design
   const numLines = 16;
   const lines = Array.from({ length: numLines }, (_, index) => (
@@ -253,6 +252,39 @@ const VolumeKnob = () => {
   return (
     <>
       <ErrorAlert removeAlert={handleRemoveAlert} isError={error} />
+      {tooltip === 6 && (
+        <TutorialAlert
+          className="right-1/2 top-1/2 translate-x-1/2"
+          arrow="hidden"
+          TooltipButtonClick={handleTutorial}
+          desc="You can also use Arrow keys to navigate on Website"
+        >
+          <div className="flex gap-2 p-2">
+            <ArrowBigUp className="size-12 rounded-sm bg-black" />
+            <ArrowBigDown className="size-12 rounded-sm bg-black" />
+          </div>
+        </TutorialAlert>
+      )}
+      {tooltip === 7 && (
+        <TutorialAlert
+          className="right-1/2 translate-x-1/2"
+          arrow="hidden"
+          TooltipButtonClick={handleTutorial}
+          desc="Escape Key to close Section/Return back"
+        >
+          <IoReturnDownBack className="size-12 bg-black p-1" />
+        </TutorialAlert>
+      )}
+      {tooltip === 8 && (
+        <TutorialAlert
+          className="right-1/2 translate-x-1/2"
+          arrow="hidden"
+          TooltipButtonClick={handleTutorial}
+          desc="Enter Key to Enter/Expand"
+        >
+          <IoEnter className="size-12 bg-black p-1" />
+        </TutorialAlert>
+      )}
       <div
         ref={knobRef}
         className={`relative grid cursor-hover place-items-center rounded-full border-4 border-black/80 bg-white/25 bg-gradient-to-tr from-elementBgColor p-8 shadow-lg outline ${tooltip === 3 ? "outline-selectedColor" : "outline-knobhighlight"} drop-shadow-2xl`}

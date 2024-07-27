@@ -5,12 +5,14 @@ type Tutorial = {
   desc: string;
   className: string;
   arrow: string;
+  children?: React.ReactNode;
 };
 const TutorialAlert: React.FC<Tutorial> = ({
   TooltipButtonClick,
   desc,
   className,
   arrow,
+  children,
 }) => {
   const tutPopUpSound = useRef<HTMLAudioElement | null>(null);
   useEffect(() => {
@@ -30,13 +32,14 @@ const TutorialAlert: React.FC<Tutorial> = ({
           arrow,
         )}
       />
-      <div className="flex h-full w-full flex-col">
+      <div className="flex h-full w-full flex-col items-center">
         <p className="text-wrap rounded-sm rounded-b-none border-2 border-borderHighlight p-1 outline outline-borderDark">
           {desc}
         </p>
+        {children}
         <button
           onClick={TooltipButtonClick}
-          className="cursor-hover rounded-sm rounded-t-none border-2 border-borderHighlight p-1 outline outline-borderDark hover:bg-borderHighlight active:scale-95"
+          className="w-full cursor-hover rounded-sm rounded-t-none border-2 border-borderHighlight p-1 outline outline-borderDark hover:bg-borderHighlight active:scale-95"
         >
           OK
         </button>

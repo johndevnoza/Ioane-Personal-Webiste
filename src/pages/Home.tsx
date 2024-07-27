@@ -8,13 +8,21 @@ import ButtonsSection from "@components/ButtonsSection";
 import OrangeThemComp from "@components/OrangeThemComp";
 import BlueThemComp from "@components/BlueThemComp";
 import WelcomeScreenAnim from "@components/WelcomeScreenAnim";
+import TutorialAlert from "@components/TutorialAlert";
+import { ArrowBigDown, ArrowBigUp } from "lucide-react";
+import { tutorialStore } from "tutorialZustandStore";
 
 const Home = () => {
   const scrollInside = scrollManagment((state) => state.scrollInside);
   const powerOn = scrollManagment((state) => state.powerOn);
+  const tooltip = tutorialStore((state) => state.tooltip);
 
+  const test = () => {
+    console.log("shutup");
+  };
   return (
     <div className="flex h-screen w-full items-center overflow-hidden bg-[#878695] p-2">
+   
       <div className="relative z-40 m-auto flex h-full w-full select-none overflow-hidden rounded-[24px] border-2 border-borderDark bg-tabletCover p-1 shadow-2xl drop-shadow-2xl max-[1110px]:min-w-full md:h-[80%] md:w-[80%]">
         <OrangeThemComp />
         <BlueThemComp />

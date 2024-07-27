@@ -27,6 +27,7 @@ type States = {
   handleSectionsOut: () => void;
   handleSectionOpen: () => void;
   handleSectionClose: () => void;
+  handleKeyDown: (event: KeyboardEvent) => void;
   reset: () => void;
 };
 type InitialStates = {
@@ -63,6 +64,7 @@ export const scrollManagment = create<States>()(
   persist(
     (set, get) => ({
       ...initialState,
+
       handleScroll: (event: WheelEvent) => {
         // event.preventDefault();
         const {
@@ -163,7 +165,20 @@ export const scrollManagment = create<States>()(
           }
         }
       },
+      handleKeyDown: (event: KeyboardEvent) => {
+        const { powerOn } = get();
+        if (!powerOn) return;
 
+        if (event.key === "ArrowUp" || event.key === "ArrowDown") {
+          event.preventDefault();
+          const fakeWheelEvent = {
+            deltaY: event.key === "ArrowUp" ? -1 : 1,
+            preventDefault: () => {},
+          } as WheelEvent;
+
+          get().handleScroll(fakeWheelEvent);
+        }
+      },
       handleSectionsEnter: () => {
         const { navId } = get();
         const updatedActiveNavLink = navLinks.find(
