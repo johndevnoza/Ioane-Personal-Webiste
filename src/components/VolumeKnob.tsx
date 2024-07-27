@@ -18,7 +18,6 @@ import WheelTutorialJsx from "./WheelTutorialJsx";
 import TutorialAlert from "./TutorialAlert";
 import { ArrowBigDown, ArrowBigUp } from "lucide-react";
 import { IoEnter, IoReturnDownBack } from "react-icons/io5";
-import { CgEnter } from "react-icons/cg";
 
 const KnobLine = ({ angle }: { angle: number }) => {
   const lineStyle = {
