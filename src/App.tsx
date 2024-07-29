@@ -6,7 +6,7 @@ import Skills from "pages/Skills";
 import SocialMedia from "pages/SocialMedia";
 import { Routes, Route } from "react-router-dom";
 import { Analytics } from "@vercel/analytics/react";
-import { SpeedInsights } from "@vercel/speed-insights/next";
+import { SpeedInsights } from "@vercel/speed-insights/react";
 
 function App() {
   return (
