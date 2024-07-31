@@ -14,7 +14,6 @@ const PoweredByGyphy = () => {
         setShowElement(false);
       }
     }, 5000);
-    console.log("A");
   }, [showElement]);
   return (
     <>

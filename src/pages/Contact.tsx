@@ -38,7 +38,6 @@ const Contact = () => {
         setResult("Submit");
       }, 3000);
     } else {
-      console.log("Error", data);
       setResult(data.message);
     }
   };

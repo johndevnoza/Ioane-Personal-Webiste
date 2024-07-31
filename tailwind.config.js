@@ -167,6 +167,22 @@ export default {
             transform: "scale(110%)",
           },
         },
+        openLeftButtonGate: {
+          " 0%": {
+            transform: "translateX(-100%)",
+          },
+          "100%": {
+            transform: "translateX(10)",
+          },
+        },
+        openRightButtonGate: {
+          " 0%": {
+            transform: "translateX(10)",
+          },
+          "100%": {
+            transform: "translateX(0)",
+          },
+        },
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
@@ -180,6 +196,8 @@ export default {
         elementsFallDown: "elementsFallDown 1.5s ease-out",
         elementsPopUp: "elementsPopUp 0.2s ease-in",
         cubeRevealAnim: "cubeRevealAnim 1s ease",
+        openLeftButtonGate: "openLeftButtonGate 1s ease-out",
+        openRightButtonGate: "openLeftButtonGate 1s ease-out",
       },
     },
   },

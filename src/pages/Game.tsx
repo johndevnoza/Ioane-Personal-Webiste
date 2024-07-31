@@ -80,8 +80,22 @@ const Game: React.FC = () => {
     e.stopPropagation();
     gameTutorialStore.setState({ tooltip: tooltip + 1 });
   };
+  const handleSkipTutorial = (e: React.MouseEvent<HTMLButtonElement>) => {
+    e.stopPropagation();
+    gameTutorialStore.setState({ isGameTut: false });
+    gameTutorialStore.setState({ tooltip: 1 });
+  };
+
   return (
     <div className="grid w-full place-content-center gap-4">
+      {isGameTut && (
+        <button
+          onClick={handleSkipTutorial}
+          className="pointer-events-auto absolute right-2 top-6 z-[100] h-min w-max cursor-hover self-end rounded-sm border-2 border-borderHighlight bg-elementBgDark p-2 text-selectedColor outline outline-borderDark hover:bg-borderHighlight active:scale-95"
+        >
+          Skip tutorial
+        </button>
+      )}
       {scrollInside ? (
         <div>
           <div className="mt-1 flex w-full items-center justify-between rounded-sm bg-selectedColor p-1">

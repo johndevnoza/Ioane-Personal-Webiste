@@ -147,7 +147,6 @@ export const scrollManagment = create<States>()(
               }
             }
             if (isGameOn) {
-              // const isDead = gameStore((state) => state.isDead);
               // Handle game logic
               if (event.deltaY < 0) {
                 set({

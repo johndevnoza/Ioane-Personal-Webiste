@@ -19,14 +19,12 @@ const WheelTutorialJsx: React.FC<WheelTutorialJsxProps> = ({
 }) => {
   return (
     <>
-      {gameTooltip === 9 && (
+      {gameTooltip === 9 && powerOn && (
         <TutorialAlert
-          arrow="top-[94%] right-1/2 rotate-[225deg]"
-          className={
-            "pointer-events-auto absolute bottom-full right-1/2 translate-x-1/2"
-          }
+          arrow="top-1/2  left-[95%] rotate-[135deg]"
+          className={"pointer-events-auto absolute right-full"}
           TooltipButtonClick={handleGameTutorial}
-          desc={"Move With Mouse Scroll Wheel or Keyboard"}
+          desc={"Use Mouse  Wheel or Keyboard"}
         >
           <div className="flex gap-2 p-1">
             <MouseIcon className="size-10 bg-black p-1" />
@@ -45,7 +43,7 @@ const WheelTutorialJsx: React.FC<WheelTutorialJsxProps> = ({
       {isTutorial && powerOn && tooltip === 4 ? (
         <TutorialAlert
           arrow="-right-[2px] top-[40%] rotate-[135deg]"
-          className={"right-full z-[110]"}
+          className={"right-full top-1/3 z-[110]"}
           TooltipButtonClick={handleTutorial}
           desc={"On mouse wheel movement, navigate between pages and elements"}
         />
@@ -53,7 +51,7 @@ const WheelTutorialJsx: React.FC<WheelTutorialJsxProps> = ({
       {isTutorial && powerOn && tooltip === 5 ? (
         <TutorialAlert
           arrow="-right-[2px] top-[40%] rotate-[135deg]"
-          className={"right-full z-[110]"}
+          className={"right-full top-1/3 z-[110]"}
           TooltipButtonClick={handleTutorial}
           desc={
             "On button clicks, enter/expand or navigate back from the sections"

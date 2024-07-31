@@ -1,5 +1,6 @@
 import { useEffect, useRef } from "react";
 import { twMerge } from "tailwind-merge";
+
 type Tutorial = {
   TooltipButtonClick: (e: React.MouseEvent<HTMLButtonElement>) => void;
   desc: string;
@@ -19,10 +20,12 @@ const TutorialAlert: React.FC<Tutorial> = ({
     tutPopUpSound.current?.load();
     tutPopUpSound.current?.play();
   }, []);
+
+
   return (
     <div
       className={twMerge(
-        "absolute z-[200] w-max animate-elementsPopUp cursor-hover border border-black bg-black bg-elementBgDark p-0 text-[20px] text-white outline outline-[2px] outline-white/35",
+        "absolute z-[100] w-max animate-elementsPopUp cursor-hover border border-black bg-black bg-elementBgDark p-0 text-[20px] text-white outline outline-[2px] outline-white/35",
         className,
       )}
     >

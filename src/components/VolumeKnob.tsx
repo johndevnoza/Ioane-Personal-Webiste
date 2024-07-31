@@ -12,12 +12,12 @@ import { useNavigate } from "react-router-dom";
 import { scrollManagment } from "scrollManagment";
 import { tutorialStore } from "tutorialZustandStore";
 import ErrorAlert from "./ErrorAlert";
-// import useKeyPress from "hooks/useKeyPress";
 import WheelButtons from "./WheelButtons";
 import WheelTutorialJsx from "./WheelTutorialJsx";
 import TutorialAlert from "./TutorialAlert";
 import { ArrowBigDown, ArrowBigUp } from "lucide-react";
 import { IoEnter, IoReturnDownBack } from "react-icons/io5";
+import AnimatedComponent from "./AnimatedButtonComp";
 
 const KnobLine = ({ angle }: { angle: number }) => {
   const lineStyle = {
@@ -246,14 +246,13 @@ const VolumeKnob = () => {
   const lines = Array.from({ length: numLines }, (_, index) => (
     <KnobLine key={index} angle={(index * 360) / numLines} />
   ));
-  console.log(navId);
 
   return (
-    <>
+    <div className="relative">
       <ErrorAlert removeAlert={handleRemoveAlert} isError={error} />
-      {tooltip === 6 && (
+      {tooltip === 6 && isTutorial && (
         <TutorialAlert
-          className="right-1/2 top-1/2 translate-x-1/2"
+          className="-left-[120%]"
           arrow="hidden"
           TooltipButtonClick={handleTutorial}
           desc="You can also use Arrow keys to navigate on Website"
@@ -266,7 +265,7 @@ const VolumeKnob = () => {
       )}
       {tooltip === 7 && (
         <TutorialAlert
-          className="right-1/2 translate-x-1/2"
+          className="-left-[120%]"
           arrow="hidden"
           TooltipButtonClick={handleTutorial}
           desc="Escape Key to close Section/Return back"
@@ -284,18 +283,19 @@ const VolumeKnob = () => {
           <IoEnter className="size-12 bg-black p-1" />
         </TutorialAlert>
       )}
+      <WheelTutorialJsx
+        gameTooltip={gameTooltip}
+        handleTutorial={handleTutorial}
+        isTutorial={isTutorial}
+        powerOn={powerOn}
+        tooltip={tooltip}
+        handleGameTutorial={handleGameTutorial}
+      />
       <div
         ref={knobRef}
-        className={`relative grid cursor-hover place-items-center rounded-full border-4 border-black/80 bg-white/25 bg-gradient-to-tr from-elementBgColor p-8 shadow-lg outline ${tooltip === 3 ? "outline-selectedColor" : "outline-knobhighlight"} drop-shadow-2xl`}
+        className={`relative grid cursor-hover place-items-center overflow-hidden rounded-full border-4 border-black/80 bg-white/25 bg-gradient-to-tr from-elementBgColor p-8 shadow-lg outline ${tooltip === 3 ? "outline-selectedColor" : "outline-knobhighlight"} drop-shadow-2xl`}
       >
-        <WheelTutorialJsx
-          gameTooltip={gameTooltip}
-          handleTutorial={handleTutorial}
-          isTutorial={isTutorial}
-          powerOn={powerOn}
-          tooltip={tooltip}
-          handleGameTutorial={handleGameTutorial}
-        />
+        <AnimatedComponent powerOn={powerOn} />
         <div
           className={`relative rounded-full border-2 border-white/20 bg-white/15 from-elementBgColor ${tooltip === 5 ? "outline -outline-offset-2" : ""}`}
         >
@@ -322,7 +322,7 @@ const VolumeKnob = () => {
         <audio ref={audioOutRef} preload="auto" src="/out.mp3" />
         <audio ref={audioErrorRef} preload="auto" src="/error.mp3" />
       </div>
-    </>
+    </div>
   );
 };
 
