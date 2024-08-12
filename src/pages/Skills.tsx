@@ -14,7 +14,7 @@ const Skills: React.FC = () => {
 
   return (
     <div
-      className={`flex flex-col gap-1 rounded-sm transition-all ${isOutro ? "animate-elementsFallDown" : ""}`}
+      className={`flex flex-col gap-1 z-[300] rounded-sm transition-all ${isOutro ? "animate-elementsFallDown" : ""}`}
     >
       {skillsData.map((link, index) => (
         <SkillsCard
