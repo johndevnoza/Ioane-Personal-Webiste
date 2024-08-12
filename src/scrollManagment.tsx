@@ -66,7 +66,6 @@ export const scrollManagment = create<States>()(
       ...initialState,
 
       handleScroll: (event: WheelEvent) => {
-        // event.preventDefault();
         const {
           rotation,
           navId,
@@ -78,7 +77,7 @@ export const scrollManagment = create<States>()(
         } = get();
 
         if (powerOn) {
-          set({ rotation: rotation + event.deltaY * 0.1 });
+          set({ rotation: rotation + event.deltaY * 0.2 });
 
           const updatedActiveNavLink = navLinks.find(
             (navLink) => navLink.id === navId,

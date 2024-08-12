@@ -115,7 +115,7 @@ const Game: React.FC = () => {
               </div>
               <div className="min-h-full w-[2px] bg-selectedColor" />
               <div className="relative">
-                Level Complition {levelComplition}%
+                Level {levelComplition}%
                 {tooltip === 2 && (
                   <TutorialAlert
                     arrow="bottom-[94%] right-1/2 rotate-45"
