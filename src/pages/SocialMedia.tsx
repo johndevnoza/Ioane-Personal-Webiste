@@ -27,19 +27,19 @@ const SocialMedia = () => {
             ref={setElementRef(index)}
             key={link.id}
             tabIndex={-1}
-            className={`group line-clamp-1 flex h-full w-full items-center gap-2 rounded-sm p-2 saturate-0 transition-all duration-100 focus:my-2 focus:outline focus:outline-selectedColor focus:saturate-100 ${scrollInside && "bg-cyan-800/15 focus:bg-selectedColor focus:outline-0"}`}
+            className={`group line-clamp-1 flex h-full w-full items-center justify-between gap-2 rounded-sm p-2 saturate-0 transition-all duration-100 focus:my-2 focus:outline focus:outline-selectedColor focus:saturate-100 ${scrollInside && "bg-cyan-800/15 focus:bg-selectedColor focus:outline-0"}`}
           >
-            <div className="w-[20%]">
-              <h3 className="w-min rounded-sm bg-black p-1 font-mono font-bold text-selectedColor">
+            <div className="w-[20%] min-w-24">
+              <h3 className="rounded-sm bg-black p-1 font-mono font-bold text-selectedColor">
                 {link.name}
               </h3>
             </div>
             <div className="min-h-[30px] w-[4px] bg-black/45" />
-            <h3 className="line-clamp-1 hidden text-nowrap rounded-sm bg-black/45 p-1 md:block">
+            <h3 className="line-clamp-1 hidden w-[30%] text-nowrap rounded-sm bg-black/45 p-1 md:block md:px-2">
               {link.description}
             </h3>
             <div className="min-h-[30px] w-[4px] bg-black/45" />
-            <div className="ml-auto flex items-center gap-2 justify-self-end rounded-sm bg-black p-2">
+            <div className="flex items-center gap-2 justify-self-end rounded-sm bg-black p-2">
               <div
                 className={`hidden gap-1 ${scrollInside && "group-focus:flex"}`}
               >

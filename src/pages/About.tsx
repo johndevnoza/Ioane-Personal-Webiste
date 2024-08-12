@@ -91,10 +91,10 @@ const About = () => {
                         ) : (
                           <span>{text.context}</span>
                         )}
-                          <img
-                            src={text.image}
-                            className="hidden size-24 rounded-md object-cover object-center group-focus:block"
-                          />
+                        <img
+                          src={text.image}
+                          className="hidden size-24 rounded-md object-cover object-center md:group-focus:block"
+                        />
                       </div>
                       <div className="h-[2px] w-full bg-black" />
                     </div>
