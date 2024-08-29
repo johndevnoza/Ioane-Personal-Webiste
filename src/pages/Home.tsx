@@ -32,7 +32,7 @@ const Home = () => {
                 scrollInside ? "animate-reveal -outline-offset-4" : ""
               }`}
             >
-              <div className="absolute h-full max-h-min w-full bg-gradient-to-b from-white/10 mix-blend-screen" />
+              <div className="pointer-events-none absolute h-full max-h-min w-full bg-gradient-to-b from-white/10 mix-blend-screen" />
               <WelcomeScreenAnim />
               {powerOn ? (
                 <div className="h-full w-full scroll-auto text-wrap rounded-md p-1 md:p-4">
