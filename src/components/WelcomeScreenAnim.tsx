@@ -1,24 +1,24 @@
 import { audioManagment } from "audioContext";
 import { useEffect } from "react";
-import { scrollManagment } from "scrollManagment";
+import { scrollManagement } from "scrollManagement";
 
 const WelcomeScreenAnim = () => {
-  const powerOn = scrollManagment((state) => state.powerOn);
-  const isIntro = scrollManagment((state) => state.isIntro);
-  const isOutro = scrollManagment((state) => state.isOutro);
-  const reset = scrollManagment((state) => state.reset);
+  const powerOn = scrollManagement((state) => state.powerOn);
+  const isIntro = scrollManagement((state) => state.isIntro);
+  const isOutro = scrollManagement((state) => state.isOutro);
+  const reset = scrollManagement((state) => state.reset);
 
   const handleAnimationEnd = () => {
-    scrollManagment.setState({ powerOn: true });
+    scrollManagement.setState({ powerOn: true });
   };
   const handleOutro = () => {
-    scrollManagment.setState({ powerOn: false });
-    scrollManagment.setState({ isOutro: false });
+    scrollManagement.setState({ powerOn: false });
+    scrollManagement.setState({ isOutro: false });
   };
 
   useEffect(() => {
     if (powerOn) {
-      scrollManagment.setState({ isIntro: false });
+      scrollManagement.setState({ isIntro: false });
     }
     if (!powerOn) {
       audioManagment.setState({ isAudioEnabled: false });

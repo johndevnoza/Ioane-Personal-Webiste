@@ -1,16 +1,16 @@
 import { ArrowDown } from "lucide-react";
 import { useFocusElement } from "hooks/useFocusElement";
-import { scrollManagment } from "scrollManagment";
+import { scrollManagement } from "scrollManagement";
 import navLinks, { AboutItem, Description, NavLink } from "lib/constants";
 
 const About = () => {
   const about = navLinks.find((link) => link.link === "about");
-  const elementId = scrollManagment((state) => state.elementId);
-  const context = scrollManagment((state) => state.context);
-  const navId = scrollManagment((state) => state.navId);
-  const scrollInside = scrollManagment((state) => state.scrollInside);
-  const isInSection = scrollManagment((state) => state.isInSection);
-  const isOutro = scrollManagment((state) => state.isOutro);
+  const elementId = scrollManagement((state) => state.elementId);
+  const context = scrollManagement((state) => state.context);
+  const navId = scrollManagement((state) => state.navId);
+  const scrollInside = scrollManagement((state) => state.scrollInside);
+  const isInSection = scrollManagement((state) => state.isInSection);
+  const isOutro = scrollManagement((state) => state.isOutro);
 
   const aboutData = (about?.data as AboutItem[]) || [];
   const activeNavLink =

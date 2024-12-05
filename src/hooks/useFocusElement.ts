@@ -1,10 +1,10 @@
 import { useEffect, useRef } from "react";
-import { scrollManagment } from "scrollManagment";
+import { scrollManagement } from "scrollManagement";
 
 export const useFocusElement = (elementId: number, length: number) => {
   const elementRef = useRef<HTMLElement[]>([]);
-  const scrollInside = scrollManagment((state) => state.scrollInside);
-  const handleSectionsEnter = scrollManagment(
+  const scrollInside = scrollManagement((state) => state.scrollInside);
+  const handleSectionsEnter = scrollManagement(
     (state) => state.handleSectionsEnter,
   );
   useEffect(() => {

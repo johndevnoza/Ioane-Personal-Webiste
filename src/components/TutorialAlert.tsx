@@ -1,4 +1,5 @@
 import { useEffect, useRef } from "react";
+import { audioManagment } from "audioContext";
 import { twMerge } from "tailwind-merge";
 
 type Tutorial = {
@@ -8,6 +9,7 @@ type Tutorial = {
   arrow: string;
   children?: React.ReactNode;
 };
+
 const TutorialAlert: React.FC<Tutorial> = ({
   TooltipButtonClick,
   desc,
@@ -15,12 +17,15 @@ const TutorialAlert: React.FC<Tutorial> = ({
   arrow,
   children,
 }) => {
+  const isAudioEnabled = audioManagment((state) => state.isAudioEnabled);
+
   const tutPopUpSound = useRef<HTMLAudioElement | null>(null);
   useEffect(() => {
     tutPopUpSound.current?.load();
-    tutPopUpSound.current?.play();
+    if (isAudioEnabled) {
+      tutPopUpSound.current?.play();
+    }
   }, []);
-
 
   return (
     <div

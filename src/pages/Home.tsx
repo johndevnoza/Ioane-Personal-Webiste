@@ -1,6 +1,6 @@
 import Navigation from "@components/Navigation";
 import { Outlet } from "react-router-dom";
-import { scrollManagment } from "scrollManagment";
+import { scrollManagement } from "scrollManagement";
 import Logo from "@components/Logo";
 import PowerButton from "@components/PowerButton ";
 import AudioButton from "./AudioButton";
@@ -10,8 +10,8 @@ import BlueThemComp from "@components/BlueThemComp";
 import WelcomeScreenAnim from "@components/WelcomeScreenAnim";
 
 const Home = () => {
-  const scrollInside = scrollManagment((state) => state.scrollInside);
-  const powerOn = scrollManagment((state) => state.powerOn);
+  const scrollInside = scrollManagement((state) => state.scrollInside);
+  const powerOn = scrollManagement((state) => state.powerOn);
 
   return (
     <div className="flex h-screen w-full items-center overflow-hidden bg-[#878695] md:p-2">

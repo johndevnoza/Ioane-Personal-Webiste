@@ -2,11 +2,11 @@ import TutorialAlert from "@components/TutorialAlert";
 import { audioManagment } from "audioContext";
 import { Nfc } from "lucide-react";
 import { memo } from "react";
-import { scrollManagment } from "scrollManagment";
+import { scrollManagement } from "scrollManagement";
 import { tutorialStore } from "tutorialZustandStore";
 
 const AudioButton = () => {
-  const powerOn = scrollManagment((state) => state.powerOn);
+  const powerOn = scrollManagement((state) => state.powerOn);
   const isTutorial = tutorialStore((state) => state.isTutorial);
   const tooltip = tutorialStore((state) => state.tooltip);
   const isAudioEnabled = audioManagment((state) => state.isAudioEnabled);

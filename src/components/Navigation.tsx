@@ -2,14 +2,14 @@ import navLinks from "lib/constants";
 import { useEffect, useState } from "react";
 import { BiLeftArrow, BiRightArrow } from "react-icons/bi";
 import { Link, useLocation } from "react-router-dom";
-import { scrollManagment } from "scrollManagment";
+import { scrollManagement } from "scrollManagement";
 
 const Navigation = () => {
   const location = useLocation();
-  const scrollInside = scrollManagment((state) => state.scrollInside);
-  const navId = scrollManagment((state) => state.navId);
-  const powerOn = scrollManagment((state) => state.powerOn);
-  const handleSectionsEnter = scrollManagment(
+  const scrollInside = scrollManagement((state) => state.scrollInside);
+  const navId = scrollManagement((state) => state.navId);
+  const powerOn = scrollManagement((state) => state.powerOn);
+  const handleSectionsEnter = scrollManagement(
     (state) => state.handleSectionsEnter,
   );
 
@@ -22,19 +22,19 @@ const Navigation = () => {
   }, []);
 
   useEffect(() => {
-    scrollManagment.setState({
+    scrollManagement.setState({
       isInContact: location.pathname.includes("contact"),
     });
   }, [location.pathname, powerOn]);
 
   const handleForwardLink = () => {
-    scrollManagment.setState({
+    scrollManagement.setState({
       navId: navId === navLinks.length ? 1 : navId + 1,
     });
   };
 
   const handleBackwardsLink = () => {
-    scrollManagment.setState({
+    scrollManagement.setState({
       navId: navId === 1 ? navLinks.length : navId - 1,
     });
   };
@@ -57,7 +57,7 @@ const Navigation = () => {
             <Link
               to={navLinks[navId - 1].link}
               onClick={() => {
-                scrollManagment.setState({ navId: navLinks[navId - 1].id });
+                scrollManagement.setState({ navId: navLinks[navId - 1].id });
                 handleSectionsEnter();
               }}
               className={`w-full rounded-sm border-2 text-center md:p-0 lg:w-full lg:px-2 ${
@@ -85,7 +85,7 @@ const Navigation = () => {
               key={link.id}
               to={link.link}
               onClick={() => {
-                scrollManagment.setState({ navId: link.id });
+                scrollManagement.setState({ navId: link.id });
                 handleSectionsEnter();
               }}
               className={`w-full rounded-sm border-2 text-center md:p-0 lg:w-full lg:px-2 ${

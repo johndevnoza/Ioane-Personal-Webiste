@@ -1,13 +1,13 @@
 import navLinks, { Link } from "lib/constants";
-import { scrollManagment } from "scrollManagment";
+import { scrollManagement } from "scrollManagement";
 import { useFocusElement } from "hooks/useFocusElement";
 import { ArrowUp } from "lucide-react";
 
 const SocialMedia = () => {
   const socMedia = navLinks.find((link) => link.link === "social-media");
-  const elementId = scrollManagment((state) => state.elementId);
-  const scrollInside = scrollManagment((state) => state.scrollInside);
-  const isOutro = scrollManagment((state) => state.isOutro);
+  const elementId = scrollManagement((state) => state.elementId);
+  const scrollInside = scrollManagement((state) => state.scrollInside);
+  const isOutro = scrollManagement((state) => state.isOutro);
 
   const socMediaData = (socMedia?.data as Link[]) || [];
   const { setElementRef } = useFocusElement(elementId, socMediaData.length);

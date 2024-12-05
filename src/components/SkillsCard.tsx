@@ -1,7 +1,7 @@
 import { useFocusElement } from "hooks/useFocusElement";
 import { Skill } from "lib/constants";
 import { FC } from "react";
-import { scrollManagment } from "scrollManagment";
+import { scrollManagement } from "scrollManagement";
 
 interface SkillsCardProps {
   id: number;
@@ -14,9 +14,9 @@ interface SkillsCardProps {
   data: Skill[];
 }
 const SkillsCard: FC<SkillsCardProps> = ({ id, name, index, link, data }) => {
-  const elementId = scrollManagment((state) => state.elementId);
+  const elementId = scrollManagement((state) => state.elementId);
   const { setElementRef } = useFocusElement(elementId, data.length);
-  const scrollInside = scrollManagment((state) => state.scrollInside);
+  const scrollInside = scrollManagement((state) => state.scrollInside);
   const IconComponent = link.icon;
 
   return (

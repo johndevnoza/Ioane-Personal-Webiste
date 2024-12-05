@@ -1,12 +1,12 @@
 import navLinks from "lib/constants";
 import SkillsCard from "@components/SkillsCard";
 import { Skill } from "lib/constants";
-import { scrollManagment } from "scrollManagment";
+import { scrollManagement } from "scrollManagement";
 
 const Skills: React.FC = () => {
   const skillsLink = navLinks.find((link) => link.link === "skills");
   const skillsData = (skillsLink?.data as Skill[]) || [];
-  const isOutro = scrollManagment((state) => state.isOutro);
+  const isOutro = scrollManagement((state) => state.isOutro);
 
   if (!skillsLink || !skillsLink.data) {
     return null;
@@ -14,7 +14,7 @@ const Skills: React.FC = () => {
 
   return (
     <div
-      className={`flex flex-col gap-1 z-[300] rounded-sm transition-all ${isOutro ? "animate-elementsFallDown" : ""}`}
+      className={`z-[300] flex flex-col gap-1 rounded-sm transition-all ${isOutro ? "animate-elementsFallDown" : ""}`}
     >
       {skillsData.map((link, index) => (
         <SkillsCard

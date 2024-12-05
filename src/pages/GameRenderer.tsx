@@ -1,7 +1,7 @@
 import { gameStore } from "gameZustandStore";
 import { GameData } from "lib/constants";
 import { useEffect, useRef, useState } from "react";
-import { scrollManagment } from "scrollManagment";
+import { scrollManagement } from "scrollManagement";
 import { twMerge } from "tailwind-merge";
 interface GameRendererProps {
   gameData: GameData[];
@@ -60,7 +60,7 @@ const GameRenderer = ({
       setTimeout(() => {
         refreshPage();
         setIsAnimating(false);
-        scrollManagment.setState({ elementId: 1 });
+        scrollManagement.setState({ elementId: 1 });
       }, 1000);
     }
     prevWinRef.current = win;

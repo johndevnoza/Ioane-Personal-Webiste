@@ -9,7 +9,6 @@ import { gameTutorialStore } from "gameTutZustand";
 import filteredData from "lib/filteredData";
 import { useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { scrollManagment } from "scrollManagment";
 import { tutorialStore } from "tutorialZustandStore";
 import ErrorAlert from "./ErrorAlert";
 import WheelButtons from "./WheelButtons";
@@ -18,6 +17,7 @@ import TutorialAlert from "./TutorialAlert";
 import { ArrowBigDown, ArrowBigUp } from "lucide-react";
 import { IoEnter, IoReturnDownBack } from "react-icons/io5";
 import AnimatedComponent from "./AnimatedButtonComp";
+import { scrollManagement } from "scrollManagement";
 
 const KnobLine = ({ angle }: { angle: number }) => {
   const lineStyle = {
@@ -33,7 +33,7 @@ const KnobLine = ({ angle }: { angle: number }) => {
 
 const VolumeKnob = () => {
   // tutorial
-  const powerOn = scrollManagment((state) => state.powerOn);
+  const powerOn = scrollManagement((state) => state.powerOn);
   const isTutorial = tutorialStore((state) => state.isTutorial);
   const tooltip = tutorialStore((state) => state.tooltip);
   const gameTooltip = gameTutorialStore((state) => state.tooltip);
@@ -53,24 +53,28 @@ const VolumeKnob = () => {
     gameTutorialStore.setState({ tooltip: 1 });
   };
   // wheel scroll
-  const handleScroll = scrollManagment((state) => state.handleScroll);
-  const rotation = scrollManagment((state) => state.rotation);
-  const navId = scrollManagment((state) => state.navId);
+  const handleScroll = scrollManagement((state) => state.handleScroll);
+  const rotation = scrollManagement((state) => state.rotation);
+  const navId = scrollManagement((state) => state.navId);
   // find different elements
-  const activeNavLink = scrollManagment((state) => state.activeNavLink);
-  const handleSectionsEnter = scrollManagment(
+  const activeNavLink = scrollManagement((state) => state.activeNavLink);
+  const handleSectionsEnter = scrollManagement(
     (state) => state.handleSectionsEnter,
   );
 
   const { activeElement } = filteredData();
   // wheel buttons
-  const handleSectionsOut = scrollManagment((state) => state.handleSectionsOut);
-  const handleSectionOpen = scrollManagment((state) => state.handleSectionOpen);
-  const handleSectionClose = scrollManagment(
+  const handleSectionsOut = scrollManagement(
+    (state) => state.handleSectionsOut,
+  );
+  const handleSectionOpen = scrollManagement(
+    (state) => state.handleSectionOpen,
+  );
+  const handleSectionClose = scrollManagement(
     (state) => state.handleSectionClose,
   );
-  const scrollInside = scrollManagment((state) => state.scrollInside);
-  const isInSection = scrollManagment((state) => state.isInSection);
+  const scrollInside = scrollManagement((state) => state.scrollInside);
+  const isInSection = scrollManagement((state) => state.isInSection);
   const isAudioEnabled = audioManagment((state) => state.isAudioEnabled);
 
   const isParagraph = ((activeElement as AboutItem)?.description as Description)
@@ -132,7 +136,7 @@ const VolumeKnob = () => {
   // ONCLICK logics
   const handleNavigateButton = async () => {
     if ((activeElement as ContactItem)?.name === "Click") {
-      scrollManagment.setState({ isSubmit: true });
+      scrollManagement.setState({ isSubmit: true });
     }
     if (isAudioEnabled && audioEnterRef.current && !scrollInside) {
       audioEnterRef.current.pause();
@@ -233,7 +237,7 @@ const VolumeKnob = () => {
     handleBackButton,
     handlePowerAlert,
   ]);
-  const handleKeyDown = scrollManagment((state) => state.handleKeyDown);
+  const handleKeyDown = scrollManagement((state) => state.handleKeyDown);
 
   useEffect(() => {
     window.addEventListener("keydown", handleKeyDown);

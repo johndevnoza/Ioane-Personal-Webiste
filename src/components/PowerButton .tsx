@@ -1,12 +1,12 @@
 import { memo, useEffect, useRef } from "react";
 import { Power } from "lucide-react";
-import { scrollManagment } from "scrollManagment";
+import { scrollManagement } from "scrollManagement";
 import { audioManagment } from "audioContext";
 import { tutorialStore } from "tutorialZustandStore";
 import TutorialAlert from "./TutorialAlert";
 
 const PowerButton = () => {
-  const powerOn = scrollManagment((state) => state.powerOn);
+  const powerOn = scrollManagement((state) => state.powerOn);
   const isTutorial = tutorialStore((state) => state.isTutorial);
   const tooltip = tutorialStore((state) => state.tooltip);
 
@@ -23,7 +23,7 @@ const PowerButton = () => {
   };
 
   const handleOn = () => {
-    scrollManagment.setState({ isIntro: true });
+    scrollManagement.setState({ isIntro: true });
     audioManagment.setState({ isAudioEnabled: powerOn ? false : true });
     if (tooltip === 1) {
       handleTooltipButtonClick();
@@ -31,7 +31,7 @@ const PowerButton = () => {
     powerOnAudioRef.current?.play();
   };
   const handleOff = () => {
-    scrollManagment.setState({ isOutro: true });
+    scrollManagement.setState({ isOutro: true });
     powerOffAudioRef.current?.play();
   };
 

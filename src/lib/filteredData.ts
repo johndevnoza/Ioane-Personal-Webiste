@@ -1,10 +1,10 @@
 import navLinks from "./constants";
-import { scrollManagment } from "scrollManagment";
+import { scrollManagement } from "scrollManagement";
 
 const filteredData = () => {
-  const scrollInside = scrollManagment((state) => state.scrollInside);
-  const navId = scrollManagment((state) => state.navId);
-  const elementId = scrollManagment((state) => state.elementId);
+  const scrollInside = scrollManagement((state) => state.scrollInside);
+  const navId = scrollManagement((state) => state.navId);
+  const elementId = scrollManagement((state) => state.elementId);
 
   const sectionData = navLinks.find((navLink) => navLink.id === navId)?.data;
 

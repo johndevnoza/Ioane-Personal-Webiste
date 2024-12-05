@@ -1,7 +1,7 @@
 import { useFocusElement } from "hooks/useFocusElement";
 import navLinks, { GameData } from "lib/constants";
 import { useEffect, useState } from "react";
-import { scrollManagment } from "scrollManagment";
+import { scrollManagement } from "scrollManagement";
 import GameRenderer from "./GameRenderer";
 import { gameStore } from "gameZustandStore";
 import { StarIcon } from "lucide-react";
@@ -11,9 +11,9 @@ import TutorialAlert from "@components/TutorialAlert";
 import GameTutSkeleton from "@components/GameTutSkeleton";
 
 const Game: React.FC = () => {
-  const isOutro = scrollManagment((state) => state.isOutro);
-  const elementId = scrollManagment((state) => state.elementId);
-  const scrollInside = scrollManagment((state) => state.scrollInside);
+  const isOutro = scrollManagement((state) => state.isOutro);
+  const elementId = scrollManagement((state) => state.elementId);
+  const scrollInside = scrollManagement((state) => state.scrollInside);
 
   const isGameTut = gameTutorialStore((state) => state.isGameTut);
   const tooltip = gameTutorialStore((state) => state.tooltip);
@@ -30,7 +30,7 @@ const Game: React.FC = () => {
     (state) => state.updateLevelComplition,
   );
 
-  const isGameOn = scrollManagment((state) => state.isGameOn);
+  const isGameOn = scrollManagement((state) => state.isGameOn);
   const game = navLinks.find((link) => link.link === "game");
   const gameData = (game?.data as GameData[]) || [];
   const { setElementRef } = useFocusElement(elementId, gameData.length);
@@ -43,9 +43,9 @@ const Game: React.FC = () => {
   const lose = dangerItems?.find((box) => box.id === elementId) || null;
   useEffect(() => {
     if (isDead) {
-      scrollManagment.setState({ elementId: elementId });
+      scrollManagement.setState({ elementId: elementId });
     } else {
-      scrollManagment.setState({ elementId: 1 });
+      scrollManagement.setState({ elementId: 1 });
     }
   }, [isGameOn, isDead]);
   useEffect(() => {

@@ -2,10 +2,10 @@ import { keepPreviousData, useQuery } from "@tanstack/react-query";
 import filteredData from "lib/filteredData";
 import apiClient from "services/axiosConfig";
 import useDebounce from "hooks/useDebaunce";
-import { scrollManagment } from "scrollManagment";
+import { scrollManagement } from "scrollManagement";
 
 const RandomGifComponent = () => {
-  const powerOn = scrollManagment((state) => state.powerOn);
+  const powerOn = scrollManagement((state) => state.powerOn);
 
   const { queryParam } = filteredData();
   const debouncedSearchTerm = useDebounce(queryParam, 700);

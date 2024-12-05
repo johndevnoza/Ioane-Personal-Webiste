@@ -1,12 +1,12 @@
-import { scrollManagment } from "scrollManagment";
+import { scrollManagement } from "scrollManagement";
 import { useFocusElement } from "hooks/useFocusElement";
 import { useEffect, useRef, useState } from "react";
 
 const Contact = () => {
-  const elementId = scrollManagment((state) => state.elementId);
-  const scrollInside = scrollManagment((state) => state.scrollInside);
-  const isSubmit = scrollManagment((state) => state.isSubmit);
-  const isOutro = scrollManagment((state) => state.isOutro);
+  const elementId = scrollManagement((state) => state.elementId);
+  const scrollInside = scrollManagement((state) => state.scrollInside);
+  const isSubmit = scrollManagement((state) => state.isSubmit);
+  const isOutro = scrollManagement((state) => state.isOutro);
 
   const elementCount = 4;
 
@@ -47,7 +47,7 @@ const Contact = () => {
       submitButtonRef.current.click();
     }
     return () => {
-      scrollManagment.setState({ isSubmit: false });
+      scrollManagement.setState({ isSubmit: false });
     };
   }, [isSubmit]);
 

@@ -51,7 +51,7 @@ export interface NavLink {
   title: string;
   link: string;
   id: number;
-  data: (Skill | Link | AboutItem | ContactItem | GameData)[];
+  data: (Skill | Link | AboutItem | ContactItem | GameData | ProjectItem)[];
 }
 
 const skillsData: Skill[] = [
@@ -367,12 +367,48 @@ const gameData: GameData[] = Array.from({ length: 150 }, (_, index) => ({
   value: index,
   danger: index !== 1 && Math.random() < 0.5,
 }));
+
+export interface ProjectItem {
+  id: number;
+  name: string;
+  description: string;
+  technologies: string[];
+  videoUrl?: string;
+  githubUrl?: string;
+  liveUrl?: string;
+}
+
+const projectsData: ProjectItem[] = [
+  {
+    id: 1,
+    name: "TabletFolio",
+    description:
+      "A revolutionary approach to personal websites with a tablet-inspired interface.",
+    technologies: ["React", "TypeScript", "Tailwind CSS", "Vite"],
+    githubUrl: "https://github.com/yourusername/TabletFolio",
+    liveUrl: "https://io-devnoza.vercel.app",
+    videoUrl: "https://youtube.com/your-demo-video",
+  },
+  {
+    id: 2,
+    name: "TabletFolio",
+    description:
+      "A revolutionary approach to personal websites with a tablet-inspired interface.",
+    technologies: ["React", "TypeScript", "Tailwind CSS", "Vite"],
+    githubUrl: "https://github.com/yourusername/TabletFolio",
+    liveUrl: "https://io-devnoza.vercel.app",
+    videoUrl: "https://youtube.com/your-demo-video",
+  },
+  // Add more projects here
+];
+
 const navLinks: NavLink[] = [
   { title: "Skills", link: "skills", id: 1, data: skillsData },
   { title: "Links", link: "social-media", id: 2, data: linksData },
   { title: "About", link: "about", id: 3, data: aboutData },
   { title: "Contact", link: "contact", id: 4, data: contactData },
   { title: "Game", link: "game", id: 5, data: gameData },
+  { title: "Projects", link: "projects", id: 6, data: projectsData },
 ];
 
 export default navLinks;
