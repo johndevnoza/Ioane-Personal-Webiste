@@ -14,7 +14,6 @@ const Home = () => {
   const scrollInside = scrollManagement((state) => state.scrollInside);
   const powerOn = scrollManagement((state) => state.powerOn);
 
-
   return (
     <div className="flex h-screen w-full items-center overflow-hidden bg-[#878695] md:p-2">
       <div className="relative z-40 m-auto flex h-full w-full select-none overflow-hidden rounded-[24px] border-2 border-borderDark bg-tabletCover p-1 shadow-2xl drop-shadow-2xl max-[1110px]:min-w-full md:h-[80%] md:w-[80%]">
