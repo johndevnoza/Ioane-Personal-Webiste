@@ -1,7 +1,7 @@
 import { SignalLow, SignalHigh, Signal } from "lucide-react";
 import { useEffect, useState } from "react";
 
-const SignalDisplay = () => {
+export const SignalDisplay = () => {
   const [currentIcon, setCurrentIcon] = useState(<SignalLow />);
 
   useEffect(() => {
@@ -29,4 +29,3 @@ const SignalDisplay = () => {
   return <div>{currentIcon}</div>;
 };
 
-export default SignalDisplay;

@@ -30,7 +30,7 @@ const TutorialAlert: React.FC<Tutorial> = ({
   return (
     <div
       className={twMerge(
-        "absolute z-[100] w-max animate-elementsPopUp cursor-hover border border-black bg-black bg-elementBgDark p-0 text-[20px] text-white outline outline-[2px] outline-white/35",
+        "absolute z-[100] w-max animate-elementsPopUp cursor-hover text-wrap border border-black bg-black bg-elementBgDark text-white outline outline-[2px] outline-white/35",
         className,
       )}
     >

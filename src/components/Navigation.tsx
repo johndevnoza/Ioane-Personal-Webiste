@@ -1,4 +1,5 @@
 import navLinks from "lib/constants";
+import { navigationReminderContext } from "navigationReminderContext";
 import { useEffect, useState } from "react";
 import { BiLeftArrow, BiRightArrow } from "react-icons/bi";
 import { Link, useLocation } from "react-router-dom";
@@ -40,70 +41,76 @@ const Navigation = () => {
   };
 
   return (
-    <div className="flex h-max flex-col items-center gap-4">
+    <div
+      onClick={() => navigationReminderContext.setState({ isInteracted: true })}
+    >
       <div
-        className={`mt-2 flex h-full w-full cursor-hover items-center justify-center gap-3 md:flex-col ${
-          powerOn && "animate-reveal"
-        }`}
+        className={` ${!isMobile && "pointer-events-none"} flex h-max flex-col items-center gap-4`}
       >
-        {isMobile ? (
-          <>
-            <button
-              className="rounded-sm border-2 border-black/45 outline outline-borderHighlight"
-              onClick={handleBackwardsLink}
-            >
-              <BiLeftArrow className="p-1 text-[23px]" />
-            </button>
-            <Link
-              to={navLinks[navId - 1].link}
-              onClick={() => {
-                scrollManagement.setState({ navId: navLinks[navId - 1].id });
-                handleSectionsEnter();
-              }}
-              className={`w-full rounded-sm border-2 text-center md:p-0 lg:w-full lg:px-2 ${
-                !powerOn
-                  ? "border-black bg-black/35 text-elementBgColor outline outline-navhighlight"
-                  : location.pathname === `/${navLinks[navId - 1].link}`
-                    ? scrollInside
-                      ? "border-blue-800 bg-selectedNav outline outline-elementBgColor"
-                      : "border-black bg-selectedColor outline outline-navhighlight"
-                    : "border-black bg-black/35 text-elementBgColor outline outline-navhighlight"
-              } ${!scrollInside && "animate-reveal"}`}
-            >
-              {navLinks[navId - 1].title}
-            </Link>
-            <button
-              className="rounded-sm border-2 border-black/45 outline outline-borderHighlight"
-              onClick={handleForwardLink}
-            >
-              <BiRightArrow className="p-1 text-[23px]" />
-            </button>
-          </>
-        ) : (
-          navLinks.map((link) => (
-            <Link
-              key={link.id}
-              to={link.link}
-              onClick={() => {
-                scrollManagement.setState({ navId: link.id });
-                handleSectionsEnter();
-              }}
-              className={`w-full rounded-sm border-2 text-center md:p-0 lg:w-full lg:px-2 ${
-                !powerOn
-                  ? "border-black bg-black/35 text-elementBgColor outline outline-navhighlight"
-                  : location.pathname === `/${link.link}`
-                    ? scrollInside
-                      ? "border-blue-800 bg-selectedNav outline outline-elementBgColor"
-                      : "border-black bg-selectedColor outline outline-navhighlight"
-                    : "border-black bg-black/35 text-elementBgColor outline outline-navhighlight"
-              } ${!scrollInside && "animate-reveal"}`}
-            >
-              {link.title}
-            </Link>
-          ))
-        )}
+        <div
+          className={`mt-2 flex h-full w-full cursor-hover items-center justify-center gap-3 md:flex-col ${
+            powerOn && "animate-reveal"
+          }`}
+        >
+          {isMobile ? (
+            <>
+              <button
+                className="rounded-sm border-2 border-black/45 outline outline-borderHighlight"
+                onClick={handleBackwardsLink}
+              >
+                <BiLeftArrow className="p-1 text-[23px]" />
+              </button>
+              <Link
+                to={navLinks[navId - 1].link}
+                onClick={() => {
+                  scrollManagement.setState({ navId: navLinks[navId - 1].id });
+                  handleSectionsEnter();
+                }}
+                className={`w-full rounded-sm border-2 text-center md:p-0 lg:w-full lg:px-2 ${
+                  !powerOn
+                    ? "border-black bg-black/35 text-elementBgColor outline outline-navhighlight"
+                    : location.pathname === `/${navLinks[navId - 1].link}`
+                      ? scrollInside
+                        ? "border-blue-800 bg-selectedNav outline outline-elementBgColor"
+                        : "border-black bg-selectedColor outline outline-navhighlight"
+                      : "border-black bg-black/35 text-elementBgColor outline outline-navhighlight"
+                } ${!scrollInside && "animate-reveal"}`}
+              >
+                {navLinks[navId - 1].title}
+              </Link>
+              <button
+                className="rounded-sm border-2 border-black/45 outline outline-borderHighlight"
+                onClick={handleForwardLink}
+              >
+                <BiRightArrow className="p-1 text-[23px]" />
+              </button>
+            </>
+          ) : (
+            navLinks.map((link) => (
+              <Link
+                key={link.id}
+                to={link.link}
+                onClick={() => {
+                  scrollManagement.setState({ navId: link.id });
+                  handleSectionsEnter();
+                }}
+                className={`w-full rounded-sm border-2 text-center md:p-0 lg:w-full lg:px-2 ${
+                  !powerOn
+                    ? "border-black bg-black/35 text-elementBgColor outline outline-navhighlight"
+                    : location.pathname === `/${link.link}`
+                      ? scrollInside
+                        ? "border-blue-800 bg-selectedNav outline outline-elementBgColor"
+                        : "border-black bg-selectedColor outline outline-navhighlight"
+                      : "border-black bg-black/35 text-elementBgColor outline outline-navhighlight"
+                } ${!scrollInside && "animate-reveal"}`}
+              >
+                {link.title}
+              </Link>
+            ))
+          )}
+        </div>
+        <div className="h-[5px] min-w-full border-t-2 border-navhighlight bg-black/35" />
       </div>
-      <div className="h-[5px] min-w-full border-t-2 border-navhighlight bg-black/35" />
     </div>
   );
 };

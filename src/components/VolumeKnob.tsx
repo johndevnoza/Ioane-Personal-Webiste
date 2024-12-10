@@ -18,6 +18,7 @@ import { ArrowBigDown, ArrowBigUp } from "lucide-react";
 import { IoEnter, IoReturnDownBack } from "react-icons/io5";
 import AnimatedComponent from "./AnimatedButtonComp";
 import { scrollManagement } from "scrollManagement";
+import NavReminder from "./NavReminder";
 
 const KnobLine = ({ angle }: { angle: number }) => {
   const lineStyle = {
@@ -253,6 +254,7 @@ const VolumeKnob = () => {
 
   return (
     <div className="relative">
+      <NavReminder/>
       <ErrorAlert removeAlert={handleRemoveAlert} isError={error} />
       {tooltip === 6 && isTutorial && (
         <TutorialAlert

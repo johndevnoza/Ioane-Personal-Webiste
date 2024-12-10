@@ -8,10 +8,12 @@ import ButtonsSection from "@components/ButtonsSection";
 import OrangeThemComp from "@components/OrangeThemComp";
 import BlueThemComp from "@components/BlueThemComp";
 import WelcomeScreenAnim from "@components/WelcomeScreenAnim";
+import { navigationReminderContext } from "navigationReminderContext";
 
 const Home = () => {
   const scrollInside = scrollManagement((state) => state.scrollInside);
   const powerOn = scrollManagement((state) => state.powerOn);
+
 
   return (
     <div className="flex h-screen w-full items-center overflow-hidden bg-[#878695] md:p-2">
@@ -34,11 +36,17 @@ const Home = () => {
             >
               <div className="pointer-events-none absolute h-full max-h-min w-full bg-gradient-to-b from-white/10 mix-blend-screen" />
               <WelcomeScreenAnim />
-              {powerOn ? (
-                <div className="h-full w-full scroll-auto text-wrap rounded-md p-1 md:p-4">
-                  <Outlet />
-                </div>
-              ) : null}
+              <div
+                onClick={() =>
+                  navigationReminderContext.setState({ isInteracted: true })
+                }
+              >
+                {powerOn ? (
+                  <div className="pointer-events-none h-full w-full scroll-auto text-wrap rounded-md p-1 md:p-4">
+                    <Outlet />
+                  </div>
+                ) : null}
+              </div>
             </section>
             <section className="flex w-full flex-col justify-center gap-2 rounded-lg border-2 border-borderHighlight border-l-borderDark border-t-borderDark bg-navBackground p-2 md:h-full md:w-[45%] md:flex-row">
               <Navigation />
